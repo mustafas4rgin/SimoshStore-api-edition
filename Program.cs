@@ -7,7 +7,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDataServices(builder.Configuration);
 builder.Services.AddHttpClient("Api.Data", client =>
 {
-    client.BaseAddress = new Uri("https://localhost:7285");
+    client.BaseAddress = new Uri("http://localhost:5178");
 });
 
 builder.Services.AddBusinessService();

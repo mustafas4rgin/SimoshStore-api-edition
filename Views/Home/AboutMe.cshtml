@@ -1,6 +1,4 @@
-﻿@using App.Data.Entities
-@using SimoshStore.Controllers
-@model AboutUsViewModel
+﻿
 <div class="page-content">
 			<!--Banner Start-->
 			<div class="dz-bnr-inr" style="background-image:url(images/background/bg1.jpg);">
@@ -104,18 +102,9 @@
 						</div>
 						<div class="about-sale">
 							<div class="row">
-								<div class="col-lg-5 col-md-6 col-sm-6 col-6 wow fadeInUp" data-wow-delay="0.4s">
-									<div class="about-content">
-										<h2 class="title"><span class="counter">@Model.orders.Count();</span>+</h2>
-										<p class="text">Items Sale</p>
-									</div>
-								</div>
-								<div class="col-lg-5 col-md-6 col-sm-6 col-6 wow fadeInUp" data-wow-delay="0.5s">
-									<div class="about-content">
-										<h2 class="title">400%</h2>
-										<p class="text">Return on investment</p>
-									</div>
-								</div>
+								@await Component.InvokeAsync("OrderResult")
+								
+								@await Component.InvokeAsync("CommentResult")
 							</div>
 						</div>
 					</div>
@@ -166,24 +155,7 @@
 							</div>
 							<div class="swiper swiper-five ">
 								<div class="swiper-wrapper">
-                                    @foreach(var comment in Model.productComments)
-                                    {
-                                        var user = Model.users.Where(x => x.Id == comment.UserId).FirstOrDefault();
-                                        <div class="swiper-slide">
-										<div class="about-content">
-											<p class="para-text">@comment.Text</p>
-											<div class="about-bx-detail">
-												<div class="about-bx-pic radius">
-													<img src="https://picsum.photos/560/807" alt="">
-												</div>
-												<div>
-													<h3 class="name">@user.FirstName @user.LastName</h3> 
-													<span class="position">Customer</span> 
-												</div>
-											</div>
-										</div>
-									</div>
-                                    }
+                                    @await Component.InvokeAsync("CommentSection")
 									
 								</div>
 								<div class="pagination-align">

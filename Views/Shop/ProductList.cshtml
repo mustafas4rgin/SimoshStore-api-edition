@@ -56,89 +56,15 @@
     </div>
 }
 
-
-								<form method="post" action="@Url.Action("ProductList", "Shop")">
-    <div class="widget widget_categories">
-    <h2 class="widget-title">Product Category</h2>
-    <ul>
-        @foreach (var category in Model.categories)
-        {            
-            <li class="cat-item cat-item-@category.Id">
-                <div class="custom-control custom-checkbox d-flex">
-                    <input type="checkbox" class="form-check-input square"
-                           id="category_@category.Id" 
-                           name="selectedCategoryIds" value="@category.Id"
-                           @((Model.SelectedCategoryIds != null && Model.SelectedCategoryIds.Contains(category.Id)) ? "checked" : "") />
-                    <label class="form-check-label text-start flex-1" for="category_@category.Id">@category.Name</label>
-                </div>
-            </li>
-        }
-    </ul>
-</div>
-
-
-    <!-- Featured Products (Optional Section) -->
-    <div class="widget recent-posts-entry">
-        <h3 class="widget-title">Featured Products</h3>
-        <div class="widget-post-bx">
-            @foreach (var product in Model.productEntities.Take(3))
-            {
-                var img = Model.images.Where(x => x.ProductId == product.Id).FirstOrDefault();
-                <div class="widget-post clearfix">
-                    <div class="dz-media">
-                        <a href="@Url.Action("ProductDetails", "Shop", new { id = product.Id })">
-                            @if(img is not null)
-                            {
-                                <img width="600" height="600" src="@img.Url" alt="Product Image" />
-                            }
-                            else{
-                                <img width="600" height="600" src="https://picsum.photos/600/600" alt="Product Image" />
-                            }
-                            
-                        </a>
-                    </div>
-                    <div class="dz-info">
-                        <h6 class="title">
-                            <a href="@Url.Action("ProductDetails", "Shop", new { id = product.Id })">@product.Name</a>
-                        </h6>
-                        @if (product.DiscountId > 0)
-                        {
-                            var discount = Model.discounts.Where(x => x.Id == product.DiscountId).FirstOrDefault();
-                            decimal newPrice = @product.Price - (@product.Price * discount.DiscountRate / 100);
-                            <span class="price">$@newPrice<del>$@product.Price</del></span>
-                        }
-                        else
-                        {
-                            <span class="price">$@product.Price</span>
-                        }
-                    </div>
-                </div>
-            }
-        </div>
-    </div>
-
-    <!-- All Categories Section -->
-    <div class="widget widget_tag_cloud">
-        <h3 class="widget-title">ALL Categories</h3>
-        <div class="tagcloud">
-            @foreach (var category in Model.categories)
-            {
-                <a href="#">@category.Name</a>
-            }
-        </div>
-    </div>
-
-    <!-- Search Button -->
-    <button type="submit" class="btn btn-lg font-14 btn-secondary btn-sharp btn-block text-uppercase">SEARCH</button>
-</form>
-
+@await Component.InvokeAsync("SearchBox")
+								
 						</div>
 					</div>
 				</div>
 				<div class="col-xl-9">
 					<div class="filter-wrapper">
 						<div class="filter-left-area">
-							<span>Showing 1–5 Of @Model.productEntities.Count Results</span>
+							<span>Showing @((Model.CurrentPage - 1) * 4 + 1)–@((Model.CurrentPage - 1) * 4 + Model.productEntities.Count) Of @Model.TotalProductCount Results</span>
 						</div>
 						<div class="filter-right-area">
 							<a href="javascript:void(0);" class="panel-btn">
@@ -168,19 +94,11 @@
         <div class="row">
             @foreach (var item in Model.productEntities) 
             {
-                var category = Model.categories.FirstOrDefault(x => x.Id == item.CategoryId);
-                var img = Model.images.FirstOrDefault(x => x.ProductId == item.Id);
                 <div class="col-md-12 col-sm-12">
                     <div class="dz-shop-card style-2">
                         <div class="dz-media">
-                            @if(img is not null)
-                            {
-                                <img src="@img.Url" alt="product-image" />
-                            }
-                            else
-                            {
                                 <img src="https://picsum.photos/600/600" alt="product-image" />
-                            }
+                            
                         </div>
                         <div class="dz-content">
                             <h2 class="title mb-0">
@@ -189,7 +107,7 @@
                             <div class="dz-header">
                                 <div>
                                     <ul class="dz-tags">
-                                        <li><a href="@Url.Action("ProductList", "Shop", new { selectedCategoryIds = new List<int> { category.Id } })">@category.Name</a></li>
+                                        <li><a href="@Url.Action("ProductList", "Shop", new { selectedCategoryIds = new List<int> { item.Category.Id } })">@item.Category.Name</a></li>
                                     </ul>
                                 </div>
                                 <div class="d-flex">
@@ -210,10 +128,9 @@
                                 <div class="rate">
                                     <div class="d-flex align-items-center mb-xl-3 mb-2">
                                         <div class="meta-content">
-                                            @if (item.DiscountId > 0)
+                                            @if (item.Discount != null)
                                             {
-                                                var discount = Model.discounts.FirstOrDefault(x => x.Id == item.DiscountId);
-                                                decimal newPrice = item.Price - (item.Price * discount.DiscountRate / 100);
+                                                decimal newPrice = item.Price - (item.Price * item.Discount.DiscountRate / 100);
                                                 <span class="price">$@newPrice<del>$@item.Price</del></span>
                                             }
                                             else
@@ -222,18 +139,15 @@
                                             }
                                             @{
                                                 int starCount = 0;
-                                                var reviews = Model.comments.Where(x => x.ProductId == item.Id).ToList();
-                                                @foreach (var review in reviews)
+                                                
+                                                foreach(var comment in item.Comments)
                                                 {
-                                                    starCount += review.StarCount;
+                                                    starCount += comment.StarCount;
                                                 }
-                                                if (reviews.Count > 0)
+
+                                                if (item.Comments.Count > 0)
                                                 {
-                                                    starCount = starCount / reviews.Count;
-                                                }
-                                                else
-                                                {
-                                                    starCount = 0;
+                                                    starCount = starCount / item.Comments.Count;
                                                 }
                                             }
                                         </div>
