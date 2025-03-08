@@ -1,0 +1,68 @@
+﻿@using SimoshStore
+@model SearchBoxViewModel
+
+
+<form method="post" action="@Url.Action("ProductList", "Shop")">
+    <div class="widget widget_categories">
+        <h2 class="widget-title">Product Category</h2>
+        <ul>
+            @foreach (var category in Model.Categories)
+            {            
+                <li class="cat-item cat-item-@category.Id">
+                    <div class="custom-control custom-checkbox d-flex">
+                        <input type="checkbox" class="form-check-input square"
+                               id="category_@category.Id" 
+                               name="selectedCategoryIds" value="@category.Id"
+                               @((Model.SelectedCategoryIds != null && Model.SelectedCategoryIds.Contains(category.Id)) ? "checked" : "") />
+                        <label class="form-check-label text-start flex-1" for="category_@category.Id">@category.Name</label>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+
+    <!-- Featured Products (Optional Section) -->
+    <div class="widget recent-posts-entry">
+        <h3 class="widget-title">Featured Products</h3>
+        <div class="widget-post-bx">
+            @foreach (var product in Model.FeaturedProducts.Take(3))
+            {
+                <div class="widget-post clearfix">
+                    <div class="dz-media">
+                        <a href="@Url.Action("ProductDetails", "Shop", new { id = product.Id })">
+                            <img width="600" height="600" src="https://picsum.photos/600/600" alt="Product Image" />
+                        </a>
+                    </div>
+                    <div class="dz-info">
+                        <h6 class="title">
+                            <a href="@Url.Action("ProductDetails", "Shop", new { id = product.Id })">@product.Name</a>
+                        </h6>
+                        @if (product.Discount != null)
+                        {
+                            decimal newPrice = @product.Price - (@product.Price * product.Discount.DiscountRate / 100);
+                            <span class="price">$@newPrice<del>$@product.Price</del></span>
+                        }
+                        else
+                        {
+                            <span class="price">$@product.Price</span>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- All Categories Section -->
+    <div class="widget widget_tag_cloud">
+        <h3 class="widget-title">ALL Categories</h3>
+        <div class="tagcloud">
+            @foreach (var category in Model.Categories)
+            {
+                <a href="#">@category.Name</a>
+            }
+        </div>
+    </div>
+
+    <!-- Search Button -->
+    <button type="submit" class="btn btn-lg font-14 btn-secondary btn-sharp btn-block text-uppercase">SEARCH</button>
+</form>

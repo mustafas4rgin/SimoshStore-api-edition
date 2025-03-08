@@ -1,6 +1,4 @@
-﻿@using App.Data.Entities
-@model List<ProductCommentEntity>
-<div class="page-content">
+﻿<div class="page-content">
     <!-- Banner Start -->
     <div class="dz-bnr-inr" style="background-image:url(images/background/bg1.jpg);">
         <div class="container">
@@ -222,23 +220,7 @@
 							</div>
 							<div class="swiper swiper-five ">
 								<div class="swiper-wrapper">
-									@foreach(var item in Model)
-									{
-										<div class="swiper-slide">
-										<div class="about-content">
-											<p class="para-text">@item.Text</p>
-											<div class="about-bx-detail">
-												<div class="about-bx-pic radius">
-													<img src="~/images/testimonial/testimonial1.jpg" alt="">
-												</div>
-												<div>
-													<h3 class="name">@item.User.FirstName @item.User.LastName</h3> 
-													<span class="position">Customer</span> 
-												</div>
-											</div>
-										</div>
-									</div>
-									}
+									@await Component.InvokeAsync("CommentSection")
 									
 								</div>
 								<div class="pagination-align">

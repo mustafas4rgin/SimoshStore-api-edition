@@ -1,0 +1,19 @@
+﻿@using App.Data.Entities
+@model List<ProductCommentEntity>
+@foreach (var item in Model)
+{
+              <div class="swiper-slide">
+              <div class="about-content">
+               <p class="para-text">@item.Text</p>
+               <div class="about-bx-detail">
+                <div class="about-bx-pic radius">
+                 <img src="~/images/testimonial/testimonial1.jpg" alt="">
+                </div>
+                <div>
+                 <h3 class="name">@item.User.FirstName @item.User.LastName</h3> 
+                 <span class="position">Customer</span> 
+                </div>
+               </div>
+              </div>
+             </div>
+}

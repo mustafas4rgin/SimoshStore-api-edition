@@ -1,23 +1,150 @@
 ﻿@model SimoshStore.ContactDTO
 
+<div class="page-content">
+		<!--Banner Start-->
+		<div class="dz-bnr-inr" style="background-image:url(images/background/bg1.jpg);">
+			<div class="container">
+                @if(ViewBag.ErrorMessage != null)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        @ViewBag.ErrorMessage
+                    </div>
+                }
+				<div class="dz-bnr-inr-entry">
+					<nav aria-label="breadcrumb" class="breadcrumb-row">
+						<ul class="breadcrumb">
+							<li class="breadcrumb-item"><a href="index.html"> Home</a></li>
+							<li class="breadcrumb-item">contact us</li>
+						</ul>
+					</nav>
+				</div>
+			</div>	
+		</div>
+		<!--Banner End-->
 
-<h1>Contact Us</h1>
+		<div class="content-inner-3 p-b0">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3 col-sm-6 m-b30">
+						<div class="icon-bx-wraper style-7">
+							<div class="icon-bx"> 
+								<div class="icon-cell">
+									<i class="flaticon flaticon-global"></i>
+								</div>
+								<h2 class="title">Office Location</h2>
+							</div>
+							<div class="icon-content">
+								<p>3553 Brandywine Street Northwest, Washington AR 20008</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 col-sm-6 m-b30">
+						<div class="icon-bx-wraper style-7">
+							<div class="icon-bx"> 
+								<div class="icon-cell">
+									<i class="flaticon flaticon-chat-3"></i>
+								</div>
+								<h2 class="title">Send a Message</h2>
+							</div>
+							<div class="icon-content">
+								<p>help@Plantzone.com</p>
+								<p>help@Plantzone.com</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 col-sm-6 m-b30">
+						<div class="icon-bx-wraper style-7">
+							<div class="icon-bx"> 
+								<div class="icon-cell">
+									<i class="flaticon flaticon-chat-6"></i>
+								</div>
+								<h2 class="title">Call Us Directly</h2>
+							</div>
+							<div class="icon-content">
+								<p>Phone: 1-800-222-020</p>
+								<p>Fax: 1-800-222-006</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 col-sm-6 m-b30">
+						<div class="icon-bx-wraper style-7">
+							<div class="icon-bx"> 
+								<div class="icon-cell">
+									<i class="flaticon flaticon-chat-8"></i>
+								</div>
+								<h2 class="title">join Our Team</h2>
+							</div>
+							<div class="icon-content">
+								<p>infoexemple@yahoo.com</p>
+								<p>infoexemple@google.com</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<div class="content-inner-3 p-b0">
+			<div class="container-fluid">
+				<div class="map-iframe map">
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d227748.3825624477!2d75.65046970649679!3d26.88544791796718!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396c4adf4c57e281%3A0xce1c63a0cf22e09!2sJaipur%2C+Rajasthan!5e0!3m2!1sen!2sin!4v1500819483219" style="border:0; width:100%; min-height:100%; margin-bottom: -8px;" allowfullscreen></iframe>
+					<span class="logo-badge"><img src="images/favicon.png" alt=""> <img src="images/star.png" alt="" class="shap"></span>
+				</div>
+			</div>
+		</div>
 
-<form method="post" asp-action="ContactUs">
-    <div class="form-group">
-        <label for="Name">Name</label>
-        <input type="text" id="Name" name="Name" class="form-control" required placeholder="Enter your name" value="@Model.Name" />
-    </div>
 
-    <div class="form-group">
-        <label for="Email">Email</label>
-        <input type="email" id="Email" name="Email" class="form-control" required placeholder="Enter your email" value="@Model.Email" />
-    </div>
+		<div class="content-inner bg-light">
+			<div class="container">
+				<div class="row justify-content-between">
+					<div class="col-lg-5">
+						<img src="images/Plant-3.png" alt="">
+					</div>
+					<div class="col-lg-6">
+						<div class="contact-area  wow fadeInUp" data-wow-delay="0.5s">
+							<div class="section-head style-2">
+								<h2 class="title wow flipInX w-100" data-wow-delay="0.4s">Let’s Talk</h2>
+								<p>Contact Us For a Quote. Help Or Join The Team!</p>
+							</div>
+							<form asp-controller="Home" class="dzSubscribe dz-subscribe-wrapper1" asp-action="ContactUs" method="post">
+                                <input type="hidden" class="form-control" name="dzToDo" value="Contact">
+									<input type="hidden" class="form-control" name="reCaptchaEnable" value="0">
+									<div class="dzFormMsg"></div>
+                                
+								<div class="col-lg-6 col-sm-12">				
+									<label class="form-label">Your Name</label>
+									<div class="input-group">
+										<input required="" type="text" class="form-control" name="Name">
+									</div>
+								</div>
+								<div class="col-lg-6 col-sm-12">
+									<label class="form-label">Email Address</label>
+									<div class="input-group">
+										<input required="" type="text" class="form-control" name="Email">
+									</div>
+								</div>
+								
+								<label class="form-label">Massage</label>
+								<div class="input-group">
+									<textarea name="Message" rows="4" required="" class="form-control"></textarea>
+								</div>
+								@*<div class="input-recaptcha m-b10 m-sm-b30 ">
+									<div class="g-recaptcha" data-sitekey="<!-- Put reCaptcha Site Key -->" data-callback="verifyRecaptchaCallback" data-expired-callback="expiredRecaptchaCallback"></div>
+									<input class="form-control d-none" style="display:none;" data-recaptcha="true" required data-error="Please complete the Captcha">
+								</div>*@
+								<div>
+									<button name="submit" type="submit"  class="btn btn-secondary btn-lg btnhover">SUBMIT</button>
+								</div>
+                            </form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-    <div class="form-group">
-        <label for="Message">Message</label>
-        <textarea id="Message" name="Message" class="form-control" rows="5" required placeholder="Enter your message">@Model.Message</textarea>
-    </div>
 
-    <button type="submit" class="btn btn-primary">Send Message</button>
-</form>
+		<!-- Newsletter Start-->
+        @Html.Partial("~/Views/Partials/NewsLetter.cshtml")
+		<!-- Newsletter End -->
+
+	</div>
