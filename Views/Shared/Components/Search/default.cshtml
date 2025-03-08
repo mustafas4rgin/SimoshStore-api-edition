@@ -1,0 +1,62 @@
+﻿@model SearchBarViewModel
+<div class="dz-search-area dz-offcanvas offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop">
+			<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
+				&times;
+			</button>
+			<div class="container">
+				<form class="header-item-search">
+					<h2 class="dz-title">Search Our Site</h2>
+					<div class="input-group search-input">
+						<input type="search" class="form-control" placeholder="Search Here">
+						<button class="btn" type="button">
+							<i class="iconly-Light-Search"></i>
+						</button>
+					</div>
+					<ul class="recent-tag">
+						<li class="pe-0"><span>Quick Search :</span></li>
+                        @foreach(var category in Model.Categories)
+                        {
+                            <li>
+            <a href="@Url.Action("ProductList", "Shop", new { page = 1, selectedCategoryIds = new List<int> { category.Id } })">
+                @category.Name
+            </a>
+        </li>
+                        }
+					</ul>
+				</form>
+
+
+				<div class="row">
+					<div class="col-xl-12">
+						<h2 class="mb-3 dz-title">Popular Product</h2>
+						<div class="swiper category-swiper2 swiper-visible">
+							<div class="swiper-wrapper">
+                                @foreach(var product in Model.Products)
+                                {   
+                                    <div class="swiper-slide">
+									<div class="shop-card">
+										<div class="dz-media">
+                                            @*@product.Images.FirstOrDefault().Url;*@
+											<img src="https://picsum.photos/600/600" alt="image">
+										</div>
+										<div class="dz-content">
+											<h3 class="title"><a href="@Url.Action("ProductDetails","Shop")">@product.Name</a></h3>
+                                            @if(product.Discount!=null)
+                                            {
+                                                decimal newPrice = product.Price - product.Price*product.Discount.DiscountRate/100;
+                                                <span class="price">@newPrice<del>$@product.Price</del></span>
+                                            }
+                                            else{
+                                                <span class="price">$@product.Price</span>
+                                            }
+											
+										</div>
+									</div>
+								</div>
+                                }
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>

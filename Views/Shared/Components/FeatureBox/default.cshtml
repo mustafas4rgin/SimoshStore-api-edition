@@ -1,0 +1,29 @@
+﻿@using App.Data.Entities
+@model List<BlogEntity>
+<!-- Feature Box -->
+	<div class="content-inner py-0  image-wrapper">
+		<div class="container-fluid px-0">
+			<div class="row gx-0">
+                @foreach(var blon in Model.Take(6))
+                {
+                    <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4 col-4 wow fadeIn" data-wow-delay="0.1s">
+					<div class="insta-post dz-media box-hover">
+						<img src="https://picsum.photos/480/480" alt="">
+						<a href="https://www.instagram.com/s4rgin/" class="instagram-link" target="_blank">
+							<div class="follow-link" >
+								<div class="follow-link-icon">
+									<img src="~/images/insta-follow.png" alt="">
+								</div>
+								<div class="follow-link-content">
+									<h6>Share with #simoshstore</h6>
+									<p class="m-0">Follow <span>s4rgin </span>for inspiration.</p>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+                }
+			</div>
+		</div>
+	</div>
+	<!-- Feature Box End -->

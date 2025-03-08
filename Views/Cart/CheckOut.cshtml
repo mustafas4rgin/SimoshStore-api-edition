@@ -1,0 +1,287 @@
+﻿@using App.Data.Entities
+@using SimoshStore.Controllers
+@model CheckOutViewModel
+<div class="page-content">
+		<!--Banner Start-->
+		<div class="dz-bnr-inr" style="background-image:url(images/background/bg1.jpg);">
+			<div class="container">
+				<div class="dz-bnr-inr-entry">
+					<nav aria-label="breadcrumb" class="breadcrumb-row">
+						<ul class="breadcrumb">
+							<li class="breadcrumb-item"><a href="index.html"> Home</a></li>
+							<li class="breadcrumb-item">Shop Checkout</li>
+						</ul>
+					</nav>
+				</div>
+			</div>	
+		</div>
+		<!--Banner End-->
+
+		<!-- inner page banner End-->
+		<div class="content-inner-1">
+			<div class="container">
+				<div class="row shop-checkout">
+					<div class="col-xl-8">
+						<div class="d-sm-flex justify-content-between"> 
+							<h2 class="title m-b15 text-capitalize">Billing details</h2>
+							<span class="text-black font-14 font-weight-500 m-sm-0 m-b20 d-block">Secure <a class="text-primary primary border-bottom" href="login.html">login</a> & easy <a class="text-primary primary border-bottom" href="registration.html">registration</a> for seamless access.</span>
+						</div>
+						<div class="accordion dz-accordion accordion-sm" id="accordionFaq">
+							<div class="accordion-item">
+								<h2 class="accordion-header" id="headingOne">
+									<a href="#" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+										Returning customer? <span class="text-primary m-l5">  Click here to login</span>
+										<span class="toggle-close"></span>
+									</a>
+								</h2>
+								<div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionFaq">
+									<div class="accordion-body">
+										<p class="m-b0">If your order has not yet shipped, you can contact us to change your shipping address</p>
+									</div>
+								</div>
+							</div>
+							<div class="accordion-item">
+								<h2 class="accordion-header" id="headingTwo">
+									<a href="#" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">
+										Have a coupon? <span class="text-primary m-l5"> Click here to enter your code </span>
+										<span class="toggle-close"></span>
+									</a>
+								</h2>
+								<div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionFaq">
+									<div class="accordion-body">
+										<p class="m-b0">If your order has not yet shipped, you can contact us to change your shipping address</p>
+									</div>
+								</div>
+							</div>
+						</div>
+<form asp-action="CheckOut" class="row">
+							<div class="address-card">
+									<div class="account-address-box">
+										<h6 class="mb-3">Billing address</h6>
+										<ul>
+											<li>@Model.User.FirstName @Model.User.LastName</li>
+											<li>@Model.User.Address</li>
+											<li>@Model.User.Email</li>
+										</ul>
+									</div>
+									<div class="account-address-bottom">                                
+										<a href="@Url.Action("EditAddress","Profile")" class="d-block me-3"><i class="fa-solid fa-pen me-2"></i>Edit</a>                                
+										
+									</div>
+								</div>
+							<div class="col-md-12 m-b40">
+								<div class="form-group">
+									<label class="label-title">Order notes (optional)</label>
+									<textarea id="comments" placeholder="Notes about your order, e.g. special notes for delivery." class="form-control" name="orderNote" cols="90" rows="5" required="required"></textarea>
+								</div>
+							</div>
+							<div class="col-md-12 ">
+								<h4 class="title m-b15 text-capitalize">Shipping Methods</h4>
+							</div>
+							<div class="col-md-6">
+								<div class="custom-control style-1">
+									<input class="form-check-input radio" type="radio" name="Methods1" id="Methods1">
+									<label class="custom-checkbox form-check-label" for="Methods1">
+										<img src="~/images/shop/payment/fedex.svg" alt="/">
+										<span>
+											<span class="title">FedEx,</span>
+											<span class="text">Delivery, Tomorrow</span>
+										</span>
+										<span name ="shipPrice" class="price">$0.99</span>
+									</label>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="custom-control style-1">
+									<input class="form-check-input radio" type="radio" name="Methods1" id="Methods2">
+									<label class="custom-checkbox form-check-label" for="Methods2">
+										<img src="~/images/shop/payment/american.svg" alt="/">
+										<span>
+											<span class="title">American</span>
+											<span class="text">Delivery, Today</span>
+										</span>
+										<span class="price">$0.99</span>
+									</label>
+								</div>
+							</div>
+							<div class="col-md-6  m-b40">
+								<div class="custom-control style-1">
+									<input class="form-check-input radio" type="radio" name="Methods1" id="Methods3">
+									<label class="custom-checkbox form-check-label" for="Methods3">
+										<img src="~/images/shop/payment/dhl.svg" alt="/">
+										<span>
+											<span class="title">DHL Express</span>
+											<span class="text">Delivery, Today</span>
+										</span>
+										<span class="price">$0.99</span>
+									</label>
+								</div>
+							</div>
+							<div class="col-md-6  m-b40">
+								<div class="custom-control style-1">
+									<input class="form-check-input radio" type="radio" name="Methods1" id="Methods4">
+									<label class="custom-checkbox form-check-label" for="Methods4">
+										<img src="~/images/shop/payment/retrieve.svg" alt="/">
+										<span>
+											<span class="title">DHL Express</span>
+											<span class="text">Delivery, Today</span>
+										</span>
+										<span class="price">$0.99</span>
+									</label>
+								</div>
+							</div>
+							<div class="col-md-12 ">
+								<h2 class="title m-b15 text-capitalize">Payment Methods</h2>
+							</div>
+							<div class="col-md-6">
+								<div class="custom-control style-1">
+									<input class="form-check-input radio" type="radio" name="Methods1" id="Methods5">
+									<label class="custom-checkbox form-check-label payment" for="Methods5">
+										<img src="~/images/shop/payment/paypal.svg" alt="/">
+										<span>
+											<span class="title">Paypal</span>
+										</span>
+									</label>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="custom-control style-1">
+									<input class="form-check-input radio" type="radio" name="Methods1" id="Methods6">
+									<label class="custom-checkbox form-check-label payment" for="Methods6">
+										<img src="~/images/shop/payment/debit.svg" alt="/">
+										<span>
+											<span class="title">Credit or Debit Card</span>
+										</span>
+									</label>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="custom-control style-1">
+									<input class="form-check-input radio" type="radio" name="Methods1" id="Methods7">
+									<label class="custom-checkbox form-check-label payment" for="Methods7">
+										<img src="~/images/shop/payment/bank.svg" alt="/">
+										<span>
+											<span class="title">Direct bank Transfer</span>
+										</span>
+									</label>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="custom-control style-1">
+									<input class="form-check-input radio" type="radio" name="Methods1" id="Methods8">
+									<label class="custom-checkbox form-check-label payment" for="Methods8">
+										<img src="~/images/shop/payment/cash.svg" alt="/">
+										<span>
+											<span class="title">Cash on Delivery</span>
+										</span>
+									</label>
+								</div>
+							</div>
+							<a class="d-flex align-items-center" href="javascript:void(0)">
+								<span class="m-r5">
+									<svg width="18" height="18" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M14.0625 6.60938H12.7956V3.71848C12.7956 1.66809 11.0923 0 8.9987 0C6.90511 0 5.20182 1.66809 5.20182 3.71848V6.60938H3.9375C2.77439 6.60938 1.82812 7.55564 1.82812 8.71875V15.8906C1.82812 17.0537 2.77439 18 3.9375 18H14.0625C15.2256 18 16.1719 17.0537 16.1719 15.8906V8.71875C16.1719 7.55564 15.2256 6.60938 14.0625 6.60938ZM6.60807 3.71848C6.60807 2.4435 7.68052 1.40625 8.9987 1.40625C10.3169 1.40625 11.3893 2.4435 11.3893 3.71848V6.60938H6.60807V3.71848ZM14.7656 15.8906C14.7656 16.2783 14.4502 16.5938 14.0625 16.5938H3.9375C3.5498 16.5938 3.23438 16.2783 3.23438 15.8906V8.71875C3.23438 8.33105 3.5498 8.01562 3.9375 8.01562H14.0625C14.4502 8.01562 14.7656 8.33105 14.7656 8.71875V15.8906Z" fill="#686868"/>
+									<path d="M9 10.0547C8.28158 10.0547 7.69922 10.6371 7.69922 11.3555C7.69922 11.8142 7.93687 12.2171 8.29557 12.4488V13.9922C8.29557 14.3805 8.61036 14.6953 8.9987 14.6953C9.387 14.6953 9.70182 14.3805 9.70182 13.9922V12.4504C10.062 12.2191 10.3008 11.8153 10.3008 11.3555C10.3008 10.6371 9.71842 10.0547 9 10.0547Z" fill="#686868"/>
+									</svg>
+								</span>
+								Your Transaction is Secured With SSL Encryption
+							</a>
+                        </form>>
+					</div>
+					<div class="col-xl-4 side-bar">
+						<h2 class="title m-b15">Order Summery</h2>
+						<div class="order-detail sticky-top">
+                            @{
+                                        decimal subTotal = 0;
+                                        decimal actualPrice = 0;
+                                        decimal discountedPrice = 0;
+                                        decimal minusPrice = 0;
+                                        decimal newPrice = 0;
+                                        decimal cartItemPrice = 0;
+                                    }
+                            @foreach(var cartItem in Model.cartItems)
+                            {
+                                
+                                var product = Model.products.Where(x=> x.Id == cartItem.ProductId).FirstOrDefault();
+                                cartItemPrice = cartItem.Quantity * product.Price;
+                                actualPrice += cartItemPrice;
+                                <div class="cart-item style-1">
+								<div class="dz-media">
+									<img src="" alt="/">
+								</div>
+								<div class="dz-content">
+									<h6 class="title mb-0">@product.Name</h6>
+                                    
+                                    @if(product.DiscountId!=null)
+                                    {
+                                        
+                                        var discount = Model.Discounts.Where(x=> x.Id == product.DiscountId).FirstOrDefault();
+                                        newPrice = (product.Price - product.Price*discount.DiscountRate/100)*cartItem.Quantity;
+                                        minusPrice += product.Price/discount.DiscountRate;
+                                        discountedPrice = newPrice;
+                                        subTotal += newPrice;
+                                        <span class="price">@newPrice</span>
+                                        <del>@cartItemPrice</del>
+                                    }
+                                    else
+                                    {
+                                        subTotal += cartItemPrice;
+                                        <span class="price">@cartItemPrice</span>
+                                    }
+								</div>
+							</div>
+                            }
+						
+							<div class="form-group m-b20  m-t20 style-2">
+								<div class="input-group mb-0">
+									<input name="number" required="required" type="number" class="form-control" placeholder="Discount Code">
+									<div class="input-group-addon">
+										<button name="submit" value="Submit" type="submit" class="btn coupon btn-outline-secondary btn-md m-l10 h-100">
+											Apply
+										</button>
+									</div>
+								</div>
+							</div>
+							<table>
+                                @{
+                                    minusPrice = subTotal - cartItemPrice;
+                                }
+								<tbody>
+									<tr class="subtotal">
+										<td>Subtotal</td>
+										<td class="price">$@actualPrice</td>
+									</tr>
+									<tr class="subtotal">
+										<td>Shipping Cost</td>
+										<td class="price">+$0.99</td>
+									</tr>
+									<tr class="subtotal">
+										<td>Discount</td>
+										<td class="price text-primary">-$@minusPrice</td>
+									</tr>
+									<tr class="total">
+										<td>Total</td>
+                                        @{decimal subTotalWithShipPrice = subTotal + 0.99m;}
+										<td class="price">$@subTotal</td>
+									</tr>
+								</tbody>
+							</table>
+							<p class="text">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <a class="font-weight-500"  href="javascript:void(0);">privacy policy.</a></p>
+							<div class="form-group">
+								<div class="custom-control custom-checkbox d-flex m-b15">
+									<input type="checkbox" class="form-check-input" id="basic_checkbox_03">
+									<label class="form-check-label" for="basic_checkbox_03">I have read and agree to the website terms and conditions </label>
+								</div>
+							</div>
+							<a href="@Url.Action("CreateOrder","Order",new {userId = Model.User.Id})" class="btn btn-outline-secondary w-100 text-uppercase">Check Out</a>
+							<a href="@Url.Action("ShopCart","Cart")" class="btn btn-outline-secondary w-100 text-uppercase">back to cart</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Newsletter Start-->
+        @Html.Partial("~/Views/Partials/NewsLetter.cshtml")
+	<!-- Newsletter End -->
+	</div>

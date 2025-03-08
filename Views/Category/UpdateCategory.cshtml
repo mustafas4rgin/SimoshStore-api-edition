@@ -1,0 +1,33 @@
+﻿@model SimoshStore.CategoryDTO
+
+@{
+    ViewData["Title"] = "Create Category";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="CreateCategory" method="post">
+    <div class="form-group">
+        <label for="Name">Category Name</label>
+        <input type="text" class="form-control" id="Name" name="Name" placeholder="Enter Category Name" required />
+    </div>
+    
+    <div class="form-group">
+        <label for="Color">Category Color</label>
+        <input type="text" class="form-control" id="Color" name="Color" placeholder="Enter Category Color (e.g., #FF5733)" required />
+    </div>
+    
+    <div class="form-group">
+        <label for="IconCssClass">Category Icon CSS Class</label>
+        <input type="text" class="form-control" id="IconCssClass" name="IconCssClass" placeholder="Enter Icon CSS Class (e.g., fa-home)" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Category</button>
+</form>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger mt-3">
+        <strong>Error:</strong> @ViewBag.Error
+    </div>
+}

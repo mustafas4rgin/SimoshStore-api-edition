@@ -1,0 +1,712 @@
+﻿@model ProductDetailsViewModel
+
+<div class="page-content">
+		
+		
+		<div class="d-sm-flex justify-content-between container-fluid py-3">
+			<nav aria-label="breadcrumb" class="breadcrumb-row  text-dark">
+				<ul class="breadcrumb mb-0">
+					@if (TempData["CommentPendingApproval"] != null)
+    {
+		<li class="breadcrumb-item"><div class="alert alert-info"> @TempData["CommentPendingApproval"]
+        </div></li>
+        
+    }
+					<li class="breadcrumb-item"></li>
+					<li class="breadcrumb-item"><a href="@Url.Action("Index","Home")"> Home</a></li>
+                    <li class="breadcrumb-item">@Model.category.Name</li>
+					<li class="breadcrumb-item">@Model.product.Name</li>
+				</ul>
+			</nav>
+			
+		</div>
+		
+		<section class="content-inner py-0">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-xl-6 col-md-12">
+						<div class="dz-product-detail sticky-top">
+							<div class="swiper-btn-center-lr">
+								<div class="swiper product-gallery-swiper2">
+									<div class="swiper-wrapper" id="lightgallery">
+										
+                                        @foreach(var img in Model.images)
+                                        {
+                                            <div class="swiper-slide">
+											<div class="dz-media DZoomImage rounded">
+												<a class="mfp-link lg-item" href="@img.Url" data-src="@img.Url">
+													<i class="feather icon-maximize dz-maximize top-right"></i>
+												</a>
+												<img src="https://picsum.photos/1500/1500" alt="image">
+											</div>
+										</div>
+                                        }
+										
+									</div>
+								</div>
+								<div class="swiper product-gallery-swiper thumb-swiper-lg swiper-vertical">
+									<div class="swiper-wrapper">
+                                        @foreach(var img in Model.images)
+                                        {
+                                            <div class="swiper-slide">
+											<img src="@img.Url" alt="image">
+										</div>
+                                        }
+									</div>
+								</div>
+							</div>	
+						</div>	
+					</div>
+					<div class="col-xl-6 col-md-12">
+						<div class="dz-product-detail style-2 p-t50">
+							<div class="dz-content">
+								<div class="dz-content-footer">
+									<div class="dz-content-start">
+                                        @if(Model.product.DiscountId!=null)
+                                        {
+											int discount = Model.product.DiscountId.Value*10;
+                                            <span class="badge mb-2">SALE %@discount Off</span>
+                                        }
+										<h2 class="title mb-1">@Model.product.Name</h2>
+										<div class="review-num">
+											<ul class="dz-rating me-2">
+												@for(int i = 1; i<=5;i++)
+												{
+													@if(@Model.Star>=i)
+													{
+														<li>
+															<svg width="14" height="13" viewBox="0 0 14 13" fill="#FF8A00" xmlns="http://www.w3.org/2000/svg">
+																<path d="M6.74805 0.234375L8.72301 4.51608L13.4054 5.07126L9.9436 8.27267L10.8625 12.8975L6.74805 10.5944L2.63355 12.8975L3.5525 8.27267L0.090651 5.07126L4.77309 4.51608L6.74805 0.234375Z" fill="#FF8A00"></path>
+															</svg>
+														</li>
+													}
+													else
+													{
+														<li>
+															<svg width="14" height="13" viewBox="0 0 14 13" fill="#5E626F" xmlns="http://www.w3.org/2000/svg">
+																<path d="M6.74805 0.234375L8.72301 4.51608L13.4054 5.07126L9.9436 8.27267L10.8625 12.8975L6.74805 10.5944L2.63355 12.8975L3.5525 8.27267L0.090651 5.07126L4.77309 4.51608L6.74805 0.234375Z" fill="#5E626F"></path>
+															</svg>
+														</li>
+													}
+												}
+												<li>
+											</ul>
+											<span class="text-secondary me-2">@Model.Star Rating</span>
+											<a href="javascript:void(0);">(@Model.comments.Count customer reviews)</a>
+										</div>
+									</div>
+								</div>
+								<p class="para-text">
+                                    @Model.product.Description
+                                </p>
+								<div class="meta-content m-b20 d-flex align-items-end">
+									<div class="me-5">
+										@if(Model.product.DiscountId!=null)
+										{
+											int Discount = Model.product.DiscountId.Value*10;
+											decimal newPrice = Model.product.Price - Model.product.Price*Discount/100;
+											<span class="form-label">Price</span>
+										<span class="price">@newPrice <del>@Model.product.Price</del></span>
+										}
+										
+									</div>
+									<form action="@Url.Action("AddToCart","Cart")" method="post">
+    <!-- ProductId'nin formda görünmesi için gizli bir input ekleyebilirsiniz -->
+    <input type="hidden" name="productId" value="@Model.product.Id" />
+
+    <div class="btn-quantity quantity-sm light">
+        <label class="form-label">Quantity</label>
+        <input id="quantity-id" type="number" value="1" name="quantity" min="1" max="255">
+    </div>
+    <div class="btn-group cart-btn">
+        <button type="submit" class="btn btn-secondary text-uppercase">Add To Cart</button>
+    </div>
+</form>
+								</div>
+
+
+								<div class="dz-info">
+									<ul>
+										<li><strong>Stock Amount</strong></li>
+										<li>@Model.product.StockAmount</li>
+									</ul>
+									<ul>
+										<li><strong>Category:</strong></li>
+										<li><a href="shop-standard.html">@Model.category.Name</a></li>																							
+									</ul>
+									<ul class="social-icon">
+										<li><strong>Share:</strong></li>
+										<li>
+											<a href="https://www.facebook.com/dexignzone" target="_blank">
+												<i class="fa-brands fa-facebook-f"></i>
+											</a>
+										</li>
+										<li>
+											<a href="https://www.linkedin.com/in/mustafa-sargın-1a6312220/" target="_blank">
+												<i class="fa-brands fa-linkedin-in"></i>
+											</a>
+										</li>
+										<li>
+											<a href="https://www.instagram.com/s4rgin/" target="_blank">
+												<i class="fa-brands fa-instagram"></i>
+											</a>
+										</li>
+										<li>
+											<a href="https://twitter.com/dexignzones" target="_blank">
+												<i class="fa-brands fa-twitter"></i>
+											</a>
+										</li>
+									</ul>
+								</div>
+								<ul class="d-md-flex d-none align-items-center">
+									<li class="icon-bx-wraper style-3 me-xl-4 me-2">
+										<div class="icon-bx">
+											<i class="flaticon flaticon-ship"></i>
+										</div>
+										<div class="info-content">
+											<span>FREE</span>
+											<h6 class="dz-title mb-0">Shipping</h6>
+										</div>
+									</li>
+									<li class="icon-bx-wraper style-3">
+										<div class="icon-bx">
+											<i class="flaticon-fast-delivery-1"></i></div>
+										<div class="info-content">
+											<span>Easy Returns</span>
+											<h6 class="dz-title mb-0">30 Days</h6>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<div class="banner-social-media">
+								<ul>
+									<li>
+										<a href="https://www.instagram.com/s4rgin/">Instagram</a>
+									</li>
+									<li>
+										<a href="https://www.facebook.com/dexignzone">Facebook</a>
+									</li>
+									<li>
+										<a href="https://twitter.com/dexignzones">twitter</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section class="content-inner  overflow-hidden p-b0">
+			<div class="container">
+				<div class="section-head style-5 d-md-flex align-items-center justify-content-between">
+					<div class="left-content">
+						<h2 class="title mb-0">Similar Products</h2>
+					</div>
+					<a href="@Url.Action("ProductList", "Shop")" class="text-secondary font-14 d-flex align-items-center gap-1">See all products
+						<i class="icon feather icon-chevron-right font-18"></i>
+					</a>			
+				</div>
+				<div class="row">
+					@foreach(var product in Model.productEntities.Take(4))
+					{
+						var img = Model.allImages.Where(i=>i.ProductId==product.Id).FirstOrDefault();
+						<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 m-b30">
+						<div class="shop-card style-1 m-b30">
+							<div class="dz-media">
+								<img src="https://picsum.photos/600/600" alt="Açıklama" width="600" height="600" />
+							</div>
+							<div class="shop-meta">
+								<a href="@Url.Action("AddToCart","Cart",new{productId = product.Id,Quantity = 1})">
+									<div class="btn btn-primary meta-icon dz-carticon">
+									<i class="flaticon flaticon-shopping-cart-1 dz-cart"></i>
+									<i class="flaticon flaticon-shopping-cart-1-on dz-cart-fill"></i>
+								</div>
+								</a>
+								
+							</div>
+							<div class="dz-content">
+								<h3 class="title">@product.Name</h3>
+								@if(product.DiscountId!=null)
+								{
+									int discount = product.DiscountId.Value*10;
+									<span class="price">
+										$@product.Price
+										<del>$@(product.Price+product.Price*discount/100)</del>
+									</span>
+								}
+								else
+								{
+									<span class="price">
+										$@product.Price
+									</span>
+								}
+							</div>
+						</div>
+					</div>
+					}
+				</div>
+			</div>
+		</section>
+		
+		<section class="content-inner-3 pb-0"> 
+			<div class="container">
+				<div class="product-description">
+					<div class="dz-tabs">					
+						<ul class="nav nav-tabs center" id="myTab1" role="tablist">
+							<li class="nav-item" role="presentation">
+								<button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Product Description</button>
+							</li>
+							<li class="nav-item" role="presentation">
+								<button class="nav-link" id="information-tab" data-bs-toggle="tab" data-bs-target="#information-tab-pane" type="button" role="tab" aria-controls="information-tab-pane" aria-selected="true">Additional Information</button>
+							</li>
+							<li class="nav-item" role="presentation">
+								<button class="nav-link" id="return-tab" data-bs-toggle="tab" data-bs-target="#return-tab-pane" type="button" role="tab" aria-controls="return-tab-pane" aria-selected="true">Shipping & Return</button>
+							</li>
+							<li class="nav-item" role="presentation">
+								<button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Product Reviews</button>
+							</li>
+						</ul>
+						<div class="tab-content" id="myTabContent">
+							<div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+								<div class="row">
+									<div class="col-lg-6 m-lg-b0 m-md-b30">
+										<div class="section-head style-2 d-block">
+											<h2 class="title">@Model.product.Name</h2>
+											<p>@Model.product.Description</p>
+										</div>
+										<div class="product-specification">
+											<h3 class="specification-title">Specifications</h3>
+											<ul>
+												<li>One of the Best products of this brand!<span> Efektivite </span></li>
+												<li> Generic Name : <span> @Model.product.Name </span></li>
+											</ul>
+										</div>
+										<ul class="specification-list m-b40">
+											<li class="list-info">Ürün ek bilgiler <span>Bilgi</span></li>
+											<li class="list-info">Ürün ek bilgiler <span>Bilgi</span></li>
+											<li class="list-info">Ürün ek bilgiler <span>Bilgi</span></li>
+											<li class="list-info">Ürün ek bilgiler <span>Bilgi</span></li>
+											<li class="list-info">Ürün ek bilgiler <span>Bilgi</span></li>
+											<li class="list-info">Ürün ek bilgiler <span> 10 x 10 x 19cm , 265 Grams</span></li>
+											<li class="list-info">Stok<span>@Model.product.StockAmount</span></li>
+										</ul>
+										<div class="product-media row g-xl-4 g-2 m-b40">
+											<div class="col-md-3 col-3 col-sm-3 product-media-inner">
+												<div class="dz-media">
+													<img src="@ViewBag.PhotoUrl" alt="/">
+												</div>
+											</div>
+											<div class="col-md-3 col-3 col-sm-3 product-media-inner">
+												<div class="dz-media">
+													<img src="@ViewBag.PhotoUrl" alt="/">
+												</div>
+											</div>
+											<div class="col-md-3 col-3 col-sm-3 product-media-inner">
+												<div class="dz-media">
+													<img src="@ViewBag.PhotoUrl" alt="/">
+												</div>
+											</div>
+											<div class="col-md-3 col-3 col-sm-3 product-media-inner">
+												<div class="dz-media">
+													<img src="@ViewBag.PhotoUrl" alt="/">
+												</div>
+											</div>
+										</div>
+										<div class="product-info">
+											<div class="product-info-inner">
+												<h3 class="info-title"> Origin Content</h3>
+												<ul class="d-lg-flex d-block align-items-center">
+													<li><h6> Origin: <span>Turkey</span></h6></li>
+													<li><h6>Product's name <span>@Model.product.Name</span></h6></li>
+												</ul>
+											</div>
+											<div class="product-info-inner">
+												<h3 class="info-title">Description</h3>
+												<p class="info-text">@Model.product.Name	</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-6">
+										<div class="row">
+											<div class="col-lg-6 col-md-6 m-sm-b20 m-b30">
+												<a href="shop-standard.html" class="about-product-wrapper">
+													<div class="producṭ-content bg-light">
+														<h4 class="product-title">The Developer</h4>
+														<p class="product-text">MUSTAFA SARGIN</p>
+													</div>
+												</a>
+											</div>
+											<div class="col-lg-6 col-md-6 m-sm-b20 m-b30">
+												<div class="about-product-wrapper">
+													<div class="producṭ-content bg-light">
+														<h4 class="product-title">Instagram</h4>
+														<p class="product-text">@@sargin</p>
+													</div>
+												</div>
+											</div>
+											<div class="col-lg-6 col-md-6 m-sm-b20 m-b30">
+												<div class="about-product-wrapper">
+													<div class="producṭ-content bg-light">
+														<h4 class="product-title">Muğla Sıtkı Koçman Üniversitesi</h4>
+														<p class="product-text">Matematik Bölümü</p>
+													</div>
+												</div>
+											</div>
+											<div class="col-lg-6 col-md-6 m-sm-b20 m-b30">
+												<div class="about-product-wrapper">
+													<div class="producṭ-content bg-light">
+														<h4 class="product-title">Antalya Bilim Üniversitesi</h4>
+														<p class="product-text">İşletme Bölümü</p>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="dz-product-media dz-media rounded"><img src="https://picsum.photos/1500/1500" alt="/"></div>
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane fade show" id="information-tab-pane" role="tabpanel" aria-labelledby="information-tab" tabindex="0">
+								<div class="detail-bx text-center">
+									<h5 class="title">Ek Açıklama</h5>
+									<p class="para-text">
+										Şirketimizin vizyonu, sektördeki lider konumumuzu pekiştirerek, yenilikçi ve kaliteli ürün ve hizmetlerle müşterilerimize değer yaratmak, sürdürülebilir büyüme sağlayarak topluma ve çevreye katkıda bulunmaktır. Müşteri odaklı yaklaşımımızla, her adımda mükemmeliyeti hedefleyerek, güvenilir bir marka olmayı amaçlıyoruz.
+									</p>
+									<ul class="feature-detail justify-content-center">
+										<li>
+											<i class="icon feather icon-check"></i>
+											<h5>Teknik Detaylar</h5>
+										</li>
+										<li>
+											<i class="icon feather icon-check"></i>
+											<h5>Ek Bilgiler</h5>
+										</li>
+										<li>
+											<i class="icon feather icon-check"></i>
+											<h5> Geri-bildirim </h5>
+										</li>
+									</ul>
+								</div>
+								
+								<div class="table-responsive">
+									<table class="table check-tbl">
+										<thead>
+											<tr>
+												<th></th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td class="product-item-name">Marka</td>
+												<td class="product-item-name">sargin co.</td>
+											</tr>
+											<tr>
+												<td class="product-item-name">Customer Reviews</td>
+												<td class="product-item-name text-end">
+													<div class="review-num d-flex justify-content-end">
+														<ul class="dz-rating me-2 d-flex">
+															@for(int i = 0; i<5;i++)
+												{
+													@if(@Model.Star>=i)
+													{
+														<li>
+															<svg width="14" height="13" viewBox="0 0 14 13" fill="#FF8A00" xmlns="http://www.w3.org/2000/svg">
+																<path d="M6.74805 0.234375L8.72301 4.51608L13.4054 5.07126L9.9436 8.27267L10.8625 12.8975L6.74805 10.5944L2.63355 12.8975L3.5525 8.27267L0.090651 5.07126L4.77309 4.51608L6.74805 0.234375Z" fill="#FF8A00"></path>
+															</svg>
+														</li>
+													}
+													else
+													{
+														<li>
+															<svg width="14" height="13" viewBox="0 0 14 13" fill="#5E626F" xmlns="http://www.w3.org/2000/svg">
+																<path d="M6.74805 0.234375L8.72301 4.51608L13.4054 5.07126L9.9436 8.27267L10.8625 12.8975L6.74805 10.5944L2.63355 12.8975L3.5525 8.27267L0.090651 5.07126L4.77309 4.51608L6.74805 0.234375Z" fill="#5E626F"></path>
+															</svg>
+														</li>
+													}
+												}
+														
+														</ul>
+														<span class="text-secondary me-2">@Model.Star Rating</span>
+														<a href="javascript:void(0);">(@Model.comments.Count customer reviews)</a>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td class="product-item-name"> Packer </td>
+												<td class="product-item-name">company, company Agritech Private Limited, Turkey. </td>
+											</tr>
+											<tr>
+												<td class="product-item-name">Importer</td>
+												<td class="product-item-name"> company Agritech Agritech Private Limited, Turkey. </td>
+											</tr>
+											<tr>
+												<td class="product-item-name"> Manufacturer</td>
+												<td class="product-item-name"> company, company Agritech Private Limited, Turkey. </td>
+											</tr>
+											<tr>
+												<td class="product-item-name">  Item Weight </td>
+												<td class="product-item-name"> 12331 g </td>
+											</tr>
+											<tr>
+												<td class="product-item-name"> Net Quantity </td>
+												<td class="product-item-name"> @Model.product.StockAmount count </td>
+											</tr>
+											<tr>
+												<td class="product-item-name"> Generic Name </td>
+												<td class="product-item-name"> @Model.product.Name  </td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+
+							</div>
+							<div class="tab-pane fade show" id="return-tab-pane" role="tabpanel" aria-labelledby="return-tab" tabindex="0">
+								<div class="detail-bx text-center">
+									<h5 class="title">Kargo Politikası</h5>
+									<p class="para-text">
+										Standart Kargo: Siparişinizin onaylanmasının ardından, genellikle 2-5 iş günü içinde teslimat yapılmaktadır.
+Hızlı Kargo: Eğer hızlı teslimat seçeneğini tercih ederseniz, siparişiniz 1-2 iş günü içinde kargoya verilecektir.
+Özel Günlerde Teslimat: Kargo teslimat süreleri, hafta sonları ve resmi tatil günleri gibi özel durumlara göre değişiklik gösterebilir. Bu gibi durumlarda kargo süreçlerinde gecikmeler olabilir.
+									</p>
+									<h5 class="title">Returns Policy</h5>
+									<p class="para-text">
+										Kargo teslimatında herhangi bir sorun yaşadığınızda veya yanlış ürün gönderildiğinde, ürün iadesi için 14 gün içinde bizimle iletişime geçebilirsiniz. İade işlemi sırasında kargo ücretleri müşteri tarafından karşılanır, ancak ürün hatalı veya hasarlı ise kargo ücreti firmamız tarafından karşılanır.									</p>
+									<ul class="feature-detail justify-content-center">
+										<li>
+											<i class="icon feather icon-check"></i>
+											<h5>7 Days Replacement only</h5>
+										</li>
+										<li>
+											<i class="icon feather icon-check"></i>
+											<h5>7 Days Refund for accidental orders only</h5>
+										</li>
+										<li>
+											<i class="icon feather icon-check"></i>
+											<h5>3 days refund only</h5>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+								<div class="clear" id="comment-list">
+									<div class="post-comments comments-area style-1 clearfix">
+										<h4 class="comments-title mb-2">Comments (@Model.comments.Count)</h4>
+										<p class="dz-title-text">Product Comments</p>
+										<div id="comment">
+											<ol class="comment-list">
+												@foreach(var comment in Model.comments)
+												{
+													if(comment.IsConfirmed)
+													{
+														<li class="comment even thread-odd thread-alt depth-1 comment" id="comment-4">
+												<div class="comment-body" id="div-comment-4">
+													<div class="comment-author vcard">
+														<img src="https://picsum.photos/250/250" alt="/" class="avatar">
+														<cite class="fn">@comment.User.FirstName @comment.User.LastName</cite>
+													</div>
+													<div class="comment-content dz-page-text">
+														<p>@comment.Text</p>
+													</div>
+												</div>
+											</li>
+													}
+													
+												}
+									  </div>
+									<div class="default-form comment-respond style-1" id="respond">
+										<h4 class="comment-reply-title mb-2" id="reply-title">Good Comments</h4>
+										<p class="dz-title-text">Highest rated comments.</p>
+										 
+@if(User.Identity.IsAuthenticated)
+{
+    <div class="comment-form-rating d-flex">
+        <label class="pull-left m-r10 m-b20 text-secondary">Your Rating</label>
+        <div class="rating-widget">
+            <div class="rating-stars">
+                <ul id="stars">
+                    @for(int i = 1; i<=5; i++)
+                    {
+                        <li class="star" title="STAR" data-value="@i">
+                            <i class="fas fa-star fa-fw"></i>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix">
+        <form method="post" id="comments_form" class="comment-form" action="@Url.Action("AddComment", "Comment")" novalidate>
+            <!-- productId'yi gizli alanda gönderiyoruz -->
+            <input type="hidden" name="productId" value="@Model.product.Id" />
+
+            <!-- Kullanıcının adı otomatik olarak yazılıyor -->
+            <p class="comment-form-author">
+                <input id="name" placeholder="Author" name="author" type="text" value="@User.Identity.Name" readonly>
+            </p>
+            
+            <!-- Kullanıcının e-posta adresi otomatik olarak yazılıyor -->
+            <p class="comment-form-email">
+                <input id="email" required="required" placeholder="Email" name="email" type="email" value="@User.Identity.Name" readonly>
+            </p>
+            
+            <!-- Yorum kısmı -->
+            <p class="comment-form-comment">
+                <textarea id="comments" placeholder="Type Comment Here" class="form-control4" name="commentText" cols="45" rows="3" required="required"></textarea>
+            </p>
+            
+            <p class="col-md-12 col-sm-12 col-xs-12 form-submit">
+                <button id="submit" type="submit" class="submit btn btn-secondary btnhover3 filled">
+                    Submit Now
+                </button>
+            </p>
+        </form>
+    </div>
+}
+else
+{
+    <p>Please log in to leave a comment.</p>
+}
+
+
+									  </div>
+								   </div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section class="content-inner-1  overflow-hidden">
+			<div class="container">
+				<div class="section-head style-5 d-md-flex align-items-center justify-content-between">
+					<div class="left-content">
+						<h2 class="title mb-0">Related products</h2>
+					</div>
+					<a href="@Url.Action("Product","GetProducts")" class="text-secondary font-14 d-flex align-items-center gap-1">See all products
+						<i class="icon feather icon-chevron-right font-18"></i>
+					</a>			
+				</div>
+				<div class="swiper-btn-center-lr">
+					<div class="swiper swiper-four">
+						<div class="swiper-wrapper">
+							@foreach(var product in @Model.orderedByCategoryProducts)
+							{
+								var img = Model.allImages.Where(i=>i.ProductId==product.Id).FirstOrDefault();
+								<div class="swiper-slide">
+								<div class="shop-card ">
+									<div class="dz-media">
+										<img width="600" height="600" src="https://picsum.photos/600/600" alt="image">
+										<div class="shop-meta">
+											<a href="@Url.Action("AddToCart","Cart",new{productId = product.Id,Quantity = 1})">
+									<div class="btn btn-primary meta-icon dz-carticon">
+									<i class="flaticon flaticon-shopping-cart-1 dz-cart"></i>
+									<i class="flaticon flaticon-shopping-cart-1-on dz-cart-fill"></i>
+								</div>
+								</a>
+										</div>
+									</div>
+									<div class="dz-content">
+										<h3 class="title"><a href="@Url.Action("ProductDetails","Shop",new {id = product.Id})">@product.Name</a></h3>
+										@if(product.DiscountId!=null)
+										{
+											int discount = product.DiscountId.Value*10;
+											<span class="price">
+												$@product.Price
+												<del>$@(product.Price+product.Price*discount/100)</del>
+											</span>
+										}
+										else
+										{
+											<span class="price">
+												$@product.Price
+											</span>
+										}
+									</div>
+								</div>
+							</div>
+							}
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Newsletter Start-->
+			@Html.Partial("~/Views/Partials/NewsLetter.cshtml")
+		<!-- Newsletter End -->
+	</div>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>$(document).ready(function () {
+    // Yıldız tıklandığında
+    $('#stars .star').on('click', function () {
+        var value = $(this).data('value');  // Seçilen yıldızın değeri
+
+        // Tüm yıldızları sıfırlayıp, seçilen değere kadar yıldızları renklendir
+        $('#stars .star').each(function () {
+            if ($(this).data('value') <= value) {
+                $(this).addClass('selected');
+            } else {
+                $(this).removeClass('selected');
+            }
+        });
+
+        // Seçilen değeri göster veya işlemi yap
+        console.log('Seçilen Yıldız: ' + value);
+    });
+});
+</script>
+<script>
+	    $(document).ready(function () {
+        $('#comments_form').on('submit', function () {
+            $('#rating').val(rating);  // Yıldız seçimi ile rating değerini formda göndermek
+        });
+    });
+</script>
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    // Artırma butonunun işlevini tanımla
+    document.getElementById('increase-button').addEventListener('click', function() {
+        var quantityInput = document.getElementById('quantity-id');
+        var currentQuantity = parseInt(quantityInput.value, 10);
+        if (!isNaN(currentQuantity) && currentQuantity < 255) {
+            quantityInput.value = currentQuantity + 1; // Değeri artır
+        }
+    });
+
+    // "Add to Cart" butonuna tıklama olayını ekleyelim
+    document.getElementById('add-to-cart').addEventListener('click', function(e) {
+        // Varsayılan davranışı engelle
+        e.preventDefault();
+
+        // Input'tan quantity değerini al
+        var quantityInput = document.getElementById('quantity-id');
+        var quantity = parseInt(quantityInput.value, 10);
+
+        // Console.log() ile quantity değerini kontrol et
+        console.log("Alınan quantity: " + quantity);
+
+        // Eğer quantity geçerli değilse, uyarı ver ve çık
+        if (quantity < 1 || quantity > 255 || isNaN(quantity)) {
+            alert("Geçersiz quantity değeri. 1 ile 255 arasında olmalıdır.");
+            return;
+        }
+
+        // Product ID'yi backend'den Razor ile alıyoruz
+        var productId = '@Model.product.Id';
+
+        // URL'yi oluştur, Razor ile sabit URL'yi JavaScript'te dinamikleştir
+        var url = '@Url.Action("AddToCart", "Cart", new { productId = "__productId__", Quantity = "__quantity__" })';
+        url = url.replace('__productId__', productId).replace('__quantity__', quantity);
+
+        // URL'yi doğru şekilde yönlendir
+        window.location.href = url;
+    });
+});
+
+    </script>
+}

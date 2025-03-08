@@ -1,0 +1,228 @@
+.dz-pricingtable{
+	padding:50px 0 70px;
+	@include respond ("tab-port"){
+		padding:40px 0 40px;
+		.pricingtable-wraper{
+			justify-content:center;
+		}
+	}
+	@include respond ("phone-land"){
+		padding:40px 0 10px;
+	}
+}
+.pricingtable-wrapper{
+	overflow:hidden;
+	margin-top: 25px;
+	@include  transitionMedium;
+	&.active, &:hover{
+		margin-top:0;
+	}
+	@include respond('phone-land'){	
+		margin-top:0;
+	}
+	&.style-1{
+		padding: 35px 40px;
+		position: relative;
+		z-index: 1;
+		border-radius: 10px;
+		border: 1px solid #D7D7D7;
+		background-color: var(--light);
+		.pricingtable-inner{
+			position: relative;
+			z-index: 1;
+			.premium{
+				position: absolute;
+				top: 0;
+				right: 0;
+				padding: 5px 20px;
+				font-size: 14px;
+				background: var(--primary);
+				font-weight: 500;
+				color: #fff;
+				border-radius: 4px;
+				z-index: 1;
+				@include respond('tab-land'){
+					display: none;
+				}
+			}
+
+			.pricingtable-title{
+				margin-bottom: 0px;
+				.title{
+					font-size: 24px;
+					font-weight: 500;
+					font-family: var(--font-family-title);
+					margin: 0;
+				}
+				.text{
+					margin-bottom: 0;
+                    color: var(--title);
+				}
+			}
+			.pricingtable-bx{
+			    font-weight: 400;
+				font-size: 60px;
+				margin: 0;
+				color: var(--title);
+				margin-bottom: 10px;
+				display: flex;
+				align-items: center;
+				font-family: var(--font-family-base);
+				small{
+					font-size:15px;
+					font-weight: 400;
+				    margin-left: 10px;
+					color:var(--title);
+					width:25%;
+					display: inline-block;
+					@include respond('tab-land'){
+						font-size:14px;
+						width: 35%;
+					}
+				}
+				@include custommq ($max:1200px){
+					font-size:45px;
+				}
+			}
+			.pricingtable-price{
+				p{
+					margin-bottom: 15px;
+					font-size: 16px;
+					color: var(--title);
+					font-family: var(--font-family-base);
+					font-weight: 500;
+				}
+			}
+			.pricingtable-button{
+				margin-bottom: 25px;
+				border-bottom: 1px solid #D7D7D7;
+				padding-bottom: 20px;
+				.btn{
+					width:100%;
+					color:var(--title);
+					&.btn-secondary{
+						color: #fff;
+					}
+				}
+			}
+			.pricingtable-list{	
+				.list-title{
+					font-size:16px;
+					font-weight:700;
+				}
+				p{
+					font-size: 14px;
+					color: #24262B;
+					font-weight: 500;
+					margin: 0;
+				}
+				.pricingtable-features{
+					padding: 15px 0;
+					text-align: $dz-pos-left;
+					list-style: none;
+					li{
+						padding: 8px 0 8px 40px;
+						font-size: 16px;
+						font-weight: 400;
+						position: relative;
+						color: var(--title);
+						&:after{
+							content: "\f00c";
+							font-family: 'Font Awesome 6 Free';
+							font-weight: 700;
+							font-size: 12px;
+							width: 20px;
+							height: 20px;
+							background: var(--secondary);
+							display: block;
+							position: absolute;
+							#{$dz-pos-left}: 0;
+							color: #fff;
+							border-radius: 35px;
+							text-align: center;
+							top: 10px;
+							line-height: 20px;
+						}
+						&.disable:after {
+							content: "\f00d";
+							background: var(--primary);
+						}
+					}
+					.disable{
+						opacity: 0.5;
+					}
+				}
+			}
+			@include respond ("tab-land"){
+				.pricingtable-title{
+					margin-bottom: 10px;
+					.text{
+						font-size:14px;
+					}
+				}
+				.pricingtable-bx{
+					font-size: 50px;
+					margin: 0 0 20px;
+				}
+				.pricingtable-button{
+					margin-bottom:30px;
+				}
+				.pricingtable-list{	
+					.pricingtable-features{
+						padding: 10px 0;
+						li{
+							padding: 8px 0 8px 30px;
+							font-size: 15px;
+							&:after{
+								font-size: 10px;
+								width: 18px;
+								height: 18px;
+								line-height: 18px;
+							}
+						}
+					}
+				}
+			}	
+			@include respond ("phone-land"){
+				.pricingtable-bx{
+					text-align:center;
+				}
+			}
+		}
+		&.active,
+		&:hover{
+			margin-top:0;
+			transform:translateY(-5px);
+			background-color: #fff;
+			color:#fff;
+			@include respond('phone-land'){	
+				transform:unset;
+			}
+			.pricingtable-inner{
+				.pricingtable-button{
+					.btn{
+						&.btn-secondary{
+							background:var(--primary)!important;
+							border-color:var(--primary) ;
+							color:#fff;
+						}
+					}
+				}	
+			}
+		}
+		@include respond ("tab-land"){
+			padding:42px 35px;
+		}
+		
+		@media only screen and (max-width: 1024px) {
+			padding: 20px 20px;
+		}
+		
+		@include respond('phone-land'){	
+			&.active,
+			&:hover{
+				transform:translateY(0);
+			}
+		}
+	}
+}

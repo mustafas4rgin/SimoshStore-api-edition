@@ -1,0 +1,65 @@
+﻿@using App.Data.Entities
+@model IEnumerable<ProductCommentEntity> 
+
+@{
+    ViewData["Title"] = "Product Comments";
+}
+
+<div class="container">
+    <h2>Product Comments</h2>
+
+    @if (Model.Any())
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>User</th>
+                    <th>Text</th>
+                    <th>Star Count</th>
+                    <th>Confirmed</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var comment in Model)
+                {
+                    <tr>
+                        <td>@comment.Product.Name</td> <!-- Display the product id, you might want to show product name here -->
+                        <td>@comment.User.FirstName @comment.User.LastName</td> <!-- Display the user ID, or you could use username if available -->
+                        <td>@comment.Text</td>
+                        <td>@comment.StarCount</td>
+                        <td>
+                            @if (comment.IsConfirmed)
+                            {
+                                <span class="badge bg-success">Confirmed</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-warning">Pending</span>
+                            }
+                        </td>
+                        <td>
+                            <a href="@Url.Action("ConfirmProductComment", "Comment", new { id = comment.Id })" class="btn btn-success btn-sm" title="Confirm Comment">
+                                <i class="fa fa-check"></i> Confirm
+                            </a>
+                            <a href="@Url.Action("DeleteProductComment", "Comment", new { id = comment.Id })" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this comment?')" title="Delete Comment">
+                                <i class="fa fa-trash"></i> Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No comments available for this product.</p>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        // Any additional JavaScript for handling actions or confirmations could go here.
+    </script>
+}

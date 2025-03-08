@@ -1,0 +1,183 @@
+﻿@model AdminDashboardViewModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container-fluid">
+    <h1 class="mt-4 mb-4 text-center">Admin Dashboard</h1>
+
+    <div class="row">
+        <!-- Total Categories -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card shadow-lg">
+                <div class="card-body text-center bg-info text-white">
+                    <h5 class="card-title">Total Categories</h5>
+                    <h3>@Model.TotalCategories</h3>
+                    <a href="@Url.Action("CategoryList", "Admin")" class="btn btn-light btn-sm mt-3 w-100">View Categories</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Products -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card shadow-lg">
+                <div class="card-body text-center bg-success text-white">
+                    <h5 class="card-title">Total Products</h5>
+                    <h3>@Model.TotalProducts</h3>
+                    <a href="@Url.Action("ProductList", "Admin")" class="btn btn-light btn-sm mt-3 w-100">View Products</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Orders -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card shadow-lg">
+                <div class="card-body text-center bg-warning text-white">
+                    <h5 class="card-title">Total Orders</h5>
+                    <h3>@Model.TotalOrders</h3>
+                    <a href="@Url.Action("OrderList", "Admin")" class="btn btn-light btn-sm mt-3 w-100">View Orders</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Users -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card shadow-lg">
+                <div class="card-body text-center bg-danger text-white">
+                    <h5 class="card-title">Total Users</h5>
+                    <h3>@Model.TotalUsers</h3>
+                    <a href="@Url.Action("ManageUsers", "Admin")" class="btn btn-light btn-sm mt-3 w-100">View Users</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Latest Orders -->
+        <div class="col-lg-8 mb-4">
+            <div class="card shadow-lg">
+                <div class="card-header bg-success text-white">
+                    <h5 class="card-title">Latest Orders</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped table-bordered">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Order ID</th>
+                                <th>User</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Code</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var order in Model.LatestOrders)
+                            {
+                                <tr>
+                                    <td>@order.Id</td>
+                                    <td>@order.UserId</td>
+                                    <td>@order.OrderCode</td>
+                                    <td>@order.CreatedAt.ToString("dd/MM/yyyy")</td>
+                                    <td>@order.OrderCode</td>
+                                    <td>
+                                        <a href="@Url.Action("DeleteOrder", "Admin", new { orderId = order.Id })" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this order?')">Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Latest Blogs -->
+        <div class="col-lg-4 mb-4">
+            <div class="card shadow-lg">
+                <div class="card-header bg-success text-white">
+                    <h5 class="card-title">Latest Blogs</h5>
+                </div>
+                <div class="card-body">
+                    @if (Model.LatestBlogs.Any())
+                    {
+                        <ul class="list-group">
+                            @foreach (var blog in Model.LatestBlogs)
+                            {
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="badge badge-info">@blog.Title</span>
+                                    <a href="@Url.Action("DeleteBlog", "Blog", new { id = blog.Id })" class="btn btn-danger btn-sm ml-2" onclick="return confirm('Are you sure you want to delete this blog?')">Delete</a>
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <p>No blogs available</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Links Section -->
+    <div class="row mb-4">
+        <div class="col-lg-4">
+            <div class="card shadow-lg">
+                <div class="card-header bg-dark text-white">
+                    <h5 class="card-title">Quick Links</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="@Url.Action("CategoryList", "Admin")" class="text-dark">Manage Categories</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="@Url.Action("ProductList", "Admin")" class="text-dark">Manage Products</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="@Url.Action("OrderList", "Admin")" class="text-dark">Manage Orders</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="@Url.Action("ManageUsers", "Admin")" class="text-dark">Manage Users</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="@Url.Action("ListBlogs", "Admin")" class="text-dark">Manage Blogs</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="@Url.Action("ProductCommentList", "Admin")" class="text-dark">Manage Product Comments</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Latest Comments Floating Section -->
+<div id="commentsSection" class="card mb-4" style="position: fixed; top: 20%; right: 10px; width: 300px; z-index: 9999; border-radius: 8px;">
+    <div class="card-header bg-primary text-white">
+        <h5 class="card-title">Latest Comments</h5>
+    </div>
+    <div class="card-body">
+        @if (Model.LatestComments.Any())
+        {
+            <div class="list-group">
+                @foreach (var comment in Model.LatestComments)
+                {
+                    <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong>@comment.Text</strong>
+                            <p class="mb-0 text-muted">By User: @comment.User.FirstName @comment.User.LastName</p>
+                        </div>
+                        <a href="@Url.Action("DeleteProductComment", "Comment", new { id = comment.Id })" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this comment?')">Delete</a>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <p>No comments available</p>
+        }
+    </div>
+</div>
+

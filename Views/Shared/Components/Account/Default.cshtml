@@ -1,0 +1,33 @@
+﻿@using App.Data.Entities
+@model UserEntity
+<aside class="col-xl-3">
+						<div class="toggle-info">
+							<h5 class="title mb-0">Account Navbar</h5>
+							<a class="toggle-btn" href="#accountSidebar">Account Menu</a>
+						</div>
+						<div class=" account-sidebar-wrapper">
+							<div class="account-sidebar" id="accountSidebar">
+								<div class="profile-head">
+									<div class="user-thumb">
+										<img class="rounded-circle" src="https://picsum.photos/250/250" alt="Susan Gardner">
+									</div>
+									<h5 class="title mb-0">@Model.FirstName @Model.LastName</h5>
+									<span class="text text-primary">@Model.Email</span>
+								</div>
+								<div class="account-nav">
+									<div class="nav-title bg-light">DASHBOARD</div>
+									<ul>
+										<li><a href="@Url.Action("MyProfile","Profile")">Dashboard</a></li>
+										<li><a href="@Url.Action("ListOrders","Order")">Orders</a></li>
+										<li><a href="@Url.Action("UnderConstruction","Error")">Return request</a></li>
+									</ul>
+									<div class="nav-title bg-light">ACCOUNT SETTINGS</div>
+									<ul class="account-info-list">
+										<li><a href="@Url.Action("UpdateProfile","Profile")">Profile</a></li>
+										<li><a href="@Url.Action("EditAddress","Profile")">Address</a></li>
+										<li><a href="@Url.Action("Review","Profile")">Review</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+                    </aside>

@@ -1,0 +1,58 @@
+﻿@if(ViewBag.Error != null)
+{
+	<div class="alert alert-danger" role="alert">
+		@ViewBag.Error
+	</div>
+}
+<div class="page-wraper">
+<div id="loading-area" class="loading-page-1">
+	<div class="text"><span class="text-primary">Plant</span>Zone</div>
+</div>
+
+<div class="page-content">
+	<section class="overflow-hidden">
+		<div class="row error-page style-2">
+			<div class="col-lg-6 col-md-6 error-start-content">
+				<div class="logo">
+					<a href="@Url.Action("Index","Home")"><img src="images/logo.jpg" alt=""></a>
+				</div>
+				<div class="dz_error">404</div>
+				<div class="dz-social-icon style-2 white">
+					<ul>
+						<li>
+							<a href="https://www.facebook.com/dexignzone" target="_blank">
+								<i class="fa-brands fa-facebook-f"></i>
+							</a>
+						</li>
+						<li>
+							<a href="https://twitter.com/dexignzones" target="_blank">
+								<i class="fa-brands fa-twitter"></i>
+							</a>
+						</li>
+						<li>
+							<a href="https://www.linkedin.com/showcase/3686700/admin/" target="_blank">
+								<i class="fa-brands fa-linkedin"></i>
+							</a>
+						</li>
+						<li>
+							<a href="https://www.instagram.com/dexignzone/" target="_blank">
+								<i class="fa-brands fa-instagram"></i>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<img src="images/circle-lines3.png" class="bg-img" alt="">
+			</div>
+			<div class="col-lg-6 col-md-6 error-end-content">
+				<div class="error-inner">
+					<h1 class="error-head">OOPS!</h1>
+					<p class="error-para">Oh, no! This page does not exist.</p>
+					<a href="index.html" class="btn btn-secondary  text-uppercase">Go to Main Page</a>
+				</div>
+				<img src="images/circle-lines4.png" class="bg-img2" alt="">
+			</div>
+		</div>
+	</section>
+</div>
+	
+</div>

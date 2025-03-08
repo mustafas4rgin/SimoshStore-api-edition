@@ -1,0 +1,82 @@
+﻿@using App.Data.Entities
+@model List<ProductCommentEntity>
+
+<div class="page-content">
+
+	<!--Banner Start-->
+	<div class="dz-bnr-inr" style="background-image:url(images/background/bg1.jpg);">
+		<div class="container">
+			<div class="dz-bnr-inr-entry">
+				<nav aria-label="breadcrumb" class="breadcrumb-row">
+					<ul class="breadcrumb">
+						<li class="breadcrumb-item"><a href="index.html"> Home</a></li>
+						<li class="breadcrumb-item">Account Review</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+	<!--Banner End-->
+
+
+
+	<div class="content-inner-1">
+		<div class="container">
+			<div class="row">
+				@await Component.InvokeAsync("Account")
+				<section class="col-xl-9 account-wrapper">
+					<div class="row">
+						@{
+							if (Model.Count == 0)
+							{
+								<div class="col-12 m-b30">
+									<p class="m-b0">No reviews found.</p>
+								</div>
+							}
+						}
+						@foreach (var comment in Model)
+						{
+							<div class="col-md-6 m-b30">
+								<div class="review-card">
+									<div class="review-head">
+										<div class="review-media">
+											<img src="~/images/team/pic1.jpg" alt="">
+										</div>
+										<div class="clearfix">
+											<h5 class="mb-0">@comment.User.FirstName @comment.User.LastName</h5>
+											<div class="star-rating">
+												@if (comment.StarCount >= 1)
+												{
+													<i class="fa fa-star text-yellow"></i>
+												}
+												@if (comment.StarCount >= 2)
+												{
+													<i class="fa fa-star text-yellow"></i>
+												}
+												@if (comment.StarCount >= 3)
+												{
+													<i class="fa fa-star text-yellow"></i>
+												}
+												@if (comment.StarCount >= 4)
+												{
+													<i class="fa fa-star text-yellow"></i>
+												}
+												@if (comment.StarCount >= 5)
+												{
+													<i class="fa fa-star text-yellow"></i>
+												}
+											</div>
+
+										</div>
+									</div>
+									<p>@comment.Text</p>
+								</div>
+							</div>
+						}
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+
+</div>

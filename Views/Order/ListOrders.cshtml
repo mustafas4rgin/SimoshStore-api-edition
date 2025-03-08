@@ -1,0 +1,96 @@
+﻿@using App.Data.Entities
+@model OrderListViewModel
+
+<div class="page-content">
+    <!-- Banner Section -->
+    <div class="dz-bnr-inr" style="background-image:url(images/background/bg1.jpg);">
+        <div class="container">
+            <div class="dz-bnr-inr-entry">
+                <nav aria-label="breadcrumb" class="breadcrumb-row">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item">Account Orders</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Banner End -->
+
+    <div class="content-inner-1">
+        <div class="container">
+            <div class="row">
+                @await Component.InvokeAsync("Account")
+                <div class="col-xl-9 account-wrapper">
+                    <div class="account-card">
+                        <div class="table-responsive table-style-1">
+                            <table class="table table-hover mb-3">
+                                <thead>
+                                    <tr>
+                                        <th>Order #</th>
+                                        <th>Date Purchased</th>
+                                        <th>Status</th>
+                                        <th>Total</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach(var order in Model.orders)
+                                    {
+                                        decimal price = 0;
+                                        foreach(var orderItem in Model.orderItems)
+                                        {
+                                            if(orderItem.OrderId == order.Id)
+                                            {
+                                                price += orderItem.UnitPrice;
+                                            }
+                                        }
+                                        <tr>
+                                            <td><a href="@Url.Action("OrderDetails", "Order", new { orderId = order.Id })" class="fw-medium">#@order.Id</a></td>
+                                            <td>@order.CreatedAt.ToString("MMM dd, yyyy")</td>
+                                            <td><span class="badge bg-info m-0">In Progress</span></td>
+                                            <td>@price.ToString("C")</td>
+                                            <td><a href="@Url.Action("OrderDetails", "Order", new { orderId = order.Id })" class="btn-link text-underline p-0">View</a></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Pagination -->
+                        <div class="d-flex justify-content-center">
+                            <nav aria-label="Table Pagination">
+                                <ul class="pagination style-1">
+                                    @if (Model.CurrentPage > 1)
+                                    {
+                                        <li class="page-item"><a class="page-link" href="@Url.Action("ListOrders", new { page = Model.CurrentPage - 1 })">Previous</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li class="page-item disabled"><span class="page-link">Previous</span></li>
+                                    }
+
+                                    @for (var i = 1; i <= Model.TotalPages; i++)
+                                    {
+                                        <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                                            <a class="page-link" href="@Url.Action("ListOrders", new { page = i })">@i</a>
+                                        </li>
+                                    }
+
+                                    @if (Model.CurrentPage < Model.TotalPages)
+                                    {
+                                        <li class="page-item"><a class="page-link" href="@Url.Action("ListOrders", new { page = Model.CurrentPage + 1 })">Next</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li class="page-item disabled"><span class="page-link">Next</span></li>
+                                    }
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

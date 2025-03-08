@@ -1,0 +1,69 @@
+﻿@using App.Data.Entities
+@model UserEntity
+<div class="page-content">
+
+						<!--Banner Start-->
+						<div class="dz-bnr-inr" style="background-image:url(images/background/bg1.jpg);">
+							<div class="container">
+								<div class="dz-bnr-inr-entry">
+									<nav aria-label="breadcrumb" class="breadcrumb-row">
+										<ul class="breadcrumb">
+											<li class="breadcrumb-item"><a href="index.html"> Home</a></li>
+											<li class="breadcrumb-item">Account Address</li>
+										</ul>
+									</nav>
+								</div>
+							</div>	
+						</div>
+						<!--Banner End-->
+	
+		
+		<div class="content-inner-1">
+			<div class="container">
+				
+                <div class="row">
+					@await Component.InvokeAsync("Account")
+                    <section class="col-xl-9 account-wrapper">
+						<div class="row">
+                            <div class="col-12 m-b30">
+								<p class="m-b0">The following addresses will be used on the checkout page by default.</p>
+							</div>
+                            <div class="col-md-6 m-b30">
+                                <div class="address-card">
+									<div class="account-address-box">
+										<h6 class="mb-3">Billing address</h6>
+										<ul>
+											<li>@Model.FirstName @Model.LastName</li>
+											<li>@Model.Address</li>
+											<li>@Model.Email</li>
+										</ul>
+									</div>
+									<div class="account-address-bottom">                                
+										<a href="account-billing-address.html" class="d-block me-3"><i class="fa-solid fa-pen me-2"></i>Edit</a>                                
+										<a href="javascript:void(0);" class="d-block me-3"><i class="fa-solid fa-trash-can me-2"></i>Remove</a>
+									</div>
+								</div>
+							</div>
+                            <div class="col-md-6 m-b30">
+                                <div class="address-card">
+									<div class="account-address-box">
+										<h6 class="mb-3">Shipping address</h6>
+										<ul>
+											<li>@Model.FirstName @Model.LastName</li>
+											<li>@Model.Address</li>
+											<li>@Model.Email</li>
+										</ul>
+									</div>
+									<div class="account-address-bottom">                                
+										<a href="account-shipping-address.html" class="d-block me-3"><i class="fa-solid fa-pen me-2"></i>Edit</a>                                
+										<a href="javascript:void(0);" class="d-block me-3"><i class="fa-solid fa-trash-can me-2"></i>Remove</a>                                
+									</div>
+								</div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+      		</div>
+		</div>
+		
+	</div>

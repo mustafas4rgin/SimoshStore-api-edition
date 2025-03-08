@@ -1,0 +1,47 @@
+﻿@using App.Data.Entities
+@model OrderEntity
+<div class="page-content">
+
+				<!--Banner Start-->
+				<div class="dz-bnr-inr" style="background-image:url(images/background/bg1.jpg);">
+					<div class="container">
+						<div class="dz-bnr-inr-entry">
+							<nav aria-label="breadcrumb" class="breadcrumb-row">
+								<ul class="breadcrumb">
+									<li class="breadcrumb-item"><a href="index.html"> Home</a></li>
+									<li class="breadcrumb-item">Account Order Confirmation</li>
+								</ul>
+							</nav>
+						</div>
+					</div>	
+				</div>
+				<!--Banner End-->
+
+
+
+		
+		<div class="content-inner-1">
+			<div class="container">
+                <div class="row">
+					@await Component.InvokeAsync("Account")
+                    <section class="col-xl-9 account-wrapper">
+						<div class="confirmation-card account-card">
+							<div class="thumb">
+								<img src="images/confirmation.png" alt="">
+							</div>
+							<div class="text-center mt-4">
+								<h4 class="mb-3 text-capitalize">Your Order Is Completed !</h4>
+								<p class="mb-2">You will receive an order confirmation email with details of your order.</p>
+								<p class="mb-0">Order ID: @Model.OrderCode</p>
+								<div class="mt-4 d-sm-flex gap-3 justify-content-center">
+									<a href="@Url.Action("OrderDetails","Order",new{orderId = Model.Id})" class="btn my-1 btn-secondary">View Order </a>
+									<a href="@Url.Action("Index","Home")" class="btn btn-outline-secondary my-1 btnhover20">Back To Home </a>
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+      		</div>
+		</div>
+		
+	</div>

@@ -1,0 +1,134 @@
+﻿@using App.Data.Entities
+@model List<CartItemEntity>
+<div class="page-content">
+		<!--Banner Start-->
+		<div class="dz-bnr-inr" style="background-image:url(images/background/bg1.jpg);">
+			<div class="container">
+				<div class="dz-bnr-inr-entry">
+					<nav aria-label="breadcrumb" class="breadcrumb-row">
+						<ul class="breadcrumb">
+							<li class="breadcrumb-item"><a href="index.html"> Home</a></li>
+							<li class="breadcrumb-item">Shop Cart</li>
+						</ul>
+					</nav>
+				</div>
+			</div>	
+		</div>
+		<!--Banner End-->
+
+		
+		<!-- contact area -->
+		<section class="content-inner shop-account">
+			<!-- Product -->
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8">
+						<div class="table-responsive">
+							<table class="table check-tbl">
+								<thead>
+									<tr>
+										<th></th>
+										<th></th>
+										<th>Product</th>
+										<th>Price</th>
+										<th>Quantity</th>
+										<th>Subtotal</th>
+									</tr>
+								</thead>
+								<tbody>
+                                    @if(ViewData["Error"] != null)
+									{
+										<tr>
+											<td colspan="6" class="text-center">@ViewData["Error"]</td>
+										</tr>
+									}
+                                    @{decimal cartPrice = 0;decimal productPrices = 0;decimal savedPrice = 0;}
+                                    @foreach(var item in Model)
+                                    {
+                                        decimal price = item.Product.Price;
+                                        productPrices += price;
+                                        if(item.Product.Discount != null)
+                                        {
+                                            price = (item.Product.Price - item.Product.Price*item.Product.Discount.DiscountRate/100)*item.Quantity;
+                                        }
+                                        <tr>
+										<td class="product-item-close"><a href="javascript:void(0);"><i class="ti-close"></i></a></td>
+										<td class="product-item-img"><img src="https://picsum.photos/100/100" alt="/"></td>
+										<td class="product-item-name">@item.Product.Name</td>
+										<td class="product-item-price">$@price</td>
+										<td class="product-item-quantity">
+											<div class=" quantity btn-quantity style-1">
+												<p>@item.Quantity</p>
+											</div>
+										</td>
+										<td class="product-item-totle">$@price</td>		
+									</tr>
+                                    cartPrice += price;
+                                    
+                                    }
+                                    @{savedPrice = productPrices - cartPrice;}
+									
+								</tbody>
+							</table>
+						</div>
+						<div class="row shop-form m-t30 align-items-center">
+							<div class="col-xl-6 col-lg-12 text-start text-xl-end col-sm-12">
+								<a href="@Url.Action("ShopCart","Cart")" class="btn btn-outline-secondary ">Restore To Store</a>
+								<a href="@Url.Action("ClearCart","Cart")" class="btn btn-secondary">Empty Cart</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="cart-detail">
+							<a href="javascript:void(0);" class="btn btn-outline-secondary w-100 m-b20 btn-lg">Bank Offer 5% Cashback</a>
+							<div class="icon-bx-wraper style-4 m-b15">
+								<div class="icon-bx">
+									<i class="flaticon flaticon-ship"></i>
+								</div>
+								<div class="icon-content">
+									<span class=" font-13">Free</span>
+									<h6 class="dz-title">Shipping</h6>
+								</div>
+							</div>
+							<div class="icon-bx-wraper style-4 m-b30">
+								<div class="icon-bx">
+									<img src="~/images/shop/shop-cart/icon-box/pic2.png" alt="/">
+								</div>
+
+                                    <div class="icon-content">
+									<h6 class="dz-title">Enjoy The Product</h6>
+									<p>We wish you to this product(s) will be used on bright days!</p>
+								</div>
+                                
+								
+							</div>
+							<div class="save-text">
+								<i class="icon feather icon-check-circle"></i>
+								<span class="m-l10">You will save<span>$@savedPrice</span> on this order</span>
+							</div>
+							<table>
+								<tbody>
+									<tr class="total">
+										<td>
+											<h6 class="mb-0">Total Amount</h6>
+										</td>
+										<td class="price">
+											$@cartPrice
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<a href="@Url.Action("Checkout","Cart")" class="btn btn-outline-secondary w-100 btn-lg">Check OUT</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Product END -->
+		</section>
+		<!-- contact area End--> 
+
+		<!-- Newsletter Start-->
+		@Html.Partial("~/Views/Partials/NewsLetter.cshtml")
+	<!-- Newsletter End -->
+
+	</div>

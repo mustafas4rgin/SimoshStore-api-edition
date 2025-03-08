@@ -1,0 +1,131 @@
+.under-construct{
+	position: relative;
+    z-index: 1;
+    overflow: hidden;
+    min-height: 750px;
+	height: 100vh;
+	@include respond('tab-port'){
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		min-height: auto;
+		.logo{
+			margin: auto;
+			margin-bottom: 50px;
+		}
+	}
+	.bg-img{
+		position:absolute;
+		bottom:-30px;
+		#{$dz-pos-left}:0;
+		z-index: -1;
+	}
+	.dz-social-icon.style-2 li a{
+		@include respond('phone'){
+			width: 45px; 
+			height: 45px;
+			line-height: 45px;
+			font-size: 18px;
+		}
+	}
+}
+
+.construct-box-1{
+	.logo{
+		width:230px;
+	}
+	.dz-content{
+		@include respond('phone'){
+			margin-top:20px;
+		}
+		@include respond('tab-port'){
+			.dz-title,
+			.ft-row{
+				justify-content: center;
+				margin-left:auto;
+				margin-right: auto;
+			}
+
+		}
+		.dz-media-title{
+			font-family: var(--font-family-title);
+			font-size: 120px;
+			font-weight: 500;
+			color: var(--title);
+			display: inline-flex;
+			align-items: center;
+			line-height: 1.2;
+			margin-bottom: 5px;
+			img{
+				margin-#{$dz-pos-right}:22px;
+				@include respond('wide-desktop'){
+				    width: 70px;
+				}
+				@include respond('phone'){
+					width: 50px;
+				}
+			}
+			@include respond('wide-desktop'){
+				font-size: 70px;
+			}
+			@include respond('phone'){
+				font-size: 50px;
+			}
+			
+		}
+		.dz-title{
+			font-size: 60px;
+			font-weight: 400;
+			color: var(--title);
+			font-family: var(--font-family-title);
+			line-height: 1.2;
+			margin-bottom: 20px;
+			@include respond('wide-desktop'){
+				margin-bottom: 25px;
+				font-size: 45px;
+			}
+			@include respond('phone'){
+				font-size: 30px;
+			}
+		}
+		p{
+			font-weight: 500;
+			color: rgba(68, 68, 68, 1);
+			margin-bottom: 40px;		
+		}
+	}
+	.dz-social-icon {
+		position: absolute;
+		bottom: 95px;	
+		top:auto;
+		z-index:1;
+		
+		@include respond('wide-desktop'){
+			bottom: 50px;	
+		}
+		@include respond('tab-port'){
+			left: 50%;
+			transform: translate(-50%, -50px);
+		}
+		@include respond('phone'){
+			bottom: 30px;	
+		}
+		@media screen and (max-height: 500px) {
+			bottom: auto;	
+			position: unset;
+		}
+	}
+	
+}
+.construct-box-2{
+	position:relative;
+	z-index:1;
+	.construct-media{
+		margin-right: -50px;
+		@include respond('phone-land'){
+			margin-right: 0px;
+		}
+	}
+	
+}

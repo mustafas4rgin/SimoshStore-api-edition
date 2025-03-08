@@ -1,0 +1,155 @@
+﻿@model BlogListWithTagViewModel
+<div class="page-content">
+    <!--Banner Start-->
+    <div class="dz-bnr-inr" style="background-image:url(images/background/bg1.jpg);">
+        <div class="container">
+            <div class="dz-bnr-inr-entry">
+                <nav aria-label="breadcrumb" class="breadcrumb-row">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html"> Home</a></li>
+                        <li class="breadcrumb-item">Blog Tags</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!--Banner End-->
+
+    <section class="content-inner-1 z-index-unset">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-8 col-lg-8">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-12 col-md-12 wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="search-info m-b50">
+                                <div class="title m-b10">
+                                    <p class="search-name">Tag: </p>
+                                    <h2 class="search-result">@Model.tag.Name</h2>
+                                </div>
+                                <p class="found-posts m-b0">Found @Model.blogEntities records</p>
+                            </div>
+                        </div>
+                        @foreach (var blog in Model.blogEntities)
+                        {
+                            <div class="col-lg-12 col-md-6 col-sm-6 m-lg-b30 m-b50 wow fadeInUp" data-wow-delay="0.2s">
+                                <div class="dz-card blog-half style-5">
+                                    <div class="dz-media">
+                                        <img src="images/blog/blogpost-4/pic1.jpg" alt="/">
+                                    </div>
+                                    <div class="dz-info">
+                                        <div class="dz-meta">
+                                            <ul>
+                                                <li class="post-date">@blog.CreatedAt.ToString("dd MMM yyyy")</li>
+                                            </ul>
+                                        </div>
+                                        <h2 class="dz-title">
+                                            <a href="post-header-image.html">@blog.Title</a>
+                                        </h2>
+                                        <a href="post-header-image.html" class="font-14 read-btn">Read More
+                                            <i class="icon feather icon-chevron-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        <div class="col-12 text-center mt-sm-4 mb-sm-4  wow fadeInUp" data-wow-delay="0.5s">
+                            <a href="blog-tag.html" class="btn btn-secondary">
+                                Loadmore
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4">
+                    <aside class="side-bar sticky-top mt-lg-0 mt-md-5 mt-3">
+                        <div class="widget">
+                            <h3 class="widget-title">Search</h3>
+                            <div class="search-bx">
+                                <form role="search" method="post">
+                                    <div class="input-group">
+                                        <input name="text" class="form-control" placeholder="Search Here" type="text">
+                                        <span class="input-group-btn">
+                                            <button class="btn">
+                                                <i class="icon feather icon-search"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="widget widget_categories style-1">
+                            <h3 class="widget-title">Product Category</h3>
+                            <ul>
+                                @foreach (var category in Model.categories)
+                                {
+                                    var productsByCategory = Model.products.Where(c => c.CategoryId == category.Id).ToList();
+                                    <li class="cat-item">
+                                        <!-- Kategoriye tıklanınca kategoriId, liste olarak ProductList action'ına gidiyor -->
+                                        <a
+                                            href="@Url.Action("ProductList", "Shop", new { selectedCategoryIds = new List<int> { category.Id } })">
+                                            @category.Name
+                                        </a> @productsByCategory.Count() <!-- 10, her kategorideki ürün sayısı -->
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="widget recent-posts-entry">
+                            <h3 class="widget-title">Featured Products</h3>
+                            <div class="widget-post-bx">
+                                <div class="widget-post clearfix">
+                                    <div class="dz-media">
+                                        <a href="post-standard.html"><img src="images/blog/recent-blog/pic1.jpg"
+                                                alt="/"></a>
+                                    </div>
+                                    <div class="dz-info">
+                                        <h6 class="title"><a href="post-standard.html">Bacopa sutera cordata (m)</a>
+                                        </h6>
+                                        <span class="price">$659 <del>$1299</del></span>
+                                    </div>
+                                </div>
+                                <div class="widget-post clearfix">
+                                    <div class="dz-media">
+                                        <a href="post-standard.html"><img src="images/blog/recent-blog/pic2.jpg"
+                                                alt="/"></a>
+                                    </div>
+                                    <div class="dz-info">
+                                        <h6 class="title"><a href="post-standard.html">Vineyard Reach (m)</a></h6>
+                                        <span class="price">$700 <del>$1449</del></span>
+                                    </div>
+                                </div>
+                                <div class="widget-post clearfix">
+                                    <div class="dz-media">
+                                        <a href="post-standard.html"><img src="images/blog/recent-blog/pic3.jpg"
+                                                alt="/"></a>
+                                    </div>
+                                    <div class="dz-info">
+                                        <h6 class="title"><a href="post-standard.html">Long Vine Flora (m)</a></h6>
+                                        <span class="price">$449 <del>$999</del></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget widget_tag_cloud">
+                            <h3 class="widget-title">Tags</h3>
+                            <div class="tagcloud">
+                                <a href="blog-tag.html">plants </a>
+                                <a href="blog-tag.html">Green Dreams</a>
+                                <a href="blog-tag.html">Seeds</a>
+                                <a href="blog-tag.html">Photo</a>
+                                <a href="blog-tag.html">capes</a>
+                                <a href="blog-tag.html">Urban Oasis</a>
+                                <a href="blog-tag.html">Fern Fantasy</a>
+                                <a href="blog-tag.html">Plant Paradise</a>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Start-->
+    @Html.Partial("~/Views/Partials/NewsLetter.cshtml")
+    <!-- Newsletter End -->
+
+</div>

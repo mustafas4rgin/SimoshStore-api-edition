@@ -1,0 +1,42 @@
+﻿@model SimoshStore.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+@if (ViewData["AuthErrorMessage"] != null)
+{
+    <div class="alert alert-danger mt-3">
+        @ViewData["AuthErrorMessage"]
+    </div>
+}
+@if (ViewData["AuthError"]!=null)
+{
+    <div class="alert alert-danger mt-3">
+        @ViewData["AuthError"]
+    </div>
+}
+
+
+<h2>Login</h2>
+
+<form asp-action="Login" method="post">
+    <div class="form-group">
+        <label for="Email">Email</label>
+        <input type="email" class="form-control" id="Email" asp-for="Email" required />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="Password">Password</label>
+        <input type="password" class="form-control" id="Password" asp-for="Password" required />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
+
+@if (ViewData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger mt-3">
+        @ViewData["ErrorMessage"]
+    </div>
+}

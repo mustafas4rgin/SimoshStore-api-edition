@@ -1,0 +1,100 @@
+﻿@model EditAddressViewModel
+
+<div class="page-content">
+    <!-- Banner Start -->
+    <div class="dz-bnr-inr" style="background-image:url(images/background/bg1.jpg);">
+        <div class="container">
+            <div class="dz-bnr-inr-entry">
+                <nav aria-label="breadcrumb" class="breadcrumb-row">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item">Account Billing Address</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Banner End -->
+
+    <div class="content-inner-1">
+        <div class="container">
+            <div class="row">
+                @await Component.InvokeAsync("Account")
+                <section class="col-xl-9 account-wrapper">
+                    <div class="account-card">
+                        <form method="post" class="row" action="#">
+                            @if (ViewData["Error"] != null)
+                            {
+                                <div class="alert alert-danger" role="alert">
+                                    @ViewData["Error"]
+                                </div>
+                            }
+
+                            <!-- Model Validation Summary -->
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <h3 class="m-b30">Billing Address</h3>
+
+                            <!-- First Name -->
+                            <div class="col-md-6">
+                                <div class="form-group m-b25">
+                                    <label asp-for="FirstName" class="label-title">First Name</label>
+                                    <input asp-for="FirstName" class="form-control" />
+                                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <!-- Last Name -->
+                            <div class="col-md-6">
+                                <div class="form-group m-b25">
+                                    <label asp-for="LastName" class="label-title">Last Name</label>
+                                    <input asp-for="LastName" class="form-control" />
+                                    <span asp-validation-for="LastName" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <!-- Street Address -->
+                            <div class="col-md-12">
+                                <div class="form-group m-b25">
+                                    <label asp-for="Street" class="label-title">Street Address *</label>
+                                    <input asp-for="Street" class="form-control m-b15" placeholder="House number and street name" />
+                                    <input asp-for="Street" class="form-control" placeholder="Apartment, suite, unit, etc. (optional)" />
+                                    <span asp-validation-for="Street" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <!-- Post Code -->
+                            <div class="col-md-12">
+                                <div class="form-group m-b25">
+                                    <label asp-for="PostCode" class="label-title">Postcode *</label>
+                                    <input asp-for="PostCode" class="form-control" />
+                                    <span asp-validation-for="PostCode" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <!-- Phone -->
+                            <div class="col-md-12">
+                                <div class="form-group m-b25">
+                                    <label asp-for="Phone" class="label-title">Phone *</label>
+                                    <input asp-for="Phone" class="form-control" />
+                                    <span asp-validation-for="Phone" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="col-md-12">
+                                <div class="form-group m-b25">
+                                    <label asp-for="Email" class="label-title">Email Address *</label>
+                                    <input asp-for="Email" class="form-control" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-secondary">Save Changes</button>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

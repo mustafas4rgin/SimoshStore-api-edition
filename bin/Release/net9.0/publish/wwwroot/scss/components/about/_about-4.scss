@@ -1,0 +1,177 @@
+.about-style4{
+	background-color: #fff;
+    position: relative;
+    z-index: 1;
+	@include respond ('phone-land'){
+		padding-top: 40px;
+	}
+	.right-contant{
+		padding-left: 50px;
+		@include respond ('tab-land'){
+			padding-left: 0;
+		}
+	}
+
+	 img.Plant {
+		position: absolute;
+		top: 50%;
+		left: 70px;
+		transform: translate(0, -50%);
+		z-index: -1;
+		@include respond ('tab-land'){
+			display: none;
+		}
+	}
+	.about-content{
+		border-radius: 15px;
+		background: #FFF;
+		box-shadow: 0px 15px 50px 0px rgba(94, 141, 118, 0.1);
+		padding: 30px;
+		.para-text{
+			color: #444;
+			margin-bottom: 30px;
+			font-size: 18px;
+			font-weight: 400;
+		}
+		@include respond ('tab-land'){
+			padding: 25px;
+			.para-text{
+				margin-bottom: 20px;
+				font-size: 16px;
+			}
+		}
+		@include respond ('phone'){
+			.para-text{
+				line-height: 25px;
+			}
+		}
+	}
+	.side-content {
+	    z-index: 1;
+		position: relative;
+		margin-right: -30px;
+		@include respond ('tab-land'){
+			padding-right:0px;
+			margin: 0;	
+		}
+		.about-thumb {
+			height: 100%;
+			padding-left: 150px;
+			img{
+				border-radius: 250px;
+			}
+			@include respond ('tab-land'){
+				padding-left: 40px;
+			}
+			@include respond ('tab-port'){
+				padding-left: 0px;
+			}
+		}
+	}
+	.our-customer{
+		position: absolute;
+		bottom: 140px;
+		right: 90px;
+		width: 180px;
+		padding: 18px 20px;
+		border-radius: 10px;
+		background-color: #ffff;
+		box-shadow: 0px 15px 40px 0px rgba(0, 0, 0, 0.1);
+		@include respond('tab-land'){	
+			bottom: 80px;
+			#{$dz-pos-right}: 80px;	
+		}
+		@include custommq($max:1199px, $min:991px){	
+			bottom: -20px;
+			#{$dz-pos-right}: 80px;	
+		}
+		@include respond('phone-land'){	
+			bottom: -10px;
+			#{$dz-pos-left}: 50%;	
+			#{$dz-pos-right}: auto;	
+			transform: translateX($dz-tx);
+		}			
+		ul{
+			display: flex;
+			padding: 0 10px;
+		}
+		.total-customer{
+			background-color: var(--light);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: var(--title);
+		}
+		.total-customer,
+		.customer-image{
+			width: 50px;
+			min-width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			margin-#{$dz-pos-left}: -10px;
+			img{
+				border: 2px solid $white;
+				border-radius: 50%;
+			}
+		}
+	}
+	.about-bx-detail{
+		display: flex;
+		align-items: center;
+		.about-bx-pic{
+			width: 65px;
+			height: 65px;
+			border-radius: 50%;
+			overflow: hidden;
+			margin-#{$dz-pos-right}: 15px;
+			border: 2px solid var(--primary);
+			@include respond ('tab-land'){
+				margin-#{$dz-pos-right}: 10px;
+			}
+			img{
+				border-radius: 100%;
+				width: 100%;
+				height: 100%;
+			}
+		}
+		.name{
+			font-size: 22px;
+			color: var(--title);
+			margin-bottom: 0;
+			font-family: var(--font-family-base);
+			@include respond ('tab-land'){
+				font-size: 18px;
+			}
+		}
+		.position{
+			font-size: 14px;
+			@include respond ('tab-land'){
+				font-size: 12px;
+			}
+		}
+		@include respond ('phone'){
+			.about-bx-pic{
+				width: 50px;
+				height: 50px;
+				margin-#{$dz-pos-right}: 10px;
+			}
+			.name{
+				font-size: 14px;
+			}
+			.position{
+				font-size: 10px;
+			}
+		}
+	}
+	@include respond ('phone'){
+		.about-thumb{
+			width: 325px;
+			margin-#{$dz-pos-left}: auto;
+			margin-#{$dz-pos-right}: auto;
+			&:after{
+				width: 325px;
+				height: 325px;
+			}
+		}
+	}
+}

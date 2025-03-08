@@ -1,0 +1,339 @@
+﻿@using App.Data.Entities
+@model List<ProductCommentEntity>
+<div class="page-content">
+    <!-- Banner Start -->
+    <div class="dz-bnr-inr" style="background-image:url(images/background/bg1.jpg);">
+        <div class="container">
+            <div class="dz-bnr-inr-entry">
+                <nav aria-label="breadcrumb" class="breadcrumb-row">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html"> Home</a></li>
+                        <li class="breadcrumb-item">About Us</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>	
+    </div>
+    <!-- Banner End -->
+
+    <section class="content-inner overflow-hidden">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 m-b30">
+                    <div class="row g-xl-2 g-md-2 g-3">
+                        <div class="col-lg-12 wow fadeInUp" data-wow-delay="0.6s">
+                            <div class="about-thumb">
+                                <img src="~/images/about/pic6.jpg" alt="" class="rounded"> 
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-sm-4 col-4 wow fadeInUp" data-wow-delay="0.5s">
+                            <div class="about-thumb">
+                                <img src="https://picsum.photos/190/260" alt="" class="rounded">
+                            </div>
+                        </div>
+                        <div class="col-xl-8 col-lg-8 col-sm-8 col-8 wow fadeInUp" data-wow-delay="0.4s">
+                            <div class="about-thumb">
+                                <img src="https://picsum.photos/410/260" alt="" class="rounded">
+                            </div>
+                        </div>
+                    </div>
+                </div>	
+                <div class="col-lg-6">
+                    <div class="section-head wow fadeInUp m-md-r100" data-wow-delay="0.1s">
+                        <h2 class="title">Revolutionizing Shopping, One Click at a Time</h2>
+                        <p>At ShopEase, we're committed to providing a seamless shopping experience by offering quality products, exceptional service, and great value. We believe that shopping should be easy, fun, and personalized to your unique needs.</p>	
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6 col-md-6 col-sm-6 m-b30">
+                            <div class="icon-bx-wraper style-5">
+                                <div class="icon-media"> 
+                                    <i class="fab fa-instagram"></i>
+                                </div>
+                                <div class="icon-content">
+                                    <h3 class="title">Eco-Friendly Products</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 m-b30">
+                            <div class="icon-bx-wraper style-5">
+                                <div class="icon-media"> 
+                                    <i class="fab fa-instagram"></i>
+                                </div>
+                                <div class="icon-content">
+                                    <h3 class="title">Hassle-Free Returns</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 m-b30">
+                            <div class="icon-bx-wraper style-5">
+                                <div class="icon-media"> 
+                                    <i class="fab fa-instagram"></i>
+                                </div>
+                                <div class="icon-content">
+                                    <h4 class="title">High-Quality Guaranteed</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 m-b30">
+                            <div class="icon-bx-wraper style-5">
+                                <div class="icon-media"> 
+                                    <i class="fab fa-instagram"></i>
+                                </div>
+                                <div class="icon-content">
+                                    <h4 class="title">Secure Payment Options</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="btn btn-outline-secondary btn-lg" href="@Url.Action("Shop","ProductList")">Shop Now</a>
+                </div>	
+            </div>
+        </div>
+    </section>	
+
+    <!-- Our Story Section -->
+    <section class="section-wrapper-1 content-inner overflow-hidden bg-parallax" style="background-image:url('images/background/bg2.jpg'); background-attachment: fixed;">
+        <div class="container">
+            <div class="section-head style-3">
+                <h2 class="title text-white wow flipInX" data-wow-delay="0.4s">Our Journey in Revolutionizing E-Commerce</h2>			
+            </div>
+            <ul class="list-check style-2">
+                <li>Our Vision: Delivering the best products directly to your doorsteps.</li>
+                <li>Customer-Centric Approach: Tailored shopping experience just for you.</li>
+                <li>Our Promise: Excellent customer support with a commitment to your satisfaction.</li>
+            </ul>	
+        </div>
+    </section>
+
+    <!-- Our Team Section -->
+    <section class="content-inner">
+        <div class="container-fluid p-0">
+            <div class="section-head style-3 d-block wow fadeInUp text-center" data-wow-delay="0.2s">
+                <div class="mx-auto">
+                    <h2 class="title mb-4">Meet Our E-Commerce Experts</h2>
+                </div>	
+            </div>
+            <div class="swiper swiper-team">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="dz-team style-1 m-md-b0 m-sm-b0 m-b30 box-hover">
+                            <div class="dz-media">
+                                <a href="javascript:void(0);"><img src="~/images/team/pic1.jpg" alt=""></a>
+                                <ul class="team-social-icon">
+                                    <li><a href="https://www.instagram.com/s4rgin/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                                    <li><a href="https://www.instagram.com/s4rgin/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="https://www.instagram.com/s4rgin/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="dz-content">
+                                <h3 class="title"><a href="@Url.Action("Index","Home")">John Doe</a></h3>
+                                <span>CEO & Founder</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="dz-team style-1 m-md-b0 m-sm-b0 m-b30 box-hover">
+                            <div class="dz-media">
+                                <a href="javascript:void(0);"><img src="~/images/team/pic2.jpg" alt=""></a>
+                                <ul class="team-social-icon">
+                                    <li><a href="https://www.instagram.com/s4rgin/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                                    <li><a href="https://www.instagram.com/s4rgin/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="https://www.instagram.com/s4rgin/ target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="dz-content">
+                                <h3 class="title"><a href="our-team.html">Ivan Mathews</a></h3>
+                                <span>iOS Developer</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="dz-team style-1 m-md-b0 m-sm-b0 m-b30 box-hover">
+                            <div class="dz-media">
+                                <a href="javascript:void(0);"><img src="~/images/team/pic3.jpg" alt=""></a>
+                                <ul class="team-social-icon">
+                                    <li><a href="https://www.instagram.com/s4rgin/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                                    <li><a href="https://www.instagram.com/s4rgin/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="https://www.instagram.com/s4rgin/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="dz-content">
+                                <h3 class="title"><a href="@Url.Action("Index","Home")">Macauley Herring</a></h3>
+                                <span>Customer Success</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="dz-team style-1 m-md-b0 m-sm-b0 m-b30 box-hover">
+                            <div class="dz-media">
+                                <a href="javascript:void(0);"><img src="~/images/team/pic4.jpg" alt=""></a>
+                                <ul class="team-social-icon">
+                                    <li><a href="https://www.instagram.com/s4rgin/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                                    <li><a href="https://www.instagram.com/s4rgin/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="https://www.instagram.com/s4rgin/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="dz-content">
+                                <h3 class="title"><a href="@Url.Action("Index","Home")">Alya Levine</a></h3>
+                                <span>CTO</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="dz-team style-1 m-md-b0 m-sm-b0 m-b30 box-hover">
+                            <div class="dz-media">
+                                <a href="javascript:void(0);"><img src="~/images/team/pic5.jpg" alt=""></a>
+                                <ul class="team-social-icon">
+                                    <li><a href="https://www.instagram.com/s4rgin/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                                    <li><a href="https://www.instagram.com/s4rgin/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="https://www.instagram.com/s4rgin/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="dz-content">
+                                <h3 class="title"><a href="@Url.Action("Index","Home")">Rose Hernandez</a></h3>
+                                <span>Backend Developer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+
+		<!-- About Start-->
+		<section class=" about-style4 content-inner overflow-hidden">
+			<div class="container">
+				<div class="row  align-items-center ">
+					<div class="col-lg-5 order-lg-1 order-2 wow fadeInUp" data-wow-delay="0.2s">
+						<div class="side-content">
+							<div class="about-thumb">
+								<img src="~/images/about/pic1.jpg" alt="">
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-7 m-b30 aos-item wow fadeInUp  order-lg-2 order-1 " data-wow-delay="0.4s">
+						<div class="right-contant">
+							<div class="section-head style-3">
+								<h2 class="title">What Our Customers say <br> about us ?</h2>
+							</div>
+							<div class="swiper swiper-five ">
+								<div class="swiper-wrapper">
+									@foreach(var item in Model)
+									{
+										<div class="swiper-slide">
+										<div class="about-content">
+											<p class="para-text">@item.Text</p>
+											<div class="about-bx-detail">
+												<div class="about-bx-pic radius">
+													<img src="~/images/testimonial/testimonial1.jpg" alt="">
+												</div>
+												<div>
+													<h3 class="name">@item.User.FirstName @item.User.LastName</h3> 
+													<span class="position">Customer</span> 
+												</div>
+											</div>
+										</div>
+									</div>
+									}
+									
+								</div>
+								<div class="pagination-align">
+									<div class="about-button-prev btn-prev">
+										<i class="flaticon flaticon-left-chevron"></i>
+									</div>
+									<div class="about-button-next btn-next">
+										<i class="flaticon flaticon-chevron"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<img src="~/limages/about/Plant-1.png" alt="" class="Plant">
+		</section>
+		<!-- About End -->
+
+		
+		
+		<!-- Companies -->
+			<section class="content-inner-1 companies bg-white">
+				<div class="container">
+					<div class="section-head style-3 d-block wow fadeInUp text-center" data-wow-delay="0.2s">
+						<div class="max-w600 mx-auto">
+							<h2 class="title mb-4">We’re just keep growing with 6.3k trusted companies</h2>
+						</div>	
+					</div>
+					<div class="section-inner">
+						<div class="swiper swiper-company ">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide wow fadeInUp" data-wow-delay="0.1s">
+									<a href="javascript:void(0);" class="companies-wrapper">
+										<div class="companies-media">
+											<img src="~/images/companies/logo1.png" alt=""> 
+										</div>
+									</a>
+								</div>
+								<div class="swiper-slide wow fadeInUp" data-wow-delay="0.2s">
+									<a href="javascript:void(0);" class="companies-wrapper">
+										<div class="companies-media">
+											<img src="~/images/companies/logo2.png" alt=""> 
+										</div>
+									</a>
+								</div>
+								<div class="swiper-slide wow fadeInUp" data-wow-delay="0.3s">
+									<a href="javascript:void(0);" class="companies-wrapper">
+										<div class="companies-media">
+											<img src="~/images/companies/logo3.png" alt=""> 
+										</div>
+									</a>
+								</div>
+								<div class="swiper-slide wow fadeInUp" data-wow-delay="0.4s">
+									<a href="javascript:void(0);" class="companies-wrapper">
+										<div class="companies-media">
+											<img src="~/images/companies/logo4.png" alt=""> 
+										</div>
+									</a>
+								</div>
+								<div class="swiper-slide wow fadeInUp" data-wow-delay="0.5s">
+									<a href="javascript:void(0);" class="companies-wrapper">
+										<div class="companies-media">
+											<img src="~/images/companies/logo5.png" alt=""> 
+										</div>
+									</a>
+								</div>
+								<div class="swiper-slide wow fadeInUp" data-wow-delay="0.6s">
+									<a href="javascript:void(0);" class="companies-wrapper">
+										<div class="companies-media">
+											<img src="~/images/companies/logo6.png" alt=""> 
+										</div>
+									</a>
+								</div>
+								<div class="swiper-slide wow fadeInUp" data-wow-delay="0.7s">
+									<a href="javascript:void(0);" class="companies-wrapper">
+										<div class="companies-media">
+											<img src="~/images/companies/logo1.png" alt=""> 
+										</div>
+									</a>
+								</div>
+								<div class="swiper-slide wow fadeInUp" data-wow-delay="0.8s">
+									<a href="javascript:void(0);" class="companies-wrapper">
+										<div class="companies-media">
+											<img src="~/images/companies/logo2.png" alt=""> 
+										</div>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		<!-- Companies End -->
+
+		
+
+	</div>

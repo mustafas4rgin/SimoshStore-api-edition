@@ -1,0 +1,273 @@
+is_global = true
+build_property.TargetFramework = net9.0
+build_property.TargetFramework = net9.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = SimoshStore
+build_property.RootNamespace = SimoshStore
+build_property.ProjectDir = /var/www/SimoshStoreA/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 9.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /var/www/SimoshStoreA
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 9.0
+build_property.EnableCodeStyleSeverity = 
+
+[/var/www/SimoshStoreA/PopUpNewsLetter.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UG9wVXBOZXdzTGV0dGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Admin/AdminDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vQWRtaW5EYXNoYm9hcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Admin/CategoryList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vQ2F0ZWdvcnlMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Admin/ListBlogs.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vTGlzdEJsb2dzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Admin/ManageUsers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vTWFuYWdlVXNlcnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Admin/OrderList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vT3JkZXJMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Admin/ProductCommentList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vUHJvZHVjdENvbW1lbnRMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Admin/ProductList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vUHJvZHVjdExpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Auth/ForgotPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXV0aC9Gb3Jnb3RQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Auth/ForgotPasswordConfirmation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXV0aC9Gb3Jnb3RQYXNzd29yZENvbmZpcm1hdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Auth/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXV0aC9Mb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Auth/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXV0aC9SZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Auth/ResetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXV0aC9SZXNldFBhc3N3b3JkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Blog/BlogList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQmxvZy9CbG9nTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Blog/BlogListWithTag.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQmxvZy9CbG9nTGlzdFdpdGhUYWcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Blog/BlogPost.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQmxvZy9CbG9nUG9zdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Blog/CreateBlog.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQmxvZy9DcmVhdGVCbG9nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Blog/RecentBlogs.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQmxvZy9SZWNlbnRCbG9ncy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Cart/CheckOut.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2FydC9DaGVja091dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Cart/ShopCart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2FydC9TaG9wQ2FydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Category/CreateCategory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2F0ZWdvcnkvQ3JlYXRlQ2F0ZWdvcnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Category/UpdateCategory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2F0ZWdvcnkvVXBkYXRlQ2F0ZWdvcnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Error/NotFound.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRXJyb3IvTm90Rm91bmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Error/UnderConstruction.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRXJyb3IvVW5kZXJDb25zdHJ1Y3Rpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Home/AboutMe.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9BYm91dE1lLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Home/AboutUs.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9BYm91dFVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Home/ContactUs.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Db250YWN0VXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Home/OurTeam.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9PdXJUZWFtLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Order/ListOrders.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXIvTGlzdE9yZGVycy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Order/OrderConfirmation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXIvT3JkZXJDb25maXJtYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Order/OrderDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXIvT3JkZXJEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Partials/footer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGFydGlhbHMvZm9vdGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Partials/header.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGFydGlhbHMvaGVhZGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Partials/NewsLetter.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGFydGlhbHMvTmV3c0xldHRlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Product/CreateProduct.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvZHVjdC9DcmVhdGVQcm9kdWN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Product/GetProducts.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvZHVjdC9HZXRQcm9kdWN0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Product/UpdateProduct.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvZHVjdC9VcGRhdGVQcm9kdWN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Profile/Address.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvZmlsZS9BZGRyZXNzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Profile/EditAddress.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvZmlsZS9FZGl0QWRkcmVzcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Profile/EditProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvZmlsZS9FZGl0UHJvZmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Profile/MyProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvZmlsZS9NeVByb2ZpbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Profile/Review.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvZmlsZS9SZXZpZXcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Profile/Success.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvZmlsZS9TdWNjZXNzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Profile/UpdateProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvZmlsZS9VcGRhdGVQcm9maWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Shared/Components/Account/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0NvbXBvbmVudHMvQWNjb3VudC9EZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Shared/Components/Cart/default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0NvbXBvbmVudHMvQ2FydC9kZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Shared/Components/CartCount/default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0NvbXBvbmVudHMvQ2FydENvdW50L2RlZmF1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Shared/Components/FeatureBox/default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0NvbXBvbmVudHMvRmVhdHVyZUJveC9kZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Shared/Components/Search/default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0NvbXBvbmVudHMvU2VhcmNoL2RlZmF1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Shared/ListBlogCategories.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0xpc3RCbG9nQ2F0ZWdvcmllcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Shop/ProductDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hvcC9Qcm9kdWN0RGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Shop/ProductList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hvcC9Qcm9kdWN0TGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Shop/_QuickView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hvcC9fUXVpY2tWaWV3LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/User/UpdateUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9VcGRhdGVVc2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/var/www/SimoshStoreA/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-b1i848ovyz

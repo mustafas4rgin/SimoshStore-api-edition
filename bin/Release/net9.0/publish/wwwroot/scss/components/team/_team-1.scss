@@ -1,0 +1,123 @@
+.dz-team{
+	// Style 1
+	&.style-1{
+		.dz-media{
+			width:300px;
+			margin-bottom:22px;
+			height:300px;
+		    border-radius: 235px 235px 0 0;
+				@include respond ('tab-land'){
+					width:100%;
+					height:100%;
+				}
+				@include respond('phone-land'){
+					margin-bottom:10px;
+				}
+			img{
+				width:100%;
+				height:100%;
+				transform: scale(1);
+				transition: 0.5s;
+			}
+			&::after {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: #000;
+				opacity: 0;
+				transition: 0.7s;
+				z-index: 0;
+			}
+		}
+		 .team-social-icon {
+			position: absolute;
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			top: 60%;
+			left: 50%;
+			transform: translate(-50%, 0%);
+			transition: 0.7s;
+			opacity: 0;
+			z-index: 1;
+			background: #fff;
+			width: 100%;
+			justify-content: center;
+			min-height: 70px;
+			padding: 10px;
+			@include respond('phone'){
+				gap: 5px;
+				min-height: 20px;
+				padding: 5px;
+			}
+			li{
+				a{
+					color: #fff;
+					background: var(--secondary);
+					display: inline-block;
+					text-align: center;
+					transition: all 0.8s;
+					height: 45px;
+					width: 45px;
+					line-height: 45px;
+					border-radius: 4px;
+					@include respond('phone-land'){
+						height: 30px;
+						width: 30px;
+						line-height: 30px;	
+					}
+				}
+			}
+		}	
+
+		&.active,
+		&:hover{
+			.dz-media{
+				&:after{
+					opacity: 0.3;
+				}
+				img{
+					transform: scale(1.2);
+				}
+			}
+			.team-social-icon {
+				opacity: 1;
+				transform: translate(-50%, -50%);
+			}
+		}
+
+		.dz-content{
+			text-align: center;
+			.title{
+				font-weight: 600;
+				font-size: 20px;
+				margin-bottom: 0;
+				line-height: 1.2;
+				font-family: var(--font-family-base);
+			}
+			span {
+				font-weight: 500;
+				font-size: 14px;
+				color: var(--title);
+			}
+			@include respond('phone-land'){
+				.title{
+					font-weight: 600;
+					font-size: 16px;
+				}	
+				span {
+					font-size: 14px;
+				}
+			}
+			@include respond('phone'){
+				text-align: $dz-pos-left;	
+				span {
+					font-size: 13px;
+				}
+			}			
+		}				
+	}
+}

@@ -1,0 +1,11 @@
+﻿@using App.Data.Entities
+@model List<UserRole>
+@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<h1>@ViewData["Title"]</h1>
+
+@foreach(var item in Model)
+{
+    <p>@item.Role.Name</p>
+}

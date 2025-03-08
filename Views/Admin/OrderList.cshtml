@@ -1,0 +1,44 @@
+﻿@using App.Data.Entities
+@model List<OrderEntity>
+@{
+    ViewData["Title"] = "Order List";
+}
+
+<div class="container-fluid">
+    <h1 class="mt-4">Order List</h1>
+
+    <div class="row">
+        <!-- Your order list content here (Table, etc.) -->
+        <div class="col-lg-8">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="card-title">Orders</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>User</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var order in Model)
+                            {
+                                <tr>
+                                    <td>@order.Id</td>
+                                    <td>@order.UserId</td>
+                                    <td>@order.OrderCode</td>
+                                    <td>@order.CreatedAt.ToString("dd/MM/yyyy")</td>
+                                    <td><a href="@Url.Action("DeleteOrder", "Admin", new { orderId = order.Id })" class="btn btn-danger btn-sm">Delete</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>

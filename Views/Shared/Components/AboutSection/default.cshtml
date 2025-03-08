@@ -1,0 +1,73 @@
+﻿@using App.Data.Entities
+@model List<ProductEntity>
+<div class="col-lg-6 col-md-6 col-sm-6 m-lg-b80">
+							<div class="shop-card ">
+								@{
+									var firstProduct = Model.FirstOrDefault();
+									var lastProduct = Model.Last();
+								}
+								<div class="dz-media">
+									<img src="https://picsum.photos/600/600" alt="image">
+									<div class="shop-meta">
+										<a href="@Url.Action("AddToCart","Cart",new {productId = firstProduct.Id,quantity=1})"id="addToCartBtn">
+											<div class="btn btn-primary meta-icon dz-carticon">
+											<i class="flaticon flaticon-basket"></i>
+											<i class="flaticon flaticon-basket-on dz-heart-fill"></i>
+										</div></a>
+										
+									</div>
+								</div>
+								<div class="dz-content">
+									<h2 class="title"> <a href="@Url.Action("ProductList", "Shop")">@firstProduct.Name</a></h2>
+									@if(firstProduct.Discount is not null)
+									{
+										decimal newPrice = firstProduct.Price - (firstProduct.Price*firstProduct.Discount.DiscountRate/100);
+										<h6 class="price">
+											@newPrice
+											<del>@firstProduct.Price</del>
+										</h6>
+									}
+									else
+									{
+										<h6 class="price">
+											@firstProduct.Price;
+										</h6>
+									}
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-6">
+							<div class="shop-card ">
+								<div class="dz-media">
+									<img src="https://picsum.photos/600/600" alt="image">
+									<div class="shop-meta">
+										
+										
+										<a href="@Url.Action("AddToCart","Cart",new {productId = lastProduct.Id,quantity=1})" id="addToCartBtn1">
+											<div class="btn btn-primary meta-icon dz-carticon">
+											<i class="flaticon flaticon-basket"></i>
+											<i class="flaticon flaticon-basket-on dz-heart-fill"></i>
+										</div>
+										</a>
+										
+									</div>
+								</div>
+								<div class="dz-content">
+									<h2 class="title"><a href="@Url.Action("ProductList", "Shop")">@lastProduct.Name</a></h2>
+									@if(lastProduct.Discount is not null)
+									{
+										decimal newPrice = lastProduct.Price - (lastProduct.Price*lastProduct.Discount.DiscountRate/100);
+										<h6 class="price">
+											@newPrice
+											<del>@lastProduct.Price</del>
+										</h6>
+									}
+									else
+									{
+										<h6 class="price">
+											@lastProduct.Price;
+										</h6>
+									}
+								</div>
+							</div>
+						</div>

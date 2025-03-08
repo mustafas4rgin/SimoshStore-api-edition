@@ -1,0 +1,172 @@
+﻿@using App.Data.Entities
+@model List<ProductEntity>
+<section class="content-inner position-relative z-1 overflow-hidden" id="Plant_section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-xl-7 col-lg-9 col-sm-12 m-b30">
+					<div class="service-box wow zoomIn" data-wow-delay="1s">
+						<ul class="nav nav-tabs Plant_row"  id="Plant_row" style="--sr-total: 6" role="tablist">
+							@for(int i = 1;i<7;i++)
+							{
+								var product = Model[i];
+								<li class="nav-item " style="--sr-item:@i" role="presentation">
+								<button class="nav-link active" id="plant_1" data-bs-toggle="tab" data-bs-target="#plant_@i-pane" type="button" role="tab" aria-controls="plant_@i-pane" aria-selected="true" onclick="redirectToProductDetails(@product.Id)">
+    <span class="plant-bx">
+        <span class="dz-media">
+            <img src="https://picsum.photos/600/600" alt="">
+        </span>
+    </span>
+</button>
+							</li>
+							}
+							
+						</ul>
+						<div class="tab-content">
+							@for(int i = 1;i<7;i++)
+							{
+								var product = Model[i];
+								@if(i==1)
+								{
+									<div class="tab-pane fade show active" id="plant_@i-pane" role="tabpanel" aria-labelledby="plant_@i" tabindex="0">
+								<div class="content">
+									<div class="shop-card ">
+										<div class="dz-media">
+											<img href="@Url.Action("ProductDetails", "Shop", new { id = product.Id })" src="https://picsum.photos/600/600" alt="image">
+											<div class="shop-meta">
+												<a href="@Url.Action("AddToCart","Cart",new {id = product.Id,quantity=1})"id="addToCartBtn2">
+													<div class="btn btn-primary meta-icon dz-carticon">
+													<i class="flaticon flaticon-basket"></i>
+													<i class="flaticon flaticon-basket-on dz-heart-fill"></i>
+												</div>
+												</a>
+												
+											</div>
+										</div>
+										<div class="dz-content">
+											<h2 class="title"><a href="@Url.Action("ProductList", "Shop")">@product.Name</a></h2>
+											@if(product.Discount is not null)
+											{
+												var newPrice = product.Price - (product.Price * product.Discount.DiscountRate / 100);
+											}
+											else
+											{
+												<span class="price">
+												$@product.Price
+											</span>
+											}
+											
+										</div>
+									</div>
+								</div>
+							</div>
+								}
+								else{
+									<div class="tab-pane fade show " id="plant_@i-pane" role="tabpanel" aria-labelledby="plant_@i" tabindex="0">
+								<div class="content">
+									<div class="shop-card ">
+										<div class="dz-media">
+											<img href="@Url.Action("ProductDetails", "Shop", new { id = product.Id })" src="https://picsum.photos/600/600" alt="image">
+											<div class="shop-meta">
+												<a href="@Url.Action("AddToCart","Cart", new {id = product.Id,quantity = 1})"id="addToCartBtn2">
+													<div class="btn btn-primary meta-icon dz-carticon">
+													<i class="flaticon flaticon-basket"></i>
+													<i class="flaticon flaticon-basket-on dz-heart-fill"></i>
+												</div>
+												</a>
+												
+											</div>
+										</div>
+										<div class="dz-content">
+											<h2 class="title"><a href="@Url.Action("ProductList", "Shop")">@product.Name</a></h2>
+											@if(product.Discount is not null)
+											{
+												var newPrice = product.Price - (product.Price * product.Discount.DiscountRate / 100);
+												<span class="price">
+												$@newPrice
+												<del>$@product.Price</del>
+												</span>
+											}
+											else{
+												<span class="price">
+												$@product.Price
+											</span>
+											}
+										</div>
+									</div>
+								</div>
+							</div>
+								}
+							}
+							
+								
+						</div>
+						
+					</div>
+				</div>
+			</div>	
+		</div>
+		<div class=" plant-row">
+			<div class="tag-slider style-1 wow fadeInUp" data-wow-delay="0.2s" id="tagSlider">
+				<div class="item-wrap">	
+					<div class="item">
+						<span class="plant-text">Fast</span>
+					</div>
+					<div class="item">
+						<span class="plant-text">And</span>
+					</div>
+					<div class="item">
+						<span class="plant-text">Secure </span>
+					</div>
+					<div class="item">
+						<span class="plant-text">Fast</span>
+					</div>
+					<div class="item">
+						<span class="plant-text">and</span>
+					</div>
+					<div class="item">
+						<span class="plant-text">Secure </span>
+					</div>
+					<div class="item">
+						<span class="plant-text">Fast</span>
+					</div>
+					<div class="item">
+						<span class="plant-text">and</span>
+					</div>
+					<div class="item">
+						<span class="plant-text">Secure</span>
+					</div>
+				</div>
+			</div>
+			<div class="tag-slider wow fadeInUp" data-wow-delay="0.4s" id="tagSlider2">
+				<div class="item-wrap">	
+					<div class="item">
+						<span class="plant-text">Do</span>
+					</div>
+					<div class="item">
+						<span class="plant-text">Your</span>
+					</div>
+					<div class="item">
+						<span class="plant-text">Shopping </span>
+					</div>
+					<div class="item">
+						<span class="plant-text">Do</span>
+					</div>
+					<div class="item">
+						<span class="plant-text">Your</span>
+					</div>
+					<div class="item">
+						<span class="plant-text">Shopping </span>
+					</div>
+					<div class="item">
+						<span class="plant-text">Do</span>
+					</div>
+					<div class="item">
+						<span class="plant-text">Your</span>
+					</div>
+					<div class="item">
+						<span class="plant-text">Shopping </span>
+					</div>
+				</div>
+			</div>
+		</div>	
+	</section>	

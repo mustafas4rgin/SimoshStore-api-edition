@@ -1,0 +1,26 @@
+	
+.show-focus-outline .menu-btn:focus,
+.show-focus-outline .search-link:focus,
+.show-focus-outline .quik-search-remove:focus,
+.show-focus-outline button:focus,
+.show-focus-outline select:focus,
+.show-focus-outline input:focus,
+.show-focus-outline a:focus{
+	outline:2px solid red !important;
+}
+@media (max-width: 991px) {
+.show-focus-outline .nav a > i:focus{
+		outline:2px solid red !important;	
+	}
+}
+.show-focus-outline li:focus-within > .sub-menu{
+	opacity: 1 !important;
+	visibility: visible !important;
+	margin-top: 0 !important;
+}
+.show-focus-outline .sub-menu-down a:focus{
+	outline:2px solid #000 !important;
+}
+.show-focus-outline .sub-menu-down a:after:focus {
+	outline:2px solid #000 !important;
+}

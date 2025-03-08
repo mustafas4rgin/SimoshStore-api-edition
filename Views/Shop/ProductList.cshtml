@@ -1,0 +1,356 @@
+﻿@using App.Data.Entities
+@using MyApp.Namespace
+@model ListProductsViewModel
+
+<div class="page-content">
+	<!--Banner Start-->
+	<div class="dz-bnr-inr" style="background-image:url(images/background/bg1.jpg);">
+		<div class="container">
+			<div class="dz-bnr-inr-entry">
+				<nav aria-label="breadcrumb" class="breadcrumb-row">
+					<ul class="breadcrumb">
+						<li class="breadcrumb-item"><a href="index.html"> Home</a></li>
+						<li class="breadcrumb-item">Shop List</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+	<!--Banner End-->
+
+	<section class="content-inner-3 pt-3">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-3">
+					<div class="sticky-xl-top">
+						<a href="javascript:void(0);" class="panel-close-btn">
+							<svg width="35" height="35" viewBox="0 0 51 50" fill="none"
+								xmlns="http://www.w3.org/2000/svg">
+								<path d="M37.748 12.5L12.748 37.5" stroke="white" stroke-width="1.25"
+									stroke-linecap="round" stroke-linejoin="round" />
+								<path d="M12.748 12.5L37.748 37.5" stroke="white" stroke-width="1.25"
+									stroke-linecap="round" stroke-linejoin="round" />
+							</svg>
+						</a>
+						<div class="shop-filter mt-xl-2 mt-0">
+							<aside>
+								<div class="d-flex align-items-center justify-content-between m-b30">
+									<h6 class="title mb-0 d-flex">
+										<i class="flaticon-filter me-2"></i>
+										Filter
+									</h6>
+								</div>
+								@using (Html.BeginForm("ProductList", "Shop", FormMethod.Get))
+{
+    <div class="widget widget_search">
+        <div class="form-group">
+            <div class="input-group">
+                <input name="dzSearch" value="@Model.DzSearch" type="search" class="form-control" placeholder="Search Here">
+                <div class="input-group-addon">
+                    <button name="submit" value="Submit" type="submit" class="btn">
+                        <i class="icon feather icon-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+								<form method="post" action="@Url.Action("ProductList", "Shop")">
+    <div class="widget widget_categories">
+    <h2 class="widget-title">Product Category</h2>
+    <ul>
+        @foreach (var category in Model.categories)
+        {            
+            <li class="cat-item cat-item-@category.Id">
+                <div class="custom-control custom-checkbox d-flex">
+                    <input type="checkbox" class="form-check-input square"
+                           id="category_@category.Id" 
+                           name="selectedCategoryIds" value="@category.Id"
+                           @((Model.SelectedCategoryIds != null && Model.SelectedCategoryIds.Contains(category.Id)) ? "checked" : "") />
+                    <label class="form-check-label text-start flex-1" for="category_@category.Id">@category.Name</label>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
+
+
+    <!-- Featured Products (Optional Section) -->
+    <div class="widget recent-posts-entry">
+        <h3 class="widget-title">Featured Products</h3>
+        <div class="widget-post-bx">
+            @foreach (var product in Model.productEntities.Take(3))
+            {
+                var img = Model.images.Where(x => x.ProductId == product.Id).FirstOrDefault();
+                <div class="widget-post clearfix">
+                    <div class="dz-media">
+                        <a href="@Url.Action("ProductDetails", "Shop", new { id = product.Id })">
+                            @if(img is not null)
+                            {
+                                <img width="600" height="600" src="@img.Url" alt="Product Image" />
+                            }
+                            else{
+                                <img width="600" height="600" src="https://picsum.photos/600/600" alt="Product Image" />
+                            }
+                            
+                        </a>
+                    </div>
+                    <div class="dz-info">
+                        <h6 class="title">
+                            <a href="@Url.Action("ProductDetails", "Shop", new { id = product.Id })">@product.Name</a>
+                        </h6>
+                        @if (product.DiscountId > 0)
+                        {
+                            var discount = Model.discounts.Where(x => x.Id == product.DiscountId).FirstOrDefault();
+                            decimal newPrice = @product.Price - (@product.Price * discount.DiscountRate / 100);
+                            <span class="price">$@newPrice<del>$@product.Price</del></span>
+                        }
+                        else
+                        {
+                            <span class="price">$@product.Price</span>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- All Categories Section -->
+    <div class="widget widget_tag_cloud">
+        <h3 class="widget-title">ALL Categories</h3>
+        <div class="tagcloud">
+            @foreach (var category in Model.categories)
+            {
+                <a href="#">@category.Name</a>
+            }
+        </div>
+    </div>
+
+    <!-- Search Button -->
+    <button type="submit" class="btn btn-lg font-14 btn-secondary btn-sharp btn-block text-uppercase">SEARCH</button>
+</form>
+
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-9">
+					<div class="filter-wrapper">
+						<div class="filter-left-area">
+							<span>Showing 1–5 Of @Model.productEntities.Count Results</span>
+						</div>
+						<div class="filter-right-area">
+							<a href="javascript:void(0);" class="panel-btn">
+								<svg class="me-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" width="20"
+									height="20">
+									<g id="Layer_28" data-name="Layer 28">
+										<path
+											d="M2.54,5H15v.5A1.5,1.5,0,0,0,16.5,7h2A1.5,1.5,0,0,0,20,5.5V5h2.33a.5.5,0,0,0,0-1H20V3.5A1.5,1.5,0,0,0,18.5,2h-2A1.5,1.5,0,0,0,15,3.5V4H2.54a.5.5,0,0,0,0,1ZM16,3.5a.5.5,0,0,1,.5-.5h2a.5.5,0,0,1,.5.5v2a.5.5,0,0,1-.5.5h-2a.5.5,0,0,1-.5-.5Z">
+										</path>
+										<path
+											d="M22.4,20H18v-.5A1.5,1.5,0,0,0,16.5,18h-2A1.5,1.5,0,0,0,13,19.5V20H2.55a.5.5,0,0,0,0,1H13v.5A1.5,1.5,0,0,0,14.5,23h2A1.5,1.5,0,0,0,18,21.5V21h4.4a.5.5,0,0,0,0-1ZM17,21.5a.5.5,0,0,1-.5.5h-2a.5.5,0,0,1-.5-.5v-2a.5.5,0,0,1,.5-.5h2a.5.5,0,0,1,.5.5Z">
+										</path>
+										<path
+											d="M8.5,15h2A1.5,1.5,0,0,0,12,13.5V13H22.45a.5.5,0,1,0,0-1H12v-.5A1.5,1.5,0,0,0,10.5,10h-2A1.5,1.5,0,0,0,7,11.5V12H2.6a.5.5,0,1,0,0,1H7v.5A1.5,1.5,0,0,0,8.5,15ZM8,11.5a.5.5,0,0,1,.5-.5h2a.5.5,0,0,1,.5.5v2a.5.5,0,0,1-.5.5h-2a.5.5,0,0,1-.5-.5Z">
+										</path>
+									</g>
+								</svg>
+								Filter
+							</a>
+							
+						</div>
+					</div>
+					<div class="row">
+
+						<div class="col-12 tab-content shop-" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="tab-list-list" role="tabpanel" aria-labelledby="tab-list-list-btn">
+        <div class="row">
+            @foreach (var item in Model.productEntities) 
+            {
+                var category = Model.categories.FirstOrDefault(x => x.Id == item.CategoryId);
+                var img = Model.images.FirstOrDefault(x => x.ProductId == item.Id);
+                <div class="col-md-12 col-sm-12">
+                    <div class="dz-shop-card style-2">
+                        <div class="dz-media">
+                            @if(img is not null)
+                            {
+                                <img src="@img.Url" alt="product-image" />
+                            }
+                            else
+                            {
+                                <img src="https://picsum.photos/600/600" alt="product-image" />
+                            }
+                        </div>
+                        <div class="dz-content">
+                            <h2 class="title mb-0">
+                                <a href="@Url.Action("ProductDetails", "Shop", new { id = item.Id })">@item.Name</a>
+                            </h2>
+                            <div class="dz-header">
+                                <div>
+                                    <ul class="dz-tags">
+                                        <li><a href="@Url.Action("ProductList", "Shop", new { selectedCategoryIds = new List<int> { category.Id } })">@category.Name</a></li>
+                                    </ul>
+                                </div>
+                                <div class="d-flex">
+                        <a href="@Url.Action("AddToCart", "Cart", new { productId = item.Id, Quantity = 1 })"
+                           class="btn btn-secondary btn-md btn-icon"
+                           data-product-id="@item.Id">
+                            <i class="icon feather icon-shopping-cart d-md-none d-block"></i>
+                            <span class="d-md-block d-none">Add to cart</span>
+                        </a>
+                    </div>
+                            </div>
+                            <div class="dz-body">
+                                <div class="dz-rating-box">
+                                    <div>
+                                        <p class="dz-para">@item.Description</p>
+                                    </div>
+                                </div>
+                                <div class="rate">
+                                    <div class="d-flex align-items-center mb-xl-3 mb-2">
+                                        <div class="meta-content">
+                                            @if (item.DiscountId > 0)
+                                            {
+                                                var discount = Model.discounts.FirstOrDefault(x => x.Id == item.DiscountId);
+                                                decimal newPrice = item.Price - (item.Price * discount.DiscountRate / 100);
+                                                <span class="price">$@newPrice<del>$@item.Price</del></span>
+                                            }
+                                            else
+                                            {
+                                                <span class="price">$@item.Price</span>
+                                            }
+                                            @{
+                                                int starCount = 0;
+                                                var reviews = Model.comments.Where(x => x.ProductId == item.Id).ToList();
+                                                @foreach (var review in reviews)
+                                                {
+                                                    starCount += review.StarCount;
+                                                }
+                                                if (reviews.Count > 0)
+                                                {
+                                                    starCount = starCount / reviews.Count;
+                                                }
+                                                else
+                                                {
+                                                    starCount = 0;
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="review-num">
+                                        <ul class="dz-rating">
+                                            @for (int i = 0; i < 5; i++)
+                                            {
+                                                if (i < starCount)
+                                                {
+                                                    <li class="star-fill">
+                                                        <i class="flaticon-star-1"></i>
+                                                    </li>
+                                                }
+                                                else
+                                                {
+                                                    <li>
+                                                        <i class="flaticon-star-1"></i>
+                                                    </li>
+                                                }
+                                            }
+                                        </ul>
+                                        <span><a href="javascript:void(0);">@starCount</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="row page mt-0">
+    <div class="col-md-6">
+        <p class="page-text">Showing @((Model.CurrentPage - 1) * 4 + 1)–@((Model.CurrentPage - 1) * 4 + Model.productEntities.Count) Of @Model.TotalProductCount Results</p>
+    </div>
+    <div class="col-md-6">
+        <nav aria-label="Blog Pagination">
+            <ul class="pagination style-1 p-t20">
+                @for (int i = 1; i <= Model.TotalPages; i++)
+                {
+                    <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                        <a class="page-link" href="@Url.Action("ProductList", "Shop", new { page = i })">@i</a>
+                    </li>
+                }
+                <li class="page-item @(Model.CurrentPage == Model.TotalPages ? "disabled" : "")">
+                    <a class="page-link next"
+                        href="@Url.Action("ProductList", "Shop", new { page = Model.CurrentPage + 1 })">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+				</div>
+			</div>
+	</section>
+
+	<!-- Newsletter Start-->
+	@Html.Partial("~/Views/Partials/NewsLetter.cshtml")
+	<!-- Newsletter End -->
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            var priceMin = $("#priceMin");
+            var priceMax = $("#priceMax");
+            
+            var minVal = parseInt(priceMin.val()) || 0;
+            var maxVal = parseInt(priceMax.val()) || 1000;
+            
+            $("#slider-tooltips").slider({
+                range: true,
+                min: 0,
+                max: 1000,
+                values: [minVal, maxVal],
+                slide: function(event, ui) {
+                    priceMin.val(ui.values[0]);
+                    priceMax.val(ui.values[1]);
+
+                    $("#slider-margin-value-min").text("$" + ui.values[0]);
+                    $("#slider-margin-value-max").text("$" + ui.values[1]);
+                }
+            });
+
+            $("#slider-margin-value-min").text("$" + minVal);
+            $("#slider-margin-value-max").text("$" + maxVal);
+        });
+    </script>
+	<script>
+
+</script>
+<script>
+    <script>
+    @foreach (var item in Model.productEntities)
+    {
+        <text>
+        // Dinamik buttonId'yi oluşturuyoruz
+        var buttonId = "addToCartBtn" + @item.Id; 
+
+        // Data attribute kullanarak her bir öğeye erişiyoruz
+        document.querySelectorAll('[data-product-id="' + @item.Id + '"]').forEach(function(element) {
+            element.addEventListener('click', function(event) {
+                var isUserLoggedIn = '@User.Identity.IsAuthenticated'.ToLower(); 
+
+                if (isUserLoggedIn === "false") {
+                    event.preventDefault(); 
+                    alert("Giriş yapmalısınız!"); 
+                }
+            });
+        });
+        </text>
+    }
+</script>
+
+</script>
+}

@@ -1,0 +1,342 @@
+﻿@using App.Data.Entities
+@using SimoshStore.Controllers
+@model AboutUsViewModel
+<div class="page-content">
+			<!--Banner Start-->
+			<div class="dz-bnr-inr" style="background-image:url(images/background/bg1.jpg);">
+				<div class="container">
+					<div class="dz-bnr-inr-entry">
+						<nav aria-label="breadcrumb" class="breadcrumb-row">
+							<ul class="breadcrumb">
+								<li class="breadcrumb-item"><a href="index.html"> Home</a></li>
+								<li class="breadcrumb-item">About US</li>
+							</ul>
+						</nav>
+					</div>
+				</div>	
+			</div>
+			<!--Banner End-->
+
+			
+		<section class="content-inner overflow-hidden">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="section-head wow fadeInUp m-md-r100" data-wow-delay="0.1s">
+							<h2 class="title">Easy Shopping E-Commerce Services</h2>
+							<p>Our mission is to make shopping easy, enjoyable, and accessible to everyone. With a focus on customer satisfaction, we strive to provide fast shipping, secure payments, and excellent customer service.</p>	
+						</div>
+						<div class="author-bx-detail m-b40 wow fadeInUp" data-wow-delay="0.2s">
+							<div class="author-bx-pic radius">
+								<img src="https://picsum.photos/400/400" alt="">
+							</div>
+							<div>
+								<h3 class="name">Mustafa SARGIN</h3> 
+								<span class="position">Ceo and founder</span> 
+							</div>
+						</div>
+						<div class="accordion dz-accordion accordion-sm wow fadeInUp m-b50" data-wow-delay="0.3s" id="accordionFaq">
+							<div class="accordion-item">
+								<h2 class="accordion-header" id="headingOne">
+									<a href="#" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+										How can I contact customer support?
+										<span class="toggle-close"></span>
+									</a>
+								</h2>
+								<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionFaq">
+									<div class="accordion-body">
+										<p class="m-b0">If your order has not yet shipped, you can contact us to change your shipping address. If your order has already shipped, we may not be able to change the address.</p>
+									</div>
+								</div>
+							</div>
+							<div class="accordion-item">
+								<h2 class="accordion-header" id="headingTwo">
+									<a href="#" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+										Can I cancel my order?
+										<span class="toggle-close"></span>
+									</a>
+								</h2>
+								<div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionFaq">
+									<div class="accordion-body">
+										<p class="m-b0">If your order has not yet shipped, you can contact us to change your shipping address. If your order has already shipped, we may not be able to change the address.</p>
+									</div>
+								</div>
+							</div>
+							<div class="accordion-item">
+								<h2 class="accordion-header" id="headingThree">
+									<a href="#" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+										Do you offer international shipping?
+										<span class="toggle-close"></span>
+									</a>
+								</h2>
+								<div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionFaq">
+									<div class="accordion-body">
+										<p class="m-b0">If your order has not yet shipped, you can contact us to change your shipping address. If your order has already shipped, we may not be able to change the address.</p>
+									</div>
+								</div>
+							</div>
+							<div class="accordion-item">
+								<h2 class="accordion-header" id="headingFour">
+									<a href="#" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+										Can I track my order in real-time?
+										<span class="toggle-close"></span>
+									</a>
+								</h2>
+								<div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionFaq">
+									<div class="accordion-body">
+										<p class="m-b0">If your order has not yet shipped, you can contact us to change your shipping address. If your order has already shipped, we may not be able to change the address.</p>
+									</div>
+								</div>
+							</div>
+							<div class="accordion-item">
+								<h2 class="accordion-header" id="headingFive">
+									<a href="#" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+									How do I know if a product is in stock?
+										<span class="toggle-close"></span>
+									</a>
+								</h2>
+								<div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionFaq">
+									<div class="accordion-body">
+										<p class="m-b0">If your order has not yet shipped, you can contact us to change your shipping address. If your order has already shipped, we may not be able to change the address.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="about-sale">
+							<div class="row">
+								<div class="col-lg-5 col-md-6 col-sm-6 col-6 wow fadeInUp" data-wow-delay="0.4s">
+									<div class="about-content">
+										<h2 class="title"><span class="counter">@Model.orders.Count();</span>+</h2>
+										<p class="text">Items Sale</p>
+									</div>
+								</div>
+								<div class="col-lg-5 col-md-6 col-sm-6 col-6 wow fadeInUp" data-wow-delay="0.5s">
+									<div class="about-content">
+										<h2 class="title">400%</h2>
+										<p class="text">Return on investment</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-lg-6">
+						<div class="row g-xl-4 g-md-4 g-3">
+							<div class="col-xl-8 col-lg-8 col-sm-8 col-8 wow fadeInUp" data-wow-delay="0.4s">
+								<div class="about-thumb">
+									<img src="https://picsum.photos/410/260" alt="" class="rounded">
+								</div>
+							</div>
+							<div class="col-xl-4 col-lg-4 col-sm-4 col-4 wow fadeInUp" data-wow-delay="0.5s">
+								<div class="about-thumb">
+									<img src="https://picsum.photos/190/260" alt="" class="rounded">
+								</div>
+							</div>
+							<div class="col-lg-12 wow fadeInUp" data-wow-delay="0.6s">
+								<div class="about-thumb">
+									<img src="https://picsum.photos/915/581" alt="" class="rounded"> 
+								</div>
+							</div>
+							<div class="col-lg-12 wow fadeInUp" data-wow-delay="0.7s">
+								<div class="about-thumb">
+									<img src="https://picsum.photos/930/270" alt="" class="rounded">
+								</div>
+							</div>
+						</div>
+					</div>		
+				</div>
+			</div>
+		</section>	
+		
+		<!-- About Start-->
+		<section class=" about-style4 content-inner overflow-hidden">
+			<div class="container">
+				<div class="row  align-items-center ">
+					<div class="col-lg-5 order-lg-1 order-2 wow fadeInUp" data-wow-delay="0.2s">
+						<div class="side-content">
+							<div class="about-thumb">
+								<img src="images/about/pic1.jpg" alt="">
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-7 m-b30 aos-item wow fadeInUp  order-lg-2 order-1 " data-wow-delay="0.4s">
+						<div class="right-contant">
+							<div class="section-head style-3">
+								<h2 class="title">What our users say about us? <br> about us</h2>
+							</div>
+							<div class="swiper swiper-five ">
+								<div class="swiper-wrapper">
+                                    @foreach(var comment in Model.productComments)
+                                    {
+                                        var user = Model.users.Where(x => x.Id == comment.UserId).FirstOrDefault();
+                                        <div class="swiper-slide">
+										<div class="about-content">
+											<p class="para-text">@comment.Text</p>
+											<div class="about-bx-detail">
+												<div class="about-bx-pic radius">
+													<img src="https://picsum.photos/560/807" alt="">
+												</div>
+												<div>
+													<h3 class="name">@user.FirstName @user.LastName</h3> 
+													<span class="position">Customer</span> 
+												</div>
+											</div>
+										</div>
+									</div>
+                                    }
+									
+								</div>
+								<div class="pagination-align">
+									<div class="about-button-prev btn-prev">
+										<i class="flaticon flaticon-left-chevron"></i>
+									</div>
+									<div class="about-button-next btn-next">
+										<i class="flaticon flaticon-chevron"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<img src="~/images/about/Plant-1.png" alt="" class="Plant">
+		</section>
+		<!-- About End -->
+
+		<!--About section-->	
+		<section class="content-inner overflow-hidden">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-lg-4 col-md-12 m-b30">
+						<div class="dz-content style-1 wow fadeInUp" data-wow-delay="0.2s">
+							<div class="section-head style-3 d-block">
+								<h2 class="title w-100">Make People Happy, Profit More.</h2>
+								<p>At the core of our e-commerce business lies one simple principle: customer satisfaction. We believe that a happy customer is not just a return buyer but a loyal advocate who trusts our brand and products.</p>
+							</div>
+							<a class="btn btn-outline-secondary btn-lg" href="product-default.html">View Details</a>
+							<img class="leaf" src="~/images/leaf.png" alt="image">
+						</div>
+					</div>	
+					<div class="col-lg-4 col-md-12 m-b30">
+						<div class="dz-media style-1 img-ho1 wow fadeInUp" data-wow-delay="0.4s">
+							<img src="https://picsum.photos/615/930" alt="image">
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-12 m-b30 align-self-center wow fadeInUp" data-wow-delay="0.6s">
+						<div class="section-head style-4">
+							<h2 class="title">Customer Satisfaction Guide</h2>
+							<p class="text m-b30">Customer satisfaction starts with actively listening to your customers to fully understand their needs and concerns. It’s essential to provide high-quality products or services that meet or exceed their expectations. Being responsive and addressing inquiries or issues quickly is also key to building trust. </p>
+							<h2 class="title">Contact Us</h2>
+							<p class="text m-b30">We can Solve your every problem.</p>
+						</div>
+						<div class="row justify-content-center">
+							<div class="col-lg-6 col-md-6 col-12  m-b30">
+								<div class="icon-bx-wraper style-5">
+									<div class="icon-media"> 
+										<i class="fab fa-instagram"></i>
+									</div>
+                                    <a href="www.instagram.com/s4rgin">
+                                    <div class="icon-content">
+										<h4 class="title">Mustafa Sargın</h4>
+									</div>
+                                    </a>
+									
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-12  m-b30">
+								<div class="icon-bx-wraper style-5">
+									<div class="icon-media"> 
+										<i class="fab fa-instagram"></i>
+									</div>
+                                    <div class="icon-content">
+                                        <div class="icon-content">
+										<h4 class="title">Simosh Store</h4>
+									</div>
+									</div>
+									
+								</div>	
+							</div>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</section>
+		<!--About section-->
+
+		
+	<!-- Companies -->
+	<section class="content-inner-1 companies bg-white">
+		<div class="container">
+			<div class="section-head style-3 d-block wow fadeInUp text-center" data-wow-delay="0.2s">
+				<div class="max-w600 mx-auto">
+					<h2 class="title mb-4">We’re just keep growing with 6.3k trusted companies</h2>
+				</div>	
+			</div>
+			<div class="section-inner">
+				<div class="swiper swiper-company ">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide wow fadeInUp" data-wow-delay="0.1s">
+							<a href="javascript:void(0);" class="companies-wrapper">
+								<div class="companies-media">
+									<img src="~/images/companies/logo1.png" alt=""> 
+								</div>
+							</a>
+						</div>
+						<div class="swiper-slide wow fadeInUp" data-wow-delay="0.2s">
+							<a href="javascript:void(0);" class="companies-wrapper">
+								<div class="companies-media">
+									<img src="~/images/companies/logo2.png" alt=""> 
+								</div>
+							</a>
+						</div>
+						<div class="swiper-slide wow fadeInUp" data-wow-delay="0.3s">
+							<a href="javascript:void(0);" class="companies-wrapper">
+								<div class="companies-media">
+									<img src="~/images/companies/logo3.png" alt=""> 
+								</div>
+							</a>
+						</div>
+						<div class="swiper-slide wow fadeInUp" data-wow-delay="0.4s">
+							<a href="javascript:void(0);" class="companies-wrapper">
+								<div class="companies-media">
+									<img src="~/images/companies/logo4.png" alt=""> 
+								</div>
+							</a>
+						</div>
+						<div class="swiper-slide wow fadeInUp" data-wow-delay="0.5s">
+							<a href="javascript:void(0);" class="companies-wrapper">
+								<div class="companies-media">
+									<img src="~/images/companies/logo5.png" alt=""> 
+								</div>
+							</a>
+						</div>
+						<div class="swiper-slide wow fadeInUp" data-wow-delay="0.6s">
+							<a href="javascript:void(0);" class="companies-wrapper">
+								<div class="companies-media">
+									<img src="~/images/companies/logo6.png" alt=""> 
+								</div>
+							</a>
+						</div>
+						<div class="swiper-slide wow fadeInUp" data-wow-delay="0.7s">
+							<a href="javascript:void(0);" class="companies-wrapper">
+								<div class="companies-media">
+									<img src="~/images/companies/logo1.png" alt=""> 
+								</div>
+							</a>
+						</div>
+						<div class="swiper-slide wow fadeInUp" data-wow-delay="0.8s">
+							<a href="javascript:void(0);" class="companies-wrapper">
+								<div class="companies-media">
+									<img src="~/images/companies/logo2.png" alt=""> 
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+<!-- Companies End -->
+
+	<!-- Newsletter Start-->
+	@Html.Partial("~/Views/Partials/NewsLetter.cshtml")

@@ -1,0 +1,227 @@
+﻿@using App.Data.Entities
+@*
+
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var isAdmin = User.IsInRole("admin");
+	var isBuyer = User.IsInRole("buyer");
+	var isSeller = User.IsInRole("seller");
+}
+@{
+	
+	<!-- Header Star -->
+	<header class="site-header mo-left header ">
+		<!-- Main Header -->
+		<div class="sticky-header main-bar-wraper navbar-expand-lg">
+			<div class="main-bar clearfix">
+				<div class="container-fluid clearfix d-lg-flex d-block  bg-light">
+
+					<!-- Website Logo -->
+					<div class="logo-header logo-dark me-md-4 me-2">
+						<a href="@Url.Action("Index", "Home")"><img src="~/images/logo.jpg" alt="logo"></a>
+					</div>
+
+					<!-- Nav Toggle Button -->
+					<button class="navbar-toggler collapsed navicon justify-content-end" type="button"
+						data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+						aria-expanded="false" aria-label="Toggle navigation">
+						<span></span>
+						<span></span>
+						<span></span>
+					</button>
+
+					<!-- Main Nav -->
+					<div class="header-nav w3menu navbar-collapse collapse justify-content-start" id="navbarNavDropdown">
+						<div class="logo-header logo-dark">
+							<a href="index.html"><img src="~/images/logo.jpg" alt=""></a>
+						</div>
+						<ul class=" nav navbar-nav">
+							<li class="has-mega-menu sub-menu-down auto-width menu-left">
+								<a href="@Url.Action("Index", "Home")"><span>Home</span><i
+										class="fas fa-chevron-down tabindex"></i></a>
+							</li>
+							<li class="has-mega-menu sub-menu-down">
+								<a href="@Url.Action("ProductList","Shop")"><span>Shop</span><i
+										class="fas fa-chevron-down tabindex"></i></a>
+							</li>
+							<li class="has-mega-menu sub-menu-down auto-width">
+								<a href="@Url.Action("BlogList","Blog")"><span>Blog</span><i
+										class="fas fa-chevron-down tabindex"></i></a>
+										<ul class="sub-menu">
+											<li><a href="@Url.Action("CreateBlog","Blog")">Add Post</a></li>
+										</ul>
+								
+							</li>
+								
+							<li class="has-mega-menu sub-menu-down">
+								<a href="@Url.Action("RecentBlogs","Blog")"><span>Recent Posts</span><i
+										class="fas fa-chevron-down tabindex"></i></a>
+								
+							</li>
+							<li class="sub-menu-down">
+								<a href="@Url.Action("AboutMe","About")">About</a>
+								<ul class="sub-menu">
+									<li><a href="@Url.Action("AboutMe","Home")">Me</a></li>
+									<li><a href="@Url.Action("AboutUs","Home")">Us</a></li>
+								</ul>
+							</li>
+							
+							@if(isAdmin || isSeller || isBuyer)
+							{
+								<li class="sub-menu-down"><a href="@Url.Action("AdminDashboard","Admin")">Admin Dashboard</a></li>
+								
+							}
+							<li class="sub-menu-down">
+								<a href="@Url.Action("MyProfile","Profile")">My Account</a>
+								<ul class="sub-menu">
+									<li><a href="@Url.Action("MyProfile","Profile")">Dashboard</a></li>
+									<li><a href="@Url.Action("ListOrders","Order")">Orders</a></li>
+									<li><a href="@Url.Action("Address","Profile")">Address</a></li>
+									<li><a href="@Url.Action("Review","Profile")">Review</a></li>
+								</ul>
+							</li>
+							
+						</ul>
+						<div class="dz-social-icon">
+							<ul>
+								<li><a class="fab fa-facebook-f" target="_blank"
+										href="https://www.facebook.com/dexignzone"></a></li>
+								<li><a class="fab fa-twitter" target="_blank" href="https://twitter.com/dexignzones"></a>
+								</li>
+								<li><a class="fab fa-linkedin-in" target="_blank"
+										href="https://www.linkedin.com/showcase/3686700/admin/"></a></li>
+								<li><a class="fab fa-instagram" target="_blank"
+										href="https://www.instagram.com/dexignzone/"></a></li>
+							</ul>
+						</div>
+					</div>
+
+
+					<!-- EXTRA NAV -->
+					<div class="extra-nav">
+						<div class="extra-cell">
+							<ul class="header-right">
+								@if(isBuyer || isAdmin || isSeller)
+								{
+								<li>@User.Identity.Name<a href="@Url.Action("LogOut","Auth")"> LogOut</a></li>
+								}
+								else{
+									<li class="nav-item login-link">
+										<a href="@Url.Action("Login","Auth")" class="nav-link">Login /</a>
+										<a href="@Url.Action("Register","Auth")" class="nav-link">Register</a>
+									</li>
+								}
+								
+								<li class="nav-item search-link">
+									<a class="nav-link" href="javascript:void(0);" data-bs-toggle="offcanvas"
+										data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
+										<i class="iconly-Light-Search"></i>
+									</a>
+								</li>
+								
+								@await Component.InvokeAsync("CartCount")
+								<li class="nav-item filte-link">
+									<a href="javascript:void(0);" class="nav-link filte-btn" data-bs-toggle="offcanvas"
+										data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft">
+										<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 13"
+											fill="none">
+											<rect y="11" width="30" height="2" fill="black" />
+											<rect width="30" height="2" fill="black" />
+										</svg>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!-- Main Header End -->
+
+
+<!-- Admin Dashboard Section -->
+		<!-- SearchBar -->
+		@await Component.InvokeAsync("Search")
+		<!-- SearchBar -->
+
+		<!-- Sidebar cart -->
+		@await Component.InvokeAsync("Cart")
+
+		<!-- Sidebar cart -->
+
+		<!-- Sidebar finter -->
+		<div class="offcanvas dz-offcanvas offcanvas offcanvas-end " tabindex="-1" id="offcanvasLeft">
+			<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
+				&times;
+			</button>
+			<div class="offcanvas-body">
+				<div class="contact-sidebar">
+					<div class="contact-box1 deznav-scroll">
+						<div class="logo-contact logo-header m-0">
+							<a href="index.html" class="logo-white"><img src="~/images/logo.jpg" alt="/"></a>
+						</div>
+						<p class="text">For any reasons.</p>
+						<h4 class="dz-title">Contact Us</h4>
+
+						<ul class="contact-address">
+							<li>Gençlik mah. 19 Mayıs cad. No 10</li>
+							<li>mustafas4rgin@gmail.com</li>
+							<li>+905468427807</li>
+						</ul>
+
+						<h4 class="dz-title">Newsletter</h4>
+						<form asp-controller="Home" class="dzSubscribe dz-subscribe-wrapper1" asp-action="NewsLetter" method="post">
+							<div class="dzSubscribeMsg"></div>
+							<div class="form-group">
+								<div class="input-group mb-0">
+									<input name="Email" required="required" type="email" class="form-control"
+										placeholder="Your Email Address">
+									<div class="input-group-addon">
+										<button name="submit" value="Submit" type="submit" class="btn">
+											<i class="icon feather icon-arrow-right"></i>
+										</button>
+									</div>
+								</div>
+								<div class="custom-control custom-checkbox d-flex m-b40">
+									<input type="checkbox" class="form-check-input" id="basic_checkbox_1">
+									<label class="form-check-label">I Agree To The <span><a
+												href="privacy-policy.html">Privacy Policy</a></span></label>
+								</div>
+							</div>
+						</form>
+						<h4 class="dz-title">Follow Us</h4>
+						<div class="dz-social-icon dz-hover-move style-2 mb-5">
+							<ul>
+								<li>
+									<a href="https://www.instagram.com/s4rgin/" target="_blank">
+										<i class="fa-brands fa-facebook-f"></i>
+									</a>
+								</li>
+								<li>
+									<a href="https://www.instagram.com/s4rgin/">
+										<i class="fa-brands fa-twitter"></i>
+									</a>
+								</li>
+								<li>
+									<a href="https://www.instagram.com/s4rgin/">
+										<i class="fa-brands fa-linkedin"></i>
+									</a>
+								</li>
+								<li>
+									<a href="https://www.instagram.com/s4rgin/">
+										<i class="fa-brands fa-instagram"></i>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- filter sidebar -->
+
+	</header>
+	<!-- Header End -->
+}

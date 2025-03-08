@@ -1,0 +1,133 @@
+// Section Head
+.section-head{
+	&.style-1{
+		.title{
+		    font-size: 65px;
+			font-weight: 500;
+			text-transform: capitalize;
+			@include respond('tab-land'){
+				font-size: 50px;
+			}
+			@include respond('tab-port'){
+				font-size: 40px;
+			}
+		}
+		p{
+			font-size: 18px;
+			color: rgba(0, 0, 0, 0.7);
+			font-weight: 500;
+		}
+		a{
+			text-transform: capitalize;
+			white-space: nowrap;
+			font-size: 500;
+		}
+		@include respond('phone'){
+			.title{
+				font-size: 32px;
+				margin-bottom: 10px;
+			}
+		}
+	}	
+	&.style-2{
+		.title{
+		    font-size: 55px;
+			font-weight: 500;
+			text-transform: capitalize;
+			@include respond('tab-land'){
+				font-size: 35px;
+			}
+		}
+		p{
+			font-size: 16px;
+			color: var(--title);
+			font-weight: 400;
+		}
+		a{
+			text-transform: capitalize;
+			font-weight: 500;
+		}
+		@include respond('phone'){
+			.title{
+				font-size: 20px;
+				margin-bottom: 6px;
+			}
+		}
+		a{
+			white-space: nowrap;
+		}
+	}
+	
+	&.style-3{
+		.title{
+			font-size: 45px;
+			font-weight: 500;
+			text-transform: capitalize;
+		}
+		p{
+			font-size: 16px;
+			color: var(--title);
+			font-weight: 400;
+		}
+		a{
+			text-transform: capitalize;
+		}
+		@include respond('phone'){
+			.title{
+				font-size: 28px;
+				margin-bottom: 6px;
+			}
+		}
+		a{
+			white-space: nowrap;
+		}
+	}
+	&.style-4{
+		margin-bottom: 30px;
+		.title{
+			font-size: 24px;
+			font-weight: 400;
+		}
+		p{
+			font-size: 16px;
+			color: var(--title);
+			font-weight: 400;
+		}
+		a{
+			text-transform: capitalize;
+		}
+		@include respond('phone'){
+			.title{
+				font-size: 20px;
+				margin-bottom: 6px;
+			}
+		}
+		a{
+			white-space: nowrap;
+		}
+	}
+	&.style-5{
+		margin-bottom: 30px;
+		.title{
+			font-size: 28px;
+			font-weight: 400;
+		}
+		p{
+			font-size: 16px;
+			color: var(--title);
+			font-weight: 400;
+		}
+		a{
+			text-transform: capitalize;
+		}
+		@include respond('phone'){
+			.title{
+				font-size: 20px;
+				margin-bottom: 6px;
+			}
+		}
+		a{
+			white-space: nowrap;
+		}
+	}
+}

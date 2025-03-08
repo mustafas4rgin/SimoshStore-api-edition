@@ -1,0 +1,581 @@
+// HOME BANNER 
+.main-banner.style-1{
+	padding-top: 25px;
+    position: relative;
+	border-bottom: 1px solid #d7d7d7;
+    height: 840px;
+	overflow: hidden;
+	@include respond('tab-land'){
+		height: auto;
+	}
+	.bottom-contant{
+		position: absolute;
+		bottom: 0;
+		z-index: 1;
+		left: 170px;
+		width: 450px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		@include respond('wide-desktop'){
+			left: 120px;
+			width: 340px;
+		}
+		@include respond('laptop'){
+			left: 35px;
+			width: 340px;
+		}
+		@include respond('tab-land'){
+			left: 15px;
+			width: 210px;
+		}
+		@include respond('tab-port'){
+			display: none;
+		}
+		.Plant-2{
+		    width: 160px;
+			height: 80px;
+			background: #fff;
+			border-radius: 150px 150px 0 0;
+			padding-top: 50px;
+			margin-top: 50px;
+			box-shadow: rgba(100, 100, 111, 0.1) 0px 7px 29px 0px;
+			.dz-media{
+				margin-top: -160px;
+    			transform: scale(1.4);
+				@include respond('tab-land'){
+					margin-top: -100px;
+				}
+			}
+			@include respond('tab-land'){
+				width: 100px;
+			}
+		}
+	}	
+	.data-text {
+		color: #000;
+		display: flex;
+		bottom: -100px;
+		font-size: 500px;
+		height: fit-content;
+		font-weight: 700;
+		line-height: 1;
+		width: 100%;
+		position: absolute;
+		-webkit-text-fill-color: transparent;
+		background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 75.06%);
+		filter: drop-shadow(0px 30px 50px rgba(212, 104, 104, 0));
+		text-transform: uppercase;
+		-webkit-background-clip: text;
+		z-index: 1;
+		font-family: var(--font-family-base);
+		color: rebeccapurple;
+		left: 60%;
+		transform: translate(-50%, 0px);
+		z-index: 0;
+		@include respond ('tab-port'){
+			display: none;
+		}
+	}
+}
+.single-product-media{
+	img{
+		width:100%;
+	}
+}
+.single-product-info-left{
+	float:$dz-pos-right;
+	width:470px;
+	position: relative;
+	z-index: 1;
+	padding-top: 80px;
+
+	@include respond ('phone'){
+		padding-top: 30px;
+	}
+
+	.btn{
+		&.btn-lg{
+			@include respond ('wide-desktop'){
+				padding: 12px 20px;
+				margin-right: 10px;
+			}
+		}
+	}
+
+	.meta-content{
+		.select-size,
+		.price-name{
+			font-size: 12px;
+			font-weight: 600;
+			color: #666666;
+			text-transform: uppercase;
+			margin-bottom: 10px;
+		}
+		.price-num{
+			font-size: 24px;
+			font-weight: 600;
+			color:var(--title);
+			font-family:var(--font-family-base);
+			line-height: 1;
+		}
+		.product-size{
+			.btn{
+				width: 40px;
+				height: 40px;
+				border-radius:5px !important;
+				color: var(--title);
+				border: 1px solid #CFCFCF;
+				margin-right: 5px !important;
+				font-family:var(--font-family-base);
+				padding: 0;
+			}
+			.btn-check:checked + .btn{
+				background-color: var(--secondary) !important;
+				color: #fff;
+			}
+		}
+	}
+
+
+	@include respond('wide-desktop'){
+		width: 110%;
+		float: $dz-pos-left;
+	}
+	@include respond('tab-land'){
+		width: 90%;
+	}
+	@include respond ('tab-port'){
+		width: 100%;
+		margin-bottom:30px;
+	}
+	.sub-title{
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 1.5;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+	}
+	h1{
+		font-size: 80px;
+		line-height: 1.2;
+	    margin-bottom: 20px;
+		text-transform: capitalize;
+		font-weight: 400;	
+		@include respond('wide-desktop'){
+			font-size: 60px;
+		    margin-bottom: 15px;
+		}
+		@include respond('phone'){
+			font-size: 40px;
+		}
+	}
+	
+	p{
+		font-size: 18px;
+		line-height: 1.5;
+		font-weight: 400;
+		margin-bottom: 35px;
+		@include respond('wide-desktop'){
+			font-size: 15px;
+			line-height: 1.3;
+			font-weight: 400;
+			margin-bottom: 15px
+		}
+	}
+	.swiper-meta-items{
+		display: flex;
+		margin-bottom: 35px;
+	}
+}
+.single-product-media{
+    position: relative;
+    z-index: 1;
+    border-radius: 350px 350px 0 0;
+    border: 3px solid #fff;
+    border-bottom: 0;
+    margin-top: 160px;
+    padding-top: 75px;
+    position: relative;
+    z-index: 1;
+    overflow: visible;
+	&:after{
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		width: 80%;
+		height: 90%;
+		background: #fff;
+		border-radius: 350px 350px 0 0;
+		transform: translate(-50%, 0px);
+		z-index: -1;
+	}
+	.dz-media{
+		overflow: visible;
+		img {
+			width: 100%;
+			margin-top: -220px;
+			@include respond('wide-desktop'){
+				margin-top: -200px;
+			}
+		}
+    }
+
+	.list-check{
+		&.style-1{
+			display: unset;
+			@include respond ('phone'){
+				display: none;
+			}
+			li{
+				width: fit-content;
+				position: absolute;
+				z-index: 1;
+				backdrop-filter: blur(7.5px);
+				padding: 10px 30px 10px 55px;
+				box-shadow: 0px 20px 60px 0px rgba(0, 0, 0, 0.1);
+				background: rgba(255, 255, 255, 0.2);
+				font-family: var(--font-family-title);
+				&.right{
+					padding: 10px 55px 10px 30px;
+					&::before{
+						right: 5px;
+						left: auto;
+					}
+				}
+			}
+			.list-1{
+				top: 0;
+				right: 0;
+				animation: move1 6s infinite;
+			}
+			.list-2{
+				top: 20%;
+				left: 0;
+				animation: move2 6s infinite;
+			}
+			.list-3{
+				top: 35%;
+				right: 0;
+				animation: move1 6s infinite;
+			}
+			.list-4{
+				top: 50%;
+				left: 0;
+				animation: move2 6s infinite;
+			}
+		}
+	}
+	
+}
+.single-product-info-right{
+	float:$dz-pos-left;
+	height: 100%;
+	padding-top: 30px;
+	width: 470px;
+	justify-content: center;
+	align-items: center;
+	@include respond('phone'){
+		justify-content: space-evenly;
+	}
+	@include respond('wide-desktop'){
+		width:100%;
+	}
+	.bottom-contant{
+	    left: auto !important;
+		@include respond('tab-land'){
+			right: 15px;
+		}
+	}
+	
+	.nav-link {
+		padding: 0;
+		border: 0;
+		&.active{
+			background-color: transparent;
+		}
+	}
+	.banner-Plant {
+		transition: 0.5s;
+		height: fit-content;
+		&:hover{
+			.nav-item{
+				filter: blur(5px);
+				transition: 0.5s;
+				&:hover{ 
+					filter: blur(0);
+				}
+			}
+		}
+	}
+
+	.Plant-1{
+		width: 100%;
+		background: #fff;
+		margin-top: 20px;
+		padding-top: 20px;
+		border-radius: 8px;
+		padding-bottom: 20px;
+		box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.05);
+		display: flex;
+		.dz-media{
+			margin-top: -70px;
+		}
+		@include respond('tab-port'){
+			margin-bottom: 30px;
+		}
+
+		@include respond('laptop'){
+			margin-bottom: 30px;
+		}
+	}
+	
+	@include respond('tab-land'){
+		width:100%;
+		display:flex;		
+		flex-wrap: wrap;
+		 & > ul,
+		 & > div{
+			flex:100%;
+			max-width:100%;
+		 }
+	}
+	@include respond ('phone-land'){
+	    & > ul,
+		& > div{
+			flex:0 0 100%;
+			max-width:100%;
+		}
+		.product-video-info{
+			flex:0 0 100%;
+			max-width:100%;
+			margin-top:30px;
+		}
+	}
+	@include respond('phone'){
+		& > ul,
+		& > div{
+			flex:0 0 100%;
+			max-width:100%;
+		}
+	}
+}
+.product-video-info{
+	background:var(--secondary);
+	display:flex;
+	align-items:center;
+	margin-top:100px;
+	@include respond('wide-desktop'){
+		margin-top:40px;
+	}
+	@include respond('tab-land'){
+		margin-top:0;
+		margin-bottom:20px;
+	}
+	.dz-media{
+		height:100%;
+		min-width:130px;
+		width:130px;
+		position:relative;
+		@include respond ('tab-port'){
+			min-width:80px;
+			width:80px;
+		}
+		img{
+			height:100%;
+			width:100%;
+			object-fit:cover;
+		}
+		a{
+			width:50px;
+			height:50px;
+			border:1px solid #fff;
+			display:flex;
+			align-items:center;
+			justify-content:center;
+			position:absolute;
+			color:#fff;
+			#{$dz-pos-left}:50%;
+			top:50%;
+			transform:translate($dz-tx, -50%);
+			z-index:1;	
+			border-radius:50px;
+			font-size:18px;
+		}
+		&:after{
+			content:"";
+			position:absolute;
+			#{$dz-pos-left}:0;
+			top:0;
+			opacity:0.3;
+			background:var(--secondary);
+			height:100%;
+			width:100%;
+		}
+		
+	}
+	.dz-info{
+		padding:20px 40px;
+		@include respond('wide-desktop'){
+			padding:15px;
+		}
+		.title{
+			font-size:22px;
+			color:#fff;
+			margin:0;
+			line-height:1.2;
+			@include respond('wide-desktop'){
+				font-size: 16px;
+			}
+			@include respond('tab-land'){
+				margin-top: 0;
+			}
+		}	
+	}
+}
+.right-text-bar{
+    width: 40px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    height: 45%;
+    transform: translate(0px, -50%);
+    padding-top: 30px;
+    padding-bottom: 30px;
+    display: flex;
+    align-items: center;
+    z-index: 9;
+    background: #fff;
+    border-radius: 30px 0 0 30px;
+	@include respond ('phone'){
+		display: none;
+	}
+	ul{
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		li{
+			padding: 10px 0;
+			writing-mode: tb-rl;
+			@include respond('laptop'){
+				padding: 10px 0;
+			}
+			a{
+				font-size: 16px;
+				font-weight: 600;
+				text-transform: capitalize;
+				letter-spacing: 0.5px;
+				color: var(--primary);
+				@include respond('laptop'){
+					font-size: 13px;
+				}
+				@include respond('phone'){
+					font-size: 12px;
+				}
+			}
+			img{
+				width: 88px;
+				transform: rotate(-20deg);
+			}
+		}
+	}
+}
+
+
+
+.dz-bnr-inr {
+	video#video-background {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		position: absolute;
+		z-index: -1;
+		top: 0;
+		#{$dz-pos-left}: 0;
+	}
+	&.style-1{
+		h3{
+			font-weight: 700;
+			font-size: 40px;
+		}
+	
+		.dz-bnr-inr-entry {
+			text-align: center;
+		}
+	}
+	&.style-2{
+		.dz-bnr-inr-entry{
+			text-align: left;
+			padding: 60px;
+			background: var(--light);
+			margin-top: 100px;
+			margin-bottom: -100px;
+		    display: block;
+			border-radius: 4px;
+		
+			@include respond('tab-land'){
+				padding:40px;
+				.breadcrumb-row{
+					margin-bottom: 15px;			
+				}
+			}
+			@include respond('tab-port'){
+				margin-bottom: -50px;
+			}
+			@include respond('phone-land'){
+			    margin-bottom: -30px;
+			}
+			@include respond('phone'){
+				margin-top: 60px;
+				margin-bottom: -60px;
+				padding:20px;
+			}
+			
+		}
+		.breadcrumb-row{
+			margin-bottom:30px;
+		}
+		
+	}
+}
+
+.single-product-media2{
+	position: relative;
+    z-index: 1;
+    border-radius: 350px 350px 0 0;
+    border: 5px solid #fff;
+    border-bottom: 0;
+    margin-top: 160px;
+    padding-top: 190px;
+    position: relative;
+    z-index: 1;
+    overflow: visible;
+    width: 630px;
+    margin: auto;
+    margin-top: 120px;
+	@include respond('laptop'){
+		width: auto;
+	}
+	&:after{
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		width: 80%;
+		height: 90%;
+		background: #fff;
+		border-radius: 350px 350px 0 0;
+		transform: translate(-50%, 0px);
+		z-index: -1;
+	}
+	.dz-media{
+		overflow: visible;
+		img {
+			width: 100%;
+			margin-top: -410px;
+			padding: 60px;
+		}
+    }
+
+}

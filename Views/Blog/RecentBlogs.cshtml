@@ -1,0 +1,54 @@
+﻿@using App.Data.Entities
+@model List<BlogEntity>
+<div class="page-content">
+		<section class="pt-0 z-index-unset bg-white overflow-hidden">
+			<div class="container-fluid">
+				<div class="d-sm-flex justify-content-sm-between justtify-content-center py-sm-3 py-3 mb-sm-0 m-b20">
+					<nav aria-label="breadcrumb" class="breadcrumb-row text-dark">
+						<ul class="breadcrumb mb-0">
+							<li class="breadcrumb-item"><a href="index.html"> Home</a></li>
+							<li class="breadcrumb-item">Portfolio Film Strip</li>
+						</ul>
+					</nav>
+					<div class="pagination-align style-2">
+						<div class="portfolio-button-prev swiper-button-prev">Prev </div>
+						<div class="portfolio-button-next swiper-button-next">Next</div>
+					</div>
+				</div>
+			</div>
+			<div class="container-fluid pe-md-0">
+				<div class="swiper portfolio-gallery2">
+					<div class="swiper-wrapper">
+                        @foreach(var blog in Model){
+                            <div class="swiper-slide">
+							<div class="portfolio-box style-2">
+								<div class="dz-media">
+									<a href="portfolio-details-1.html">
+										<img src="https://picsum.photos/2000/2000" alt="/">
+									</a>
+								</div>
+								<div class="dz-content">
+									<div class="product-tag">
+										<a href="@Url.Action("BlogPost","Blog",new {id = blog.Id})">>
+											<span class="badge">@blog.Title</span>
+										</a>
+									</div>
+									<h2 class="title"><a href="@Url.Action("BlogPost","Blog",new {id = blog.Id})"></a>View More</h2>
+								</div>
+							</div>
+						</div>
+                        }
+						
+						
+					</div>
+				</div>
+			</div>
+			<div class="swiper-pagination-two"></div>
+		</section>
+	</div>
+	
+
+	<button class="scroltop" type="button"><i class="fas fa-arrow-up"></i></button>
+
+
+</div>
