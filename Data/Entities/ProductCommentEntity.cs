@@ -10,7 +10,7 @@ public class ProductCommentEntity : EntityBase
     public int UserId { get; set; }
     public string Text { get; set; } = null!;
     public int StarCount { get; set; }
-    public bool IsConfirmed { get; set; }
+    public bool IsConfirmed { get; set; } = false;
 
     // Navigation properties
     public ProductEntity Product { get; set; } = null!;

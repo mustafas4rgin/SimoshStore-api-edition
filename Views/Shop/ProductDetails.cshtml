@@ -7,7 +7,7 @@
 		<div class="d-sm-flex justify-content-between container-fluid py-3">
 			<nav aria-label="breadcrumb" class="breadcrumb-row  text-dark">
 				<ul class="breadcrumb mb-0">
-					@if (TempData["CommentPendingApproval"] != null)
+					@if (ViewBag.SuccessMessage != null)
     {
 		<li class="breadcrumb-item"><div class="alert alert-info"> @TempData["CommentPendingApproval"]
         </div></li>
@@ -104,7 +104,7 @@
 												<li>
 											</ul>
 											<span class="text-secondary me-2">@Model.Star Rating</span>
-											<a href="javascript:void(0);">(@Model.Product.Comments.Count customer reviews)</a>
+											<a href="javascript:void(0);">(@Model.Product.Comments.Where(x=>x.IsConfirmed).Count() customer reviews)</a>
 										</div>
 									</div>
 								</div>

@@ -8,7 +8,6 @@ public class MappingHelper
     {
         return new OrderEntity
         {
-            Address = dto.Address,
             OrderCode = dto.OrderCode,
             UserId = dto.UserId
         };

@@ -7,37 +7,55 @@ using SimoshStore;
 
 namespace MyApp.Namespace
 {
-    public class ProfileController : Controller
+    public class ProfileController(IHttpClientFactory httpClientFactory) : BaseController
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly IProfileService _ProfileService;
-        private readonly IOrderService _OrderService;
-        private readonly IUserService _UserService;
-        public ProfileController(IUserService userService, IOrderService orderService, IHttpContextAccessor httpContextAccessor, IProfileService profileService)
-        {
-            _ProfileService = profileService;
-            _httpContextAccessor = httpContextAccessor;
-            _OrderService = orderService;
-            _UserService = userService;
-        }
+        private HttpClient Client => httpClientFactory.CreateClient("Api.Data");
         public async Task<IActionResult> Review()
         {
-            int userId = _UserService.GetUserId();
-            var comments = await _ProfileService.GetCommentByIdAsync(userId);
-            foreach(var comment in comments)
+            var userId = GetUserId();
+
+            if (userId == null)
             {
-                comment.User = await _ProfileService.GetUserByIdAsync(comment.UserId);
+                SetErrorMessage("You need to login to view this page");
+                return RedirectToAction("NotFound", "Error");
             }
+
+            var response = await Client.GetAsync($"api/productComments/user/{userId}");
+
+            if (!response.IsSuccessStatusCode)
+            {
+                SetErrorMessage("Failed to load reviews");
+                return RedirectToAction("NotFound", "Error");
+            }
+
+            var comments = await response.Content.ReadFromJsonAsync<List<ProductCommentEntity>>();
+
             return View(comments);
         }
         public async Task<IActionResult> UpdateProfileAsync()
         {
-            int UserId = _UserService.GetUserId();
-            var user =await _UserService.GetUserByIdAsync(UserId);
+            var userId = GetUserId();
+
+            if(userId == null)
+            {
+                SetErrorMessage("You must login");
+                return RedirectToAction("NotFound","Error");
+            }
+
+            var response = await Client.GetAsync($"api/users/{userId}");
+
+            if (!response.IsSuccessStatusCode)
+            {
+                SetErrorMessage("Failed to load user");
+                return RedirectToAction("NotFound", "Error");
+            }
+
+            var user = await response.Content.ReadFromJsonAsync<UserEntity>();
             return View(
-                new UpdateProfileViewModel{
+                new UpdateProfileViewModel
+                {
                     user = user,
-                    
+
                 }
             );
         }
@@ -46,48 +64,84 @@ namespace MyApp.Namespace
         {
             if (!ModelState.IsValid)
             {
-                ViewData["Error"] = "Please fill in all fields";
+                SetErrorMessage("Please fill in all fields");
                 return View();
             }
-            int userId = _UserService.GetUserId();
-            var user = await _ProfileService.GetUserByIdAsync(userId);
-            
-            var result = await _UserService.UpdateUserAsync(model,userId);
+            var userId = GetUserId();
+
+            if(userId == null)
+            {
+                SetErrorMessage("You must login");
+                return RedirectToAction("NotFound","Error");
+            }
+
+            var dto = new UserDTO
+            {
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Email = model.Email,
+                Phone = model.Phone,
+            };
+
+            var response = await Client.PutAsJsonAsync($"api/update/user/{userId}", dto);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                SetErrorMessage("Failed to update user");
+                return RedirectToAction("NotFound", "Error");
+            }
+
+            SetSuccessMessage("Profile updated successfully");
+
             return RedirectToAction("MyProfile");
         }
         public async Task<IActionResult> MyProfileAsync()
         {
-            var userIdClaim = _httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Sid)?.Value;
-            if (userIdClaim == null)
+            var userId = GetUserId();
+            
+            if(userId == null)
             {
-                ViewData["AuthError"] = "You need to login to view this page";
-                return RedirectToAction("Login", "Auth");
+                SetErrorMessage("You must login.");
+                return RedirectToAction("NotFound","Error");
             }
-            int userId = int.Parse(userIdClaim);
-            var user = await _ProfileService.GetUserByIdAsync(userId);
-            var comments = await _ProfileService.GetComments();
-            var userComments = comments.Where(c => c.UserId == userId);
-            var orders = await _OrderService.GetOrdersByUserIdAsync(userId);
-            var ordersItems = await _OrderService.GetAllOrderItems();
-            return View(new ProfileViewModel
+
+            var response = await Client.GetAsync($"/api/my-profile/{userId}");
+
+            if (!response.IsSuccessStatusCode)
             {
-                 orderItems = ordersItems.ToList(),
-                user = user,
-                productComments = userComments.ToList(),
-                orders = orders.ToList()
-            });
+                SetErrorMessage("Failed to load user");
+                return RedirectToAction("NotFound", "Error");
+            }
+
+            var profile = await response.Content.ReadFromJsonAsync<ProfileViewModel>();
+            return View(profile);
         }
+        [HttpGet("/address")]
         public async Task<IActionResult> Address()
         {
-            var userId = _UserService.GetUserId();
-            var user = await _ProfileService.GetUserByIdAsync(userId);
+            var userId = GetUserId();
+
+            if (userId == null)
+            {
+                SetErrorMessage("You must login");
+                return RedirectToAction("NotFound", "Error");
+            }
+
+            var response = await Client.GetAsync($"api/users/{userId}");
+
+            if (!response.IsSuccessStatusCode)
+            {
+                SetErrorMessage("Failed to load user");
+                return RedirectToAction("NotFound", "Error");
+            }
+
+            var user = await response.Content.ReadFromJsonAsync<UserEntity>();
+
             return View(user);
         }
         [HttpGet]
         public IActionResult EditAddress()
         {
-            var countries = AddressHelper.GetCountries();
-            var cities = AddressHelper.GetCities();
             return View();
         }
         [HttpPost]
@@ -95,22 +149,28 @@ namespace MyApp.Namespace
         {
             if (!ModelState.IsValid)
             {
-                ViewData["Error"] = "Please fill in all fields";
+                SetErrorMessage("Please fill in all fields");
                 return View(model);
             }
-            var userId = _UserService.GetUserId();
-            var user = await _ProfileService.GetUserByIdAsync(userId);
-            var result = await _UserService.UpdateUserAddress(model);
-            if (!result.Success)
+            var userId = GetUserId();
+
+            if (userId == null)
             {
-                ViewData["Error"] = result.Message;
-                return View(model);
+                SetErrorMessage("You must login");
+                return RedirectToAction("NotFound", "Error");
             }
-            return RedirectToAction("Success");
-        }
-        public IActionResult Success()
-        {
-            return View();
+            
+            var response = await Client.PutAsJsonAsync($"api/update/address/{userId}",model);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                SetErrorMessage("Failed to update address");
+                return RedirectToAction("NotFound", "Error");
+            }
+            
+            SetSuccessMessage("Address updated successfully");
+
+            return RedirectToAction("Address");
         }
     }
 }

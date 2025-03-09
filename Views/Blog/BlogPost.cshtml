@@ -131,20 +131,19 @@
 {
     <div class="clearfix">
         <form method="post" id="comment_form" class="comment-form" action="@Url.Action("AddBlogComment", "Comment")" novalidate>
-            <!-- blogId'yi gizli alanda gönderiyoruz -->
+            
             <input type="hidden" name="BlogId" value="@Model.blog.Id" />
 
-            <!-- Kullanıcının adı otomatik olarak yazılıyor -->
+            
             <p class="comment-form-author">
                 <input id="name" placeholder="Author" name="author" type="text" value="@User.Identity.Name" readonly>
             </p>
             
-            <!-- Kullanıcının e-posta adresi otomatik olarak yazılıyor -->
+            
             <p class="comment-form-email">
                 <input id="email" required="required" placeholder="Email" name="email" type="email" value="@User.Identity.Name" readonly>
             </p>
             
-            <!-- Yorum kısmı -->
             <p class="comment-form-comment">
                 <textarea id="comment" placeholder="Type your comment here" class="form-control" name="Comment" cols="45" rows="3" required="required"></textarea>
             </p>

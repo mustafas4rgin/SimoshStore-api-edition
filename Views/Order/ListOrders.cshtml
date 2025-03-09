@@ -38,7 +38,7 @@
                                     @foreach(var order in Model.orders)
                                     {
                                         decimal price = 0;
-                                        foreach(var orderItem in Model.orderItems)
+                                        foreach(var orderItem in order.OrderItems)
                                         {
                                             if(orderItem.OrderId == order.Id)
                                             {

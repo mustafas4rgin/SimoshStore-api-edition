@@ -7,54 +7,62 @@ using SimoshStore;
 namespace MyApp.Namespace
 {
     [Authorize(Roles = "admin")]
-    public class CategoryController : Controller
+    public class CategoryController(IHttpClientFactory httpClientFactory) : BaseController
     {
+        private HttpClient Client => httpClientFactory.CreateClient("Api.Data");
         // GET: CategoryControlle
 
-        private readonly ICategoryService _categoryService;
-        private readonly IDataRepository _Repository;
-
-        public CategoryController(ICategoryService categoryService, IDataRepository Repository)
-        {
-            _categoryService = categoryService;
-            _Repository = Repository;
-        }
         [HttpGet]
         public async Task<IActionResult> ListCategories()
         {
-            var categories = _Repository.GetAll<CategoryEntity>();
-            var result = await _categoryService.GetAllCategoriesAsync();
-            if (!result.Success)
+            var response = await Client.GetAsync("api/categories");
+
+            if (!response.IsSuccessStatusCode)
             {
-                ViewBag.Error = result.Message;
+                SetErrorMessage("Failed to load categories");
                 return View();
             }
+
+            var categories = await response.Content.ReadFromJsonAsync<List<CategoryEntity>>();
+
             return View(categories);
         }
         [HttpGet]
-        public async Task<IActionResult> CreateCategory()
+        public IActionResult CreateCategory()
         {
             return View();
         }
         [HttpPost]
         public async Task<IActionResult> CreateCategory(CategoryDTO categoryDTO)
         {
-            var result = await _categoryService.CreateCategoryAsync(categoryDTO);
-            if (!result.Success)
+            var response = await Client.PostAsJsonAsync("api/create/category", categoryDTO);
+
+            if (!response.IsSuccessStatusCode)
             {
-                ViewBag.Error = result.Message;
+                SetErrorMessage("Failed to create category");
                 return View();
             }
+            SetSuccessMessage("Category created successfully");
+
             return RedirectToAction("CategoryList");
         }
         [Authorize(Roles = "admin")]
         [HttpGet]
         public async Task<IActionResult> UpdateCategory(int id)
         {
-            var category = await _Repository.GetByIdAsync<CategoryEntity>(id);
+            var response = await Client.GetAsync($"api/categories/{id}");
+
+            if (!response.IsSuccessStatusCode)
+            {
+                SetErrorMessage("Failed to load category");
+                return View();
+            }
+
+            var category = await response.Content.ReadFromJsonAsync<CategoryEntity>();
+
             if (category == null)
             {
-                ViewBag.Error = "Category not found";
+                SetErrorMessage("Category not found");
                 return View();
             }
             var categoryDTO = new CategoryDTO
@@ -69,29 +77,30 @@ namespace MyApp.Namespace
         [HttpPost]
         public async Task<IActionResult> UpdateCategory(CategoryDTO categoryDTO, int id)
         {
-            var result = await _categoryService.UpdateCategoryAsync(categoryDTO, id);
-            if (!result.Success)
+            var response = await Client.PutAsJsonAsync($"api/update/category/{id}", categoryDTO);
+
+            if (!response.IsSuccessStatusCode)
             {
-                ViewBag.Error = result.Message;
+                SetErrorMessage("Failed to update category");
                 return View();
             }
+
+            SetSuccessMessage("Category updated successfully");
+
             return RedirectToAction("CategoryList","Admin");
         }
         public async Task<IActionResult> DeleteCategoryAsync(int id)
         {
-            var categories = await _Repository.GetAll<CategoryEntity>().ToListAsync();
-            var category = await _Repository.GetByIdAsync<CategoryEntity>(id);
-            if (category == null)
+            var response = await Client.DeleteAsync($"api/delete/category/{id}");
+
+            if (!response.IsSuccessStatusCode)
             {
-                ViewBag.Error = "Category not found";
+                SetErrorMessage("Failed to delete category");
                 return RedirectToAction("CategoryList","Admin");
             }
-            var result = await _categoryService.DeleteCategoryAsync(id);
-            if (!result.Success)
-            {
-                ViewBag.Error = result.Message;
-                return RedirectToAction("CategoryList","Admin");
-            }
+
+            SetSuccessMessage("Category deleted successfully");
+            
             return RedirectToAction("CategoryList","Admin");
         }
 

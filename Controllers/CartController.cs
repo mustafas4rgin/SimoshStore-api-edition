@@ -7,7 +7,7 @@ using SimoshStore;
 
 namespace MyApp.Namespace
 {
-    public class CartController : Controller
+    public class CartController : BaseController
     {
         private readonly IUserService _userService;
         private readonly IProductService _productService;
@@ -54,17 +54,6 @@ namespace MyApp.Namespace
                 return BadRequest("Geçersiz quantity değeri.");
             }
 
-            var userIdClaim = _httpContextAccessor.HttpContext.User.Claims
-                .FirstOrDefault(c => c.Type == ClaimTypes.Sid)?.Value;
-
-            if (userIdClaim == null)
-            {
-                ViewData["AuthError"] = "You must log in for adding to cart";
-                return RedirectToAction("Login", "Auth");
-            }
-
-            var userId = int.Parse(userIdClaim);
-
             var product = await _Repository.GetByIdAsync<ProductEntity>(productId);
 
             if (product == null)
@@ -74,7 +63,7 @@ namespace MyApp.Namespace
 
             // Sepette zaten var mı kontrol et
             var existingCartItem = await _Repository.GetAll<CartItemEntity>()
-                .FirstOrDefaultAsync(ci => ci.ProductId == productId && ci.UserId == userId);
+                .FirstOrDefaultAsync(ci => ci.ProductId == productId && ci.UserId == 1);
 
             if (existingCartItem != null)
             {
@@ -89,7 +78,7 @@ namespace MyApp.Namespace
                 {
                     Quantity = quantity,
                     ProductId = productId,
-                    UserId = userId
+                    UserId = 1,
                 };
                 await _Repository.AddAsync(cartItem);
             }
@@ -197,20 +186,13 @@ namespace MyApp.Namespace
         [HttpGet]
         public async Task<IActionResult> CheckOut()
         {
-            var userIdClaim = _httpContextAccessor.HttpContext.User.Claims
-                .FirstOrDefault(c => c.Type == ClaimTypes.Sid)?.Value;
+            var userId = GetUserId();
 
-            if (userIdClaim == null)
-            {
-                ViewData["AuthError"] = "Bu sayfayı görmek için giriş yapmalısınız";
-                return RedirectToAction("Login", "Auth");
-            }
-            int userId = int.Parse(userIdClaim);
             var cartItems = await _Repository.GetAll<CartItemEntity>()
                 .Where(x => x.UserId == userId)
                 .Include(ci => ci.Product)
                 .ToListAsync();
-            var user = await _Repository.GetByIdAsync<UserEntity>(userId);
+            var user = await _Repository.GetByIdAsync<UserEntity>(userId.Value);
             var products = await _productService.ListAllProducts();
             var discounts = await _Repository.GetAll<DiscountEntity>().ToListAsync();
             return View(new CheckOutViewModel

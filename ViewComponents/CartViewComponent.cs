@@ -17,18 +17,7 @@ public class CartViewComponent : ViewComponent
     }
     public IViewComponentResult Invoke()
     {
-        var userIdClaim = _httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Sid)?.Value;
-        if (userIdClaim == null)
-        {
-            ViewData["CartItemCount"] = 0;
-            return View(new ShoppingCartViewModel
-            {
-                images = new List<ProductImageEntity>(),
-                discounts = new List<DiscountEntity>(),
-                cartItems = new List<CartItemEntity>(),
-                products = new List<ProductEntity>()
-            });
-        }
+        var userId = GetUserId();
         var products = _Repository.GetAll<ProductEntity>().ToList();
         var discounts = _Repository.GetAll<DiscountEntity>().ToList();
         var images = _Repository.GetAll<ProductImageEntity>().ToList();
@@ -36,11 +25,10 @@ public class CartViewComponent : ViewComponent
         var nullProducts = new List<ProductEntity>();
         var nullImages = new List<ProductImageEntity>();
         var nullDiscounts = new List<DiscountEntity>();
-        int userId = int.Parse(userIdClaim);
         var cartItems = _Repository.GetAll<CartItemEntity>().Where(x => x.UserId == userId).ToList();
         int cartCount = cartItems.Count();
         ViewData["CartItemCount"] = cartCount;
-        if (userIdClaim == null)
+        if (userId == null)
         {
             return View(new ShoppingCartViewModel
             {
@@ -66,5 +54,8 @@ public class CartViewComponent : ViewComponent
             products = products
         });
     }
-
+    private int? GetUserId()
+        {
+            return int.TryParse(HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier), out int userId) ? userId : null;
+        }
 }

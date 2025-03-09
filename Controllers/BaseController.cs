@@ -41,7 +41,7 @@ namespace MyApp.Namespace
                 return null;
             }
 
-            var response = await client.GetAsync($"api/user/{userId}");
+            var response = await client.GetAsync($"api/users/{userId}");
 
             if (!response.IsSuccessStatusCode)
             {

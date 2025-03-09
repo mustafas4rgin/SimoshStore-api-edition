@@ -1,5 +1,5 @@
 ﻿@using App.Data.Entities
-@model OrderDetailsViewModel
+@model OrderEntity
 <div class="page-content">
 		<!--Banner Start-->
 		<div class="dz-bnr-inr" style="background-image:url(images/background/bg1.jpg);">
@@ -28,14 +28,14 @@
 								</div>
 								<div class="clearfix m-l20">
 									<div class="badge">In Progress</div>
-									<h4 class="mb-0">Order @Model.order.OrderCode</h4>
+									<h4 class="mb-0">Order @Model.OrderCode</h4>
 								</div>
 							</div>
 							<div class="row mb-sm-4 mb-2">
 								<div class="col-sm-6">
 									<div class="shiping-tracker-detail">
 										<span>Item</span>
-										<h6 class="title">@Model.product.Name</h6>
+										<h6 class="title">@Model.OrderItems.FirstOrDefault().Product.Name</h6>
 									</div>
 								</div>
 								<div class="col-sm-6">
@@ -47,18 +47,18 @@
 								<div class="col-sm-6">
 									<div class="shiping-tracker-detail">
 										<span>Start Time</span>
-										<h6 class="title">@Model.order.CreatedAt</h6>
+										<h6 class="title">@Model.CreatedAt</h6>
 									</div>
 								</div>
 								<div class="col-sm-6">
 									<div class="shiping-tracker-detail">
 										<span>Address</span>
-										<h6 class="title">@Model.order.Address</h6>
+										<h6 class="title">@Model.Address</h6>
 									</div>
 								</div>
 							</div>
 							<div class="content-btn m-b15">
-								<a href="@Url.Action("DeleteOrder","Order",new {orderId = Model.order.Id})" class="btn btn-outline-danger m-b15 btnhover20">Cancel Order</a>
+								<a href="@Url.Action("DeleteOrder","Order",new {orderId = Model.Id})" class="btn btn-outline-danger m-b15 btnhover20">Cancel Order</a>
 							</div>
 							<div class="clearfix">
 								<div class="dz-tabs style-3">
@@ -81,7 +81,7 @@
 															<span>08/04/2024 5:23pm</span>
 														</a>
 														<p><strong>Courier Service : </strong>UPS, Mustafa Sargın</p>
-														<p><strong>Estimated Delivery Date : </strong>@Model.order.CreatedAt.AddDays(4).ToString()</p>
+														<p><strong>Estimated Delivery Date : </strong>@Model.CreatedAt.AddDays(4).ToString()</p>
 													</div>
 												</li>
 												<li>
@@ -89,7 +89,7 @@
 													<div class="timeline-box">
 														<a class="timeline-panel" href="javascript:void(0);">
 															<h6 class="mb-0">Product Shiped</h6>
-															<span>@Model.order.CreatedAt.AddDays(1).ToString()</span>
+															<span>@Model.CreatedAt.AddDays(1).ToString()</span>
 														</a>
 														<p><strong>Tracking Number : </strong>3409-4216-8759</p>
 														<p><strong>Warehouse : </strong>Top Shirt 12b</p>
@@ -100,7 +100,7 @@
 													<div class="timeline-box">
 														<a class="timeline-panel" href="javascript:void(0);">
 														   <h6 class="mb-0">Product Packaging</h6>
-															<span>@Model.order.CreatedAt.AddHours(12).ToString()</span>
+															<span>@Model.CreatedAt.AddHours(12).ToString()</span>
 														</a>
 													</div>
 												</li>
@@ -109,7 +109,7 @@
 													<div class="timeline-box">
 														<a class="timeline-panel" href="javascript:void(0);">
 														   <h6 class="mb-0">Order Placed</h6>
-															<span>@Model.order.CreatedAt</span>
+															<span>@Model.CreatedAt</span>
 														</a>
 													</div>
 												</li>
